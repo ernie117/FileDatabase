@@ -23,6 +23,7 @@ public class Film {
             position = 1
     )
     public String title;
+
     @NotBlank
     @ApiModelProperty(
             name = "genre",
@@ -30,6 +31,7 @@ public class Film {
             position = 2
     )
     public String genre;
+
     @NotBlank
     @ApiModelProperty(
             name = "director",
@@ -37,6 +39,7 @@ public class Film {
             position = 3
     )
     public String director;
+
     @NotBlank
     @ApiModelProperty(
             name = "yearReleased",
@@ -44,6 +47,7 @@ public class Film {
             position = 4)
     @Min(1888) @Max(9999)
     public int yearReleased;
+
     @ApiModelProperty(
             name = "actors",
             example = "['string', 'string', ...]",
