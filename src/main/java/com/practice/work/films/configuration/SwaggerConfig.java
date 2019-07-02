@@ -24,7 +24,8 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
-                .tags(new Tag("Add Film Tag", "REST endpoint to add a new film to the mongoDB"),
+                .tags(
+                        new Tag("Add Film", "REST endpoint to add a new film to the mongoDB"),
                         new Tag("Add Multiple Films", "REST endpoint to add multiple new films to the mongoDB"),
                         new Tag("Fetch All Films", "Fetch a list of all films in the mongoDB")
                 );

@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 @RestController
 @ResponseStatus(HttpStatus.CREATED)
-@Api(tags = {"Add Film Tag"})
+@Api(tags = {"Add Film"})
 public class AddFilmController {
 
     private FilmRepository filmRepository;
