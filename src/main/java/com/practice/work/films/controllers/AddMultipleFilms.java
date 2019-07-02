@@ -4,10 +4,7 @@ import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class AddMultipleFilms {
         this.filmRepository = filmRepository;
     }
 
-    @RequestMapping("/addMultipleFilms")
+    @RequestMapping(value = "/addMultipleFilms", method = RequestMethod.POST)
     public List<Film> addMultipleFilms(@RequestBody List<Film> films) {
         return this.filmRepository.saveAll(films);
     }

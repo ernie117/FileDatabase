@@ -9,13 +9,13 @@ import java.util.List;
 public class Film {
 
     @Id
-    private String id;
+    public String id;
 
-    private String title;
-    private String genre;
-    private String director;
-    private int yearReleased;
-    private List<String> actors;
+    public String title;
+    public String genre;
+    public String director;
+    public int yearReleased;
+    public List<String> actors;
 
     @Override
     public String toString() {
