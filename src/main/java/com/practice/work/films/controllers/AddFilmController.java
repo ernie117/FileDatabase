@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 @RestController
 @ResponseStatus(HttpStatus.CREATED)
-@Api(value = "Add Film Endpoint", description = "REST Endpoint for adding films")
+@Api(tags = "Add a film", description = "REST endpoint to add a new film to the mongoDB")
 public class AddFilmController {
 
     private FilmRepository filmRepository;
