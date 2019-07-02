@@ -9,9 +9,9 @@ public interface FilmRepository extends MongoRepository<Film, String> {
 
     // save/saveAll methods exist as default methods
 
-    Film findFilmByTitle(String title);
-    Film findAllByDirector(String director);
-    List<Film> findFilmsByGenre(String genre);
+    Film findFilmByTitleIgnoreCase(String title);
+    List<Film> findAllByDirectorIgnoreCase(String director);
+    List<Film> findFilmsByGenreIgnoreCase(String genre);
     List<Film> findFilmsByYearReleased(int year);
     List<Film> findAll();
 }
