@@ -14,6 +14,7 @@ import java.util.List;
 public class Film {
 
     @Id
+    @ApiModelProperty(hidden = true)
     public String id;
 
     @NotBlank

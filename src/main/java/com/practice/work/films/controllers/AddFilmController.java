@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 @RestController
 @ResponseStatus(HttpStatus.CREATED)
-@Api(tags = "Add a film", description = "REST endpoint to add a new film to the mongoDB")
+@Api(tags = {"Add Film Tag"})
 public class AddFilmController {
 
     private FilmRepository filmRepository;
@@ -21,8 +21,8 @@ public class AddFilmController {
         this.filmRepository = filmRepository;
     }
 
-    @RequestMapping(value = "/addFilm", method = RequestMethod.POST)
-    public Film create(@Valid @RequestBody Film film) {
+    @RequestMapping(value = "/v1/addFilm", method = RequestMethod.POST)
+    public Film insertFilmDocument(@Valid @RequestBody Film film) {
         return filmRepository.save(film);
     }
 }
