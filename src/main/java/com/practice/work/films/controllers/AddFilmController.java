@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @ResponseStatus(HttpStatus.CREATED)
 public class AddFilmController {
@@ -18,7 +20,7 @@ public class AddFilmController {
     }
 
     @RequestMapping(value = "/addFilm", method = RequestMethod.POST)
-    public Film create(@RequestBody Film film) {
+    public Film create(@Valid @RequestBody Film film) {
         return filmRepository.save(film);
     }
 }

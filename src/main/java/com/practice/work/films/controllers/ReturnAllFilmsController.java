@@ -19,7 +19,7 @@ public class ReturnAllFilmsController {
         this.filmRepository = filmRepository;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public List<Film> allFilms() {
         return filmRepository.findAll();
     }
