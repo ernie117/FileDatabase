@@ -29,7 +29,7 @@ public class FindFilmsByGenreController {
     @GetMapping(path = "/v1/findAllByGenre")
     public List<Film> fetchAllFilmsByGenre(@ApiParam(value = "Genre to search as a string. Case-insensitive")
                                            @RequestParam String genre) {
-        return this.filmRepository.findFilmsByGenreIgnoreCase(genre);
+        return this.filmRepository.findFilmsByGenreRegexIgnoreCase(genre);
     }
 
 }

@@ -1,18 +1,21 @@
 package com.practice.work.films.entities;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.*;
 import java.util.List;
 
+@Getter @Setter
 @Document(collection = "films")
 public class Film {
 
     @Id
     @ApiModelProperty(hidden = true)
-    public String id;
+    private String id;
 
     @NotBlank
     @ApiModelProperty(
@@ -20,7 +23,7 @@ public class Film {
             example = "string",
             position = 1
     )
-    public String title;
+    private String title;
 
     @NotBlank
     @ApiModelProperty(
@@ -28,7 +31,7 @@ public class Film {
             example = "string",
             position = 2
     )
-    public String genre;
+    private String genre;
 
     @NotBlank
     @ApiModelProperty(
@@ -36,7 +39,7 @@ public class Film {
             example = "string",
             position = 3
     )
-    public String director;
+    private String director;
 
     @NotBlank
     @ApiModelProperty(
@@ -44,7 +47,7 @@ public class Film {
             example = "string",
             position = 4
     )
-    public String cinematographer;
+    private String cinematographer;
 
     @NotBlank
     @ApiModelProperty(
@@ -52,7 +55,7 @@ public class Film {
             example = "string",
             position = 5
     )
-    public String writer;
+    private String writer;
 
     @NotBlank
     @ApiModelProperty(
@@ -60,7 +63,7 @@ public class Film {
             example = "string",
             position = 5
     )
-    public String composer;
+    private String composer;
 
     @NotNull
     @ApiModelProperty(
@@ -68,8 +71,9 @@ public class Film {
             example = "2006",
             position = 6)
     @Min(1888) @Max(9999)
-    public int yearReleased;
+    private int yearReleased;
 
+    @NotEmpty
     @ApiModelProperty(
             name = "actors",
             example = "['string', 'string', ...]",

@@ -24,9 +24,9 @@ public class FindFilmByTitleController {
         this.filmRepository = filmRepository;
     }
 
-    @GetMapping("{title}")
+    @GetMapping(produces = "application/json")
     public List<Film> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
-                                       @PathVariable("title") String title) {
+                                       @RequestParam String title) {
         return filmRepository.findFilmByTitleRegexIgnoreCase(title);
     }
 }
