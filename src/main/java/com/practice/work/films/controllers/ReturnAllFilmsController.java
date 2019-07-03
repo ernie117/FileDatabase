@@ -4,12 +4,16 @@ import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController
+@ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch All Films"})
 public class ReturnAllFilmsController {
 

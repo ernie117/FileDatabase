@@ -65,7 +65,7 @@ public class Film {
     @NotNull
     @ApiModelProperty(
             name = "yearReleased",
-            example = "string",
+            example = "2006",
             position = 6)
     @Min(1888) @Max(9999)
     public int yearReleased;
