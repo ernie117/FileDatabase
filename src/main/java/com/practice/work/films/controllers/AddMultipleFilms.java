@@ -21,7 +21,7 @@ public class AddMultipleFilms {
         this.filmRepository = filmRepository;
     }
 
-    @RequestMapping(value = "/v1/addMultipleFilms", method = RequestMethod.POST)
+    @PostMapping(value = "/v1/addMultipleFilms")
     public List<Film> insertManyFilmDocuments(@RequestBody List<Film> films) {
         return this.filmRepository.saveAll(films);
     }

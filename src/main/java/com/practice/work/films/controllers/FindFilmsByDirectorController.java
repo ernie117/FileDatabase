@@ -24,7 +24,7 @@ public class FindFilmsByDirectorController {
 
     @GetMapping(path = "/v1/fetchFilmsByDirector", produces = "application/json")
     public List<Film> fetchFilmsByDirector(@ApiParam(value = "Director to search, as a string. Case-insensitive")
-                                               @RequestParam String director) {
+                                           @RequestParam String director) {
         return this.filmRepository.findAllByDirectorIgnoreCase(director);
     }
 }

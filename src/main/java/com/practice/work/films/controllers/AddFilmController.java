@@ -21,7 +21,7 @@ public class AddFilmController {
         this.filmRepository = filmRepository;
     }
 
-    @RequestMapping(value = "/v1/addFilm", method = RequestMethod.POST)
+    @PostMapping(value = "/v1/addFilm")
     public Film insertFilmDocument(@Valid @RequestBody Film film) {
         return filmRepository.save(film);
     }
