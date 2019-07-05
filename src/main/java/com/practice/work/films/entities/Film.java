@@ -1,6 +1,7 @@
 package com.practice.work.films.entities;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.*;
 import java.util.List;
 
+@Builder
 @Getter @Setter
 @Document(collection = "films")
 public class Film {

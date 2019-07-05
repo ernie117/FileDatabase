@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter @Setter
 public class TestEntity {
 
-    @ApiModelProperty(name = "test string")
-    private final String testString = "Hello World";
-
+    @ApiModelProperty("test string")
+    private String testString = "This is a test";
 }

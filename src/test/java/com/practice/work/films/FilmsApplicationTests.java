@@ -1,7 +1,6 @@
 package com.practice.work.films;
 
 import com.practice.work.films.controllers.*;
-import com.practice.work.films.repositories.FilmRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,15 +9,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
-import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -26,31 +23,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class FilmsApplicationTests {
 
-
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private ReturnAllFilmsController returnAllFilmsController;
-    @Autowired
-    private FindFilmsByDirectorController findFilmsByDirectorController;
-    @Autowired
-    private FindFilmsByYearController findFilmsByYearController;
-    @Autowired
-    private FindFilmsByGenreController findFilmsByGenreController;
-    @Autowired
-    private FindFilmByTitleController findFilmByTitleController;
-    @Autowired
-    private AddMultipleFilms addMultipleFilms;
-    @Autowired
-    private AddFilmController addFilmController;
-
-    @Autowired
-    private FilmRepository filmRepository;
+    private TestController testController;
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new TestController()).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(testController).build();
     }
 
     /**
@@ -58,20 +38,29 @@ public class FilmsApplicationTests {
      */
     @Test
     public void contextLoads() {
-        assertThat(new Object[]{returnAllFilmsController,
-                                findFilmsByDirectorController,
-                                findFilmByTitleController,
-                                findFilmsByGenreController,
-                                findFilmsByYearController,
-                                addFilmController,
-                                addMultipleFilms}).doesNotContainNull();
-
-        assertThat(filmRepository).isNotNull();
+        assertThat(new Object[]{testController, mockMvc}).doesNotContainNull();
     }
 
+    /**
+     * Testing that the TestController returns expected test string
+     * @throws Exception dunno
+     */
     @Test
     public void shouldReturnDefaultMessage() throws Exception {
-        this.mockMvc.perform(get("/v1/testing")).andExpect(status().isOk())
-                .andExpect((ResultMatcher) content().string(containsString("Hello World")));
+        this.mockMvc.perform(get("/v1/testing"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(containsString("hello world")));
+    }
+
+    /**
+     * Asserting that service returns proper JSON value
+     * @throws Exception dunno
+     */
+    @Test
+    public void returnCorrectTestEntityValue() throws Exception {
+        this.mockMvc.perform(get("/v1/testingEntity"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.testString").value("This is a test"));
+
     }
 }
