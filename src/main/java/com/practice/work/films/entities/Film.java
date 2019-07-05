@@ -61,7 +61,7 @@ public class Film {
     @ApiModelProperty(
             name = "composer",
             example = "string",
-            position = 5
+            position = 6
     )
     private String composer;
 
@@ -69,7 +69,7 @@ public class Film {
     @ApiModelProperty(
             name = "yearReleased",
             example = "2006",
-            position = 6)
+            position = 7)
     @Min(1888) @Max(9999)
     private int yearReleased;
 
@@ -77,7 +77,7 @@ public class Film {
     @ApiModelProperty(
             name = "actors",
             example = "['string', 'string', ...]",
-            position = 7)
+            position = 8)
     @Size(min = 1, max = 10)
     public List<String> actors;
 

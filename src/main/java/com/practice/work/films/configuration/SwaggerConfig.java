@@ -41,7 +41,7 @@ public class SwaggerConfig {
                 "Provides endpoints to query my mongo film database",
                 "",
                 "",
-                new Contact("Ernie", "", "ern3st@hotmail.co.uk"),
+                new Contact("", "", ""),
                 "", "", Collections.emptyList()
         );
     }
