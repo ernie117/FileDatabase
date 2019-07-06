@@ -16,6 +16,7 @@ import java.util.Collections;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,8 +30,8 @@ public class FindFilmByTitleControllerTest {
     @MockBean
     private FilmRepository filmRepository;
 
-    @Autowired
-    private FindFilmByTitleController findFilmByTitleController;
+    @MockBean
+    private FilmsService filmsService;
 
     private Film testFilm = Film.builder()
             .title("test film")
@@ -38,13 +39,12 @@ public class FindFilmByTitleControllerTest {
 
     @Test
     public void testAddFilm() throws Exception {
-        given(this.findFilmByTitleController.fetchFilmByTitle("test film"))
+        given(this.filmsService.findFilmsByTitleRegexIgnoreCase("test film"))
                 .willReturn(Collections.singletonList(testFilm));
-        MvcResult result = this.mockMvc.perform(get("/v1/findFilmByTitle")
+        this.mockMvc.perform(get("/v1/findFilmByTitle")
                 .param("title", "test film"))
+                .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title").value("test film")).andReturn();
-
-        System.out.println(result.getResponse().getContentAsString());
+                .andExpect(jsonPath("$[0].title").value("test film"));
     }
 }
