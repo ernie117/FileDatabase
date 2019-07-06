@@ -1,6 +1,7 @@
 package com.practice.work.films.entities;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Builder
 @Getter @Setter
+@AllArgsConstructor
 @Document(collection = "films")
 public class Film {
 
