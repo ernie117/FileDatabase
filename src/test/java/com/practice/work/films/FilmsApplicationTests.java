@@ -34,7 +34,7 @@ public class FilmsApplicationTests {
     }
 
     /**
-     * Sanity-checking that contexts (controllers and mongo repositories) are being loaded
+     * Sanity-checking that context (controllers and mongo repositories) is being loaded
      */
     @Test
     public void contextLoads() {
