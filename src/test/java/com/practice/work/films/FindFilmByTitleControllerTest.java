@@ -12,6 +12,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class FindFilmByTitleControllerTest {
                     .composer("test composer")
                     .writer("test writer")
                     .genre("test genre")
-                    .yearReleased("test year released")
+                    .releaseDate(LocalDate.parse("2000-01-01"))
                     .actors(Arrays.asList("test actor1", "test actor2"))
                     .build()
     );

@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -23,7 +24,7 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     @Query("{'genre': {$regex: ?0}}")
     List<Film> findFilmsByGenreRegexIgnoreCase(String genre);
 
-    List<Film> findFilmsByYearReleased(String year);
+    List<Film> findAllByReleaseDate(LocalDate date);
     List<Film> findAll();
 
     // TODO method to find by actor

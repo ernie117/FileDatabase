@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -34,6 +35,20 @@ public class ValidationErrorResponse {
                 );
             }
         }
+
+        return VIOLATIONS;
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Set<Violation> handleValidationExceptions(MethodArgumentTypeMismatchException ex) {
+        VIOLATIONS.add(
+                Violation.builder()
+                        .field(ex.getName())
+                        .message("Date must be in format yyyy-mm-dd")
+                        .build()
+        );
 
         return VIOLATIONS;
     }

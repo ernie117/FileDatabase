@@ -11,6 +11,7 @@ import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -105,11 +106,11 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films with a given release year
-     * @param String value of the release year to query
+     * @param LocalDate value of the release year to query
      * @return sorted, immutable List<Film>
      */
-    public List<Film> findFilmsByYear(String year) {
-        return sortAndWrap(this.filmRepository.findFilmsByYearReleased(year));
+    public List<Film> findFilmsByReleaseDate(LocalDate localDate) {
+        return sortAndWrap(this.filmRepository.findAllByReleaseDate(localDate));
     }
 
     /**

@@ -5,12 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
@@ -99,14 +99,13 @@ public class Film {
     /**
      * Year the film was released
      */
-    @NotBlank
-    @Pattern(regexp = "\\d{4}",
-             message = "Must match \\d{4}")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past
     @ApiModelProperty(
-            name = "yearReleased",
-            example = "1999",
+            name = "releaseDate",
+            example = "1999-01-31",
             position = 7)
-    private String yearReleased;
+    private LocalDate releaseDate;
 
     /**
      * List of the main actors
@@ -123,7 +122,7 @@ public class Film {
     public String toString() {
         return String.format(
                 "Film[id=%s, title=%s, genre=%s, director=%s, cinematographer=%s, writer=%s, compose=%s, yearReleased=%s, actors=%s]",
-                id, title, genre, cinematographer, writer, composer, director, yearReleased, String.join(", ", actors)
+                id, title, genre, cinematographer, writer, composer, director, releaseDate, String.join(", ", actors)
         );
     }
 }

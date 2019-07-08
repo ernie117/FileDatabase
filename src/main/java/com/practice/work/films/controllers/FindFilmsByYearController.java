@@ -6,18 +6,20 @@ import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionFailedException;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
 @RestController
 @ResponseStatus(HttpStatus.OK)
-@Api(tags = {"Fetch Films by Year"})
+@Api(tags = {"Fetch Films by Exact Date"})
 public class FindFilmsByYearController {
 
     private FilmsService filmsService;
@@ -28,8 +30,10 @@ public class FindFilmsByYearController {
     }
 
     @GetMapping(path = "/v1/findAllByYear")
-    public List<Film> fetchAllFilmsByYear(@ApiParam("Year to search, as string")
-                                          @RequestParam String year) {
-        return this.filmsService.findFilmsByYear(year);
+    public List<Film> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
+                                                 @RequestParam
+                                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
+    return this.filmsService.findFilmsByReleaseDate(localDate);
     }
+
 }
