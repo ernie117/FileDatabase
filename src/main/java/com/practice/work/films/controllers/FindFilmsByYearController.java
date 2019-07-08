@@ -27,8 +27,8 @@ public class FindFilmsByYearController {
     }
 
     @GetMapping(path = "/v1/findAllByYear")
-    public List<Film> fetchAllFilmsByYear(@ApiParam("Year to search, as int")
-                                          @RequestParam int year) {
+    public List<Film> fetchAllFilmsByYear(@ApiParam("Year to search, as string")
+                                          @RequestParam String year) {
         return this.filmRepository.findFilmsByYearReleased(year);
     }
 }

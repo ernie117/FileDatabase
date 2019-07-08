@@ -1,11 +1,14 @@
 package com.practice.work.films.controllers;
 
+import com.practice.work.films.Service.FilmsService;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.ClassUtils;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,18 +20,18 @@ import java.util.List;
 @Api(tags = {"Add Multiple Films"})
 public class AddMultipleFilms {
 
-    private FilmRepository filmRepository;
+    private FilmsService filmsService;
 
     @Autowired
-    AddMultipleFilms(FilmRepository filmRepository) {
-        this.filmRepository = filmRepository;
+    AddMultipleFilms(FilmsService filmsService) {
+        this.filmsService = filmsService;
     }
 
     @PostMapping(value = "/v1/addMultipleFilms")
     public List<Film> insertManyFilmDocuments(@Valid
                                               @ApiParam("Array of film objects, structured as in the example")
                                               @RequestBody List<Film> films) {
-        return this.filmRepository.saveAll(films);
+        return this.filmsService.insertMultipleFilmDocument(films);
     }
 
 }

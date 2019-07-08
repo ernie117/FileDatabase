@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.text.WordUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -67,13 +68,13 @@ public class Film {
     )
     private String composer;
 
-    @NotNull
+    @NotBlank
+    @Pattern(regexp = "\\d{4}")
     @ApiModelProperty(
             name = "yearReleased",
-            example = "2006",
+            example = "string",
             position = 7)
-    @Min(1888) @Max(9999)
-    private int yearReleased;
+    private String yearReleased;
 
     @NotEmpty
     @ApiModelProperty(
@@ -86,7 +87,7 @@ public class Film {
     @Override
     public String toString() {
         return String.format(
-                "Film[id=%s, title=%s, genre=%s, director=%s, cinematographer=%s, writer=%s, compose=%s, yearReleased=%d, actors=%s]",
+                "Film[id=%s, title=%s, genre=%s, director=%s, cinematographer=%s, writer=%s, compose=%s, yearReleased=%s, actors=%s]",
                 id, title, genre, cinematographer, writer, composer, director, yearReleased, String.join(", ", actors)
         );
     }

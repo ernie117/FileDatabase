@@ -1,8 +1,8 @@
 package com.practice.work.films.controllers;
 
-import com.practice.work.films.FilmsService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.practice.work.films.Service.FilmsService;
 import com.practice.work.films.entities.Film;
-import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class FindFilmByTitleController {
     }
 
     @GetMapping(produces = "application/json")
-    public List<Film> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
+    public JsonNode fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
                                        @RequestParam String title) {
         return this.filmsService.findFilmsByTitleRegexIgnoreCase(title);
     }

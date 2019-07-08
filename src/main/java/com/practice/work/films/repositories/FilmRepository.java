@@ -12,6 +12,8 @@ public interface FilmRepository extends MongoRepository<Film, String> {
 
     // save/saveAll methods exist as default methods
 
+    Film findFilmById(String id);
+
     @Query("{'title': {$regex: ?0}}")
     List<Film> findFilmByTitleRegexIgnoreCase(String title);
 
@@ -21,7 +23,8 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     @Query("{'genre': {$regex: ?0}}")
     List<Film> findFilmsByGenreRegexIgnoreCase(String genre);
 
-    List<Film> findFilmsByYearReleased(int year);
+    List<Film> findFilmsByYearReleased(String year);
     List<Film> findAll();
 
+    void deleteFilmById(String id);
 }
