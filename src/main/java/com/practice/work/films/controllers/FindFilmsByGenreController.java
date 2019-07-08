@@ -1,5 +1,6 @@
 package com.practice.work.films.controllers;
 
+import com.practice.work.films.Service.FilmsService;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
@@ -19,17 +20,17 @@ import java.util.List;
 @Api(tags = {"Fetch Film by Genre"})
 public class FindFilmsByGenreController {
 
-    private FilmRepository filmRepository;
+    private FilmsService filmsService;
 
     @Autowired
-    FindFilmsByGenreController(FilmRepository filmRepository) {
-        this.filmRepository = filmRepository;
+    FindFilmsByGenreController(FilmsService filmsService) {
+        this.filmsService = filmsService;
     }
 
     @GetMapping(path = "/v1/findAllByGenre")
     public List<Film> fetchAllFilmsByGenre(@ApiParam("Genre to search as a string. Case-insensitive")
                                            @RequestParam String genre) {
-        return this.filmRepository.findFilmsByGenreRegexIgnoreCase(genre);
+        return this.filmsService.findFilmsByGenre(genre);
     }
 
 }

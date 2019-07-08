@@ -1,5 +1,6 @@
 package com.practice.work.films.controllers;
 
+import com.practice.work.films.Service.FilmsService;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
@@ -19,16 +20,16 @@ import java.util.List;
 @Api(tags = {"Fetch Films by Year"})
 public class FindFilmsByYearController {
 
-    private FilmRepository filmRepository;
+    private FilmsService filmsService;
 
     @Autowired
-    FindFilmsByYearController(FilmRepository filmRepository) {
-        this.filmRepository = filmRepository;
+    FindFilmsByYearController(FilmsService filmsService) {
+        this.filmsService = filmsService;
     }
 
     @GetMapping(path = "/v1/findAllByYear")
     public List<Film> fetchAllFilmsByYear(@ApiParam("Year to search, as string")
                                           @RequestParam String year) {
-        return this.filmRepository.findFilmsByYearReleased(year);
+        return this.filmsService.findFilmsByYear(year);
     }
 }

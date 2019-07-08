@@ -36,18 +36,4 @@ public class AddFilmController {
         return filmsService.insertSingleFilmDocument(film);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleValidationExceptions(MethodArgumentNotValidException ex) {
-        String field = null, error = null;
-        Optional<FieldError> optionalString = Optional.ofNullable(ex.getBindingResult().getFieldError());
-
-        if (optionalString.isPresent()) {
-            field = ex.getBindingResult().getFieldError().getField();
-            error = ex.getBindingResult().getFieldError().getDefaultMessage();
-        }
-
-        return String.format("%s: %s", field, error);
-    }
-
 }

@@ -1,6 +1,7 @@
 package com.practice.work.films.controllers;
 
 import com.practice.work.films.Service.FilmsService;
+import com.practice.work.films.entities.ConfirmedDeletionMessage;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class DeleteFilmController {
     }
 
     @DeleteMapping(path = "/v1/deleteFilmByTitle")
-    public String deleteFilmById(String id) {
+    public ConfirmedDeletionMessage deleteFilmById(String id) {
         return this.filmsService.deleteFilmById(id);
     }
 

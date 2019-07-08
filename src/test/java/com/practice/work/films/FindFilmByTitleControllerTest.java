@@ -12,11 +12,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,18 +33,27 @@ public class FindFilmByTitleControllerTest {
     @MockBean
     private FilmsService filmsService;
 
-    private Film testFilm = Film.builder()
-            .title("test film")
-            .build();
+    private List<Film> testFilmList = Arrays.asList(
+            Film.builder()
+                    .title("test title")
+                    .director("test director")
+                    .cinematographer("test cinematographer")
+                    .composer("test composer")
+                    .writer("test writer")
+                    .genre("test genre")
+                    .yearReleased("test year released")
+                    .actors(Arrays.asList("test actor1", "test actor2"))
+                    .build()
+    );
 
-//    @Test
-//    public void testAddFilm() throws Exception {
-//        given(this.filmsService.findFilmsByTitleRegexIgnoreCase("test film"))
-//                .willReturn(Collections.singletonList(testFilm));
-//        this.mockMvc.perform(get("/v1/findFilmByTitle")
-//                .param("title", "test film"))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$[0].title").value("test film"));
-//    }
+    @Test
+    public void testFindByFilmByRegex() throws Exception {
+        given(this.filmsService.findFilmsByTitleRegexIgnoreCase("test title"))
+                .willReturn(testFilmList);
+        this.mockMvc.perform(
+                get("/v1/findFilmByTitle")
+                        .param("title", "test title"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].title").value("test title"));
+    }
 }

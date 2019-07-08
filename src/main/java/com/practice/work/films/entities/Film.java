@@ -1,7 +1,10 @@
 package com.practice.work.films.entities;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.text.WordUtils;
@@ -9,12 +12,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.*;
+import java.util.Comparator;
 import java.util.List;
 
+import static java.util.Comparator.comparing;
+
 @Builder
-@Getter @Setter
+@Data
 @Document(collection = "films")
 public class Film {
+
+    public static final Comparator<Film> BY_TITLE
+            = comparing(Film::getTitle);
 
     @Id
     @ApiModelProperty(hidden = true)
@@ -69,10 +78,11 @@ public class Film {
     private String composer;
 
     @NotBlank
-    @Pattern(regexp = "\\d{4}")
+    @Pattern(regexp = "\\d{4}",
+             message = "Must match \\d{4}")
     @ApiModelProperty(
             name = "yearReleased",
-            example = "string",
+            example = "1999",
             position = 7)
     private String yearReleased;
 

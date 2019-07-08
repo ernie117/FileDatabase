@@ -1,5 +1,6 @@
 package com.practice.work.films.controllers;
 
+import com.practice.work.films.Service.FilmsService;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
@@ -17,15 +18,15 @@ import java.util.List;
 @Api(tags = {"Fetch All Films"})
 public class ReturnAllFilmsController {
 
-    private FilmRepository filmRepository;
+    private FilmsService filmsService;
 
     @Autowired
-    ReturnAllFilmsController(FilmRepository filmRepository) {
-        this.filmRepository = filmRepository;
+    ReturnAllFilmsController(FilmsService filmsService) {
+        this.filmsService = filmsService;
     }
 
     @GetMapping(value = "/v1/all", produces = "application/json")
     public List<Film> fetchAllFilmDocuments() {
-        return filmRepository.findAll();
+        return filmsService.fetchAllFilms();
     }
 }
