@@ -24,7 +24,7 @@ public class FindFilmByTitleController {
         this.filmsService = filmsService;
     }
 
-    @GetMapping(produces = "application/json")
+    @GetMapping
     public List<Film> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
                                        @RequestParam String title) {
         return this.filmsService.findFilmsByTitleRegexIgnoreCase(title);

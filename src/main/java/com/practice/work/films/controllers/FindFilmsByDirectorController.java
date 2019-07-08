@@ -27,7 +27,7 @@ public class FindFilmsByDirectorController {
         this.filmsService = filmsService;
     }
 
-    @GetMapping(path = "/v1/fetchFilmsByDirector", produces = "application/json")
+    @GetMapping(path = "/v1/fetchFilmsByDirector")
     public List<Film> fetchFilmsByDirector(@ApiParam("Director to search, as a string. Case-insensitive")
                                            @RequestParam String director) {
         return this.filmsService.findFilmsByDirector(director);

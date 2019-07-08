@@ -23,7 +23,7 @@ public class FilmIdController {
         this.filmsService = filmsService;
     }
 
-    @GetMapping(value = "/v1/getFilmId", produces = "application/json")
+    @GetMapping(value = "/v1/getFilmId")
     public JsonNode getFilmIdsByTitle(@ApiParam("Film title to search, as string")
                                       @RequestParam String title) {
         return this.filmsService.getFilmIdsByTitle(title);

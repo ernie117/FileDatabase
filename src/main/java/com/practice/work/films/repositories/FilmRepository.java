@@ -26,5 +26,10 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     List<Film> findFilmsByYearReleased(String year);
     List<Film> findAll();
 
+    // TODO method to find by actor
+    // TODO method to find by composer
+    // TODO method to find by cinematographer
+    // TODO method to find by writer
+
     void deleteFilmById(String id);
 }

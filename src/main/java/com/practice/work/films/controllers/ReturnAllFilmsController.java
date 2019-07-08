@@ -25,7 +25,7 @@ public class ReturnAllFilmsController {
         this.filmsService = filmsService;
     }
 
-    @GetMapping(value = "/v1/all", produces = "application/json")
+    @GetMapping(value = "/v1/all")
     public List<Film> fetchAllFilmDocuments() {
         return filmsService.fetchAllFilms();
     }

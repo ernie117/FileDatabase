@@ -132,4 +132,10 @@ public class FilmsService {
                 .collect(Collectors.toList())
         );
     }
+
+    // TODO method to find by actor
+    // TODO method to find by composer
+    // TODO method to find by cinematographer
+    // TODO method to find by writer
+
 }
