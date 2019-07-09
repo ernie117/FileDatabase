@@ -104,6 +104,7 @@ public class Film {
     /**
      * Year/month/day the film was released
      */
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Past
     @ApiModelProperty(

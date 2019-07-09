@@ -39,5 +39,7 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     @Query("{'writer': {$regex: ?0}}")
     List<Film> findFilmsByWriterRegex(String actor);
 
+    Film findFilmsById(String id);
+
     void deleteFilmById(String id);
 }
