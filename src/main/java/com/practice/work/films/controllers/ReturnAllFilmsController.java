@@ -6,6 +6,7 @@ import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,7 @@ public class ReturnAllFilmsController {
         this.filmsService = filmsService;
     }
 
-    @GetMapping(value = "/v1/all")
+    @GetMapping(value = "/v1/all", produces = "application/json")
     public List<Film> fetchAllFilmDocuments() {
         return filmsService.fetchAllFilms();
     }

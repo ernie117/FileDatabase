@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -99,6 +101,22 @@ public class ValidationErrorResponse {
                         .message(ex.getLocalizedMessage())
                         .build()
         );
+
+        return violations;
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Set<Violation> handleConstraintException(ConstraintViolationException ex) {
+        Set<Violation> violations = new HashSet<>();
+        for (ConstraintViolation cv : ex.getConstraintViolations()) {
+            violations.add(
+                    Violation.builder()
+                            .field(cv.getPropertyPath().toString())
+                            .message(cv.getMessage())
+                            .build());
+        }
 
         return violations;
     }

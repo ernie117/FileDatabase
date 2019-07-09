@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @ResponseStatus(HttpStatus.OK)
 @RequestMapping(value = "/v1/findFilmByTitle", produces = "application/json")
-@Api(tags = {"Find Film by Title"})
+@Api(tags = {"Fetch Films by Title"})
 public class FindFilmByTitleController {
 
     private FilmsService filmsService;

@@ -45,6 +45,7 @@ public class Film {
      * Genre of the film
      */
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z]+")
     @ApiModelProperty(
             name = "genre",
             example = "string",
@@ -56,6 +57,7 @@ public class Film {
      * Director of the film
      */
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z]+")
     @ApiModelProperty(
             name = "director",
             example = "string",
@@ -67,6 +69,7 @@ public class Film {
      * Cinematographer of the film
      */
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z]+")
     @ApiModelProperty(
             name = "cinematographer",
             example = "string",
@@ -78,6 +81,7 @@ public class Film {
      * Writer of the film
      */
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z]+")
     @ApiModelProperty(
             name = "writer",
             example = "string",
@@ -89,6 +93,7 @@ public class Film {
      * Composer of the film
      */
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z]+")
     @ApiModelProperty(
             name = "composer",
             example = "string",
@@ -97,7 +102,7 @@ public class Film {
     private String composer;
 
     /**
-     * Year the film was released
+     * Year/month/day the film was released
      */
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Past

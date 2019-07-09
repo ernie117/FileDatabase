@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@Api(tags = {"Find Film IDs by Title"})
+@Api(tags = {"Fetch Film IDs by Title"})
 public class FilmIdController {
 
     private FilmsService filmsService;

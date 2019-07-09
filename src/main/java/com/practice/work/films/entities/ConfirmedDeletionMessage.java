@@ -3,6 +3,7 @@ package com.practice.work.films.entities;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Getter @Setter
 @RequiredArgsConstructor
