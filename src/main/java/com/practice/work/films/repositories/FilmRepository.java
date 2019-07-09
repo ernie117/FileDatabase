@@ -27,10 +27,17 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     List<Film> findAllByReleaseDate(LocalDate date);
     List<Film> findAll();
 
-    // TODO method to find by actor
-    // TODO method to find by composer
-    // TODO method to find by cinematographer
-    // TODO method to find by writer
+    @Query("{'actors': {$regex: ?0}}")
+    List<Film> findFilmsByActorsRegex(String actor);
+
+    @Query("{'composer': {$regex: ?0}}")
+    List<Film> findFilmsByComposerRegex(String actor);
+
+    @Query("{'cinematographer': {$regex: ?0}}")
+    List<Film> findFilmsByCinematographerRegex(String actor);
+
+    @Query("{'writer': {$regex: ?0}}")
+    List<Film> findFilmsByWriterRegex(String actor);
 
     void deleteFilmById(String id);
 }

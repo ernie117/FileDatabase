@@ -52,9 +52,8 @@ public class FindFilmByTitleControllerTest {
     public void testFindByFilmByRegex() throws Exception {
         given(this.filmsService.findFilmsByTitleRegexIgnoreCase("test title"))
                 .willReturn(testFilmList);
-        this.mockMvc.perform(
-                get("/v1/findFilmByTitle")
-                        .param("title", "test title"))
+        this.mockMvc.perform(get("/v1/findFilmByTitle")
+                .param("title", "test title"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title").value("test title"));
     }

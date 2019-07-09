@@ -27,7 +27,7 @@ public class FilmsService {
 
     /**
      * Query that inserts a single Film document in MongoDB
-     * @param Film object to be inserted into the DB
+     * @param film: object to be inserted into the DB
      * @return returns a copy of the inserted Film object
      */
     public Film insertSingleFilmDocument(Film film) {
@@ -36,21 +36,16 @@ public class FilmsService {
 
     /**
      * Query that inserts multiple film records into MongoDB
-     * @param List<Film> list of films to add to MongoDB
+     * @param films: list of films to add to MongoDB
      * @return returns a copy of param List<Film>
      */
     public List<Film> insertMultipleFilmDocument(List<Film> films) {
-        return Collections.unmodifiableList(
-                this.filmRepository.saveAll(films)
-                        .stream()
-                        .sorted(Film.BY_TITLE)
-                        .collect(Collectors.toList())
-        );
+        return sortAndWrap(this.filmRepository.saveAll(films));
     }
 
     /**
      * Query that returns Json objects of film titles IDs matching a given title
-     * @param String value representing file title to search; case-insensitive
+     * @param title: title of the film search; case-insensitive
      * @return JsonNode of film title and ID
      */
     public JsonNode getFilmIdsByTitle(String title) {
@@ -67,7 +62,7 @@ public class FilmsService {
 
     /**
      * Query that deletes film document by ID from MongoDB
-     * @param String value of ID matching film document to delete
+     * @param id: ID matching film document to delete
      * @return ConfirmedDeletionMessage object representing deleted document
      */
     public ConfirmedDeletionMessage deleteFilmById(String id) {
@@ -79,7 +74,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films that match a given string, by regex
-     * @param String value of the title to query; case-insensitive
+     * @param title: title of the film query; case-insensitive
      * @return sorted, immutable List<Film>
      */
     public List<Film> findFilmsByTitleRegexIgnoreCase(String title) {
@@ -88,7 +83,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films with a given director
-     * @param String value of the director to query; case-insensitive
+     * @param director: name of the director to query; case-insensitive
      * @return sorted, immutable List<Film>
      */
     public List<Film> findFilmsByDirector(String director) {
@@ -97,7 +92,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films with a given genre
-     * @param String value of the genre to query; case-insensitive
+     * @param genre: genre to query; case-insensitive
      * @return sorted, immutable List<Film>
      */
     public List<Film> findFilmsByGenre(String genre) {
@@ -106,11 +101,11 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films with a given release year
-     * @param LocalDate value of the release year to query
+     * @param date: value of the release year to query
      * @return sorted, immutable List<Film>
      */
-    public List<Film> findFilmsByReleaseDate(LocalDate localDate) {
-        return sortAndWrap(this.filmRepository.findAllByReleaseDate(localDate));
+    public List<Film> findFilmsByReleaseDate(LocalDate date) {
+        return sortAndWrap(this.filmRepository.findAllByReleaseDate(date));
     }
 
     /**
@@ -120,6 +115,19 @@ public class FilmsService {
     public List<Film> fetchAllFilms() {
         return sortAndWrap(this.filmRepository.findAll());
     }
+
+    /**
+     * Queries MongoDB for films by actor
+     * @param actor: string of actor to search
+     * @return sorted, immutable List<Film>
+     */
+    public List<Film> fetchFilmsByActor(String actor) {
+        return sortAndWrap(this.filmRepository.findFilmsByActorsRegex(actor));
+    }
+
+    // TODO method to find by composer
+    // TODO method to find by cinematographer
+    // TODO method to find by writer
 
     /**
      * Sorts given List<Film> by title, wraps it in an unmodifiable List<>
@@ -133,10 +141,4 @@ public class FilmsService {
                 .collect(Collectors.toList())
         );
     }
-
-    // TODO method to find by actor
-    // TODO method to find by composer
-    // TODO method to find by cinematographer
-    // TODO method to find by writer
-
 }

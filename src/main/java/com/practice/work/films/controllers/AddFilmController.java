@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.ClassUtils;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @RestController
 @Api(tags = {"Add Film"})
+@Validated
 public class AddFilmController {
 
     private FilmsService filmsService;
@@ -39,10 +41,4 @@ public class AddFilmController {
         return filmsService.insertSingleFilmDocument(film);
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public String handleDatetimeParseError(HttpMessageNotReadableException ex) {
-        return "Release date must match pattern: yyyy-mm-ydd";
-    }
 }
