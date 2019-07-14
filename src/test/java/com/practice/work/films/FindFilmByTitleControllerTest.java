@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
@@ -35,7 +36,7 @@ public class FindFilmByTitleControllerTest {
     @MockBean
     private FilmsService filmsService;
 
-    private List<Film> testFilmList = Arrays.asList(
+    private List<Film> testFilmList = Collections.singletonList(
             Film.builder()
                     .title("test title")
                     .director("test director")
