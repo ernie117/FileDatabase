@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class FindFilmByTitleController {
                     try {
                         return ResponseEntity
                                 .ok()
-                                .eTag(String.valueOf(films.get(0).getDateAdded()))
+                                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
                                 .location(new URI("/v1/findFilmByTitle"))
                                 .body(films);
                     } catch (URISyntaxException use) {

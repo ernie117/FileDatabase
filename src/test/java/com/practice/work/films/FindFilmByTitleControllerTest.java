@@ -49,7 +49,6 @@ class FindFilmByTitleControllerTest {
                     .build()
     );
 
-    private final String mockFilmDateAdded = String.valueOf(LocalDate.now().toEpochDay());
 
     @Test
     @DisplayName("GET /v1/findFilmByTitle")
@@ -65,7 +64,6 @@ class FindFilmByTitleControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 
                 // validate headers
-                .andExpect(header().string(HttpHeaders.ETAG, StringUtils.wrap(mockFilmDateAdded, "\"")))
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/findFilmByTitle"))
 
                 // validate fields in response
@@ -78,5 +76,14 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[0].releaseDate").value(LocalDate.of(2000, 1, 1).toString()))
                 .andExpect(jsonPath("$[0].actors[0]").value("test actor1"))
                 .andExpect(jsonPath("$[0].actors[1]").value("test actor2"));
+    }
+
+    @Test
+    @DisplayName("GET /v1/findFilmByTitle non-existent film")
+    void testFindNonExistentFilmByRegex() throws Exception {
+        this.mockMvc.perform(get("/v1/findFilmByTitle")
+                .param("title", "non-existent film"))
+                .andExpect(status().isNotFound());
+
     }
 }

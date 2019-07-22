@@ -3,13 +3,20 @@ package com.practice.work.films.entities;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.tomcat.jni.Local;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.annotation.Persistent;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +24,8 @@ import java.util.List;
 import static java.util.Comparator.comparing;
 
 @Builder
-@Data
+@Getter
+@Setter
 @Document(collection = "films")
 public class Film {
 
@@ -144,16 +152,10 @@ public class Film {
     @Size(min = 1, max = 10)
     private List<String> actors;
 
-    /**
-     * Date the film was added to collection as epoch day
-     */
-    @ApiModelProperty(hidden = true)
-    private final long dateAdded = LocalDate.now().toEpochDay();
-
     @Override
     public String toString() {
         return String.format(
-                "Film[id=%s, title=%s, genre=%s, director=%s, cinematographer=%s, writer=%s, compose=%s, yearReleased=%s, actors=%s]",
+                "Film[id=%s, title=%s, genre=%s, director=%s, cinematographer=%s, writer=%s, composer=%s, yearReleased=%s, actors=%s]",
                 id, title, genre, cinematographer, writer, composer, director, releaseDate, String.join(", ", actors)
         );
     }
