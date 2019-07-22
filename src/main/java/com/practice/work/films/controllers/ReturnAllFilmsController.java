@@ -1,12 +1,10 @@
 package com.practice.work.films.controllers;
 
-import com.practice.work.films.Service.FilmsService;
+import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.entities.Film;
-import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;

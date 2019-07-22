@@ -1,16 +1,13 @@
 package com.practice.work.films.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.practice.work.films.Service.FilmsService;
-import com.practice.work.films.entities.Film;
+import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @Api(tags = {"Fetch Film IDs by Title"})

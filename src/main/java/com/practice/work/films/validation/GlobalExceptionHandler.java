@@ -1,4 +1,4 @@
-package com.practice.work.films.Validation;
+package com.practice.work.films.validation;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import org.springframework.http.HttpStatus;
@@ -14,11 +14,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -52,7 +48,7 @@ public class GlobalExceptionHandler {
         violations.add(
                 Violation.builder()
                         .field(ex.getName())
-                        .message(ex.getLocalizedMessage())
+                        .message(ex.getName() + " should be " + ex.getRequiredType())
                         .build()
         );
 

@@ -1,14 +1,11 @@
 package com.practice.work.films.controllers;
 
-import com.practice.work.films.Service.FilmsService;
+import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.entities.Film;
-import com.practice.work.films.repositories.FilmRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.ClassUtils;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

@@ -1,13 +1,11 @@
-package com.practice.work.films.Service;
+package com.practice.work.films.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.practice.work.films.entities.ConfirmedDeletionMessage;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
-import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

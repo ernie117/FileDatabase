@@ -1,6 +1,6 @@
 package com.practice.work.films;
 
-import com.practice.work.films.Service.FilmsService;
+import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.controllers.FindFilmByTitleController;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.Arrays;
 import java.util.List;
 

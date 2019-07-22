@@ -1,6 +1,6 @@
 package com.practice.work.films.controllers;
 
-import com.practice.work.films.Service.FilmsService;
+import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.entities.ConfirmedDeletionMessage;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
