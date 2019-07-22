@@ -6,8 +6,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -24,8 +28,19 @@ public class FindFilmByTitleController {
     }
 
     @GetMapping(value = "/v1/findFilmByTitle", produces = "application/json")
-    public List<Film> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
+    public ResponseEntity<?> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
                                        @RequestParam String title) {
-        return this.filmsService.findFilmsByTitleRegexIgnoreCase(title);
+
+        return this.filmsService.findFilmsByTitleRegexIgnoreCase(title)
+                .map(films -> {
+                    try {
+                        return ResponseEntity
+                                .ok()
+                                .location(new URI("/v1/findFilmByTitle"))
+                                .body(films);
+                    } catch (URISyntaxException use) {
+                        return ResponseEntity.badRequest().build();
+                    }
+                }).orElse(ResponseEntity.notFound().build());
     }
 }

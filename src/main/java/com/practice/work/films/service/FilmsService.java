@@ -75,8 +75,8 @@ public class FilmsService {
      * @param title: title of the film query; case-insensitive
      * @return sorted, immutable List<Film>
      */
-    public List<Film> findFilmsByTitleRegexIgnoreCase(String title) {
-        return sortAndWrap(this.filmRepository.findFilmByTitleRegexIgnoreCase(title));
+    public Optional<List<Film>> findFilmsByTitleRegexIgnoreCase(String title) {
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmByTitleRegexIgnoreCase(title)));
     }
 
     /**
