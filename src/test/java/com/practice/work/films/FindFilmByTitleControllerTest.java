@@ -2,10 +2,10 @@ package com.practice.work.films;
 
 import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.entities.Film;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,13 +14,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -74,12 +77,14 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[0].writer").value("test writer"))
                 .andExpect(jsonPath("$[0].genre").value("test genre"))
                 .andExpect(jsonPath("$[0].releaseDate").value(LocalDate.of(2000, 1, 1).toString()))
+                .andExpect(jsonPath("$[0].releaseDate", isA(String.class)))
                 .andExpect(jsonPath("$[0].actors[0]").value("test actor1"))
-                .andExpect(jsonPath("$[0].actors[1]").value("test actor2"));
+                .andExpect(jsonPath("$[0].actors[1]").value("test actor2"))
+                .andExpect(jsonPath("$[0].actors.length()", is(2)));
     }
 
     @Test
-    @DisplayName("GET /v1/findFilmByTitle non-existent film")
+    @DisplayName("GET /v1/findFilmByTitle -- Not found")
     void testFindNonExistentFilmByRegex() throws Exception {
         this.mockMvc.perform(get("/v1/findFilmByTitle")
                 .param("title", "non-existent film"))
