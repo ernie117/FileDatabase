@@ -1,5 +1,6 @@
 package com.practice.work.films.controllers;
 
+import com.practice.work.films.configuration.ConfigProperties;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
@@ -20,9 +21,12 @@ public class FindFilmByTitleController {
 
     private FilmsService filmsService;
 
+    private ConfigProperties configProperties;
+
     @Autowired
-    FindFilmByTitleController(FilmsService filmsService) {
+    FindFilmByTitleController(FilmsService filmsService, ConfigProperties configProperties) {
         this.filmsService = filmsService;
+        this.configProperties = configProperties;
     }
 
     @GetMapping(value = "/v1/findFilmByTitle", produces = "application/json")
@@ -35,7 +39,7 @@ public class FindFilmByTitleController {
                         return ResponseEntity
                                 .ok()
                                 .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                                .location(new URI("/v1/findFilmByTitle"))
+                                .location(new URI(configProperties.getFindFilmByTitleURI()))
                                 .body(films);
                     } catch (URISyntaxException use) {
                         return ResponseEntity.badRequest().build();

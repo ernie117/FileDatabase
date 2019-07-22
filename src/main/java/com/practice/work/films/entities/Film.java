@@ -11,6 +11,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Persistent;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
@@ -151,6 +152,10 @@ public class Film {
             position = 8)
     @Size(min = 1, max = 10)
     private List<String> actors;
+
+    @ApiModelProperty(hidden = true)
+    @CreatedDate
+    private LocalDateTime dateAdded;
 
     @Override
     public String toString() {
