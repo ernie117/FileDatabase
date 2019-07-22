@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @ResponseStatus(HttpStatus.OK)
-@RequestMapping(value = "/v1/findFilmByTitle", produces = "application/json")
 @Api(tags = {"Fetch Films by Title"})
 public class FindFilmByTitleController {
 
@@ -24,7 +23,7 @@ public class FindFilmByTitleController {
         this.filmsService = filmsService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/v1/findFilmByTitle", produces = "application/json")
     public List<Film> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
                                        @RequestParam String title) {
         return this.filmsService.findFilmsByTitleRegexIgnoreCase(title);
