@@ -3,6 +3,7 @@ package com.practice.work.films.entities;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
+import org.apache.tomcat.jni.Local;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -141,7 +142,13 @@ public class Film {
             example = "['string', 'string', ...]",
             position = 8)
     @Size(min = 1, max = 10)
-    public List<String> actors;
+    private List<String> actors;
+
+    /**
+     * Date the film was added to collection as epoch day
+     */
+    @ApiModelProperty(hidden = true)
+    private final long dateAdded = LocalDate.now().toEpochDay();
 
     @Override
     public String toString() {

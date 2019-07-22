@@ -1,8 +1,8 @@
 package com.practice.work.films;
 
-import com.practice.work.films.repositories.FilmRepository;
 import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.entities.Film;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -49,6 +49,8 @@ class FindFilmByTitleControllerTest {
                     .build()
     );
 
+    private final String mockFilmDateAdded = String.valueOf(LocalDate.now().toEpochDay());
+
     @Test
     @DisplayName("GET /v1/findFilmByTitle")
     void testFindByFilmByRegex() throws Exception {
@@ -63,6 +65,7 @@ class FindFilmByTitleControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 
                 // validate headers
+                .andExpect(header().string(HttpHeaders.ETAG, StringUtils.wrap(mockFilmDateAdded, "\"")))
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/findFilmByTitle"))
 
                 // validate fields in response
