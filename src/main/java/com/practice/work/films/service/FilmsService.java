@@ -46,7 +46,7 @@ public class FilmsService {
      * @param title: title of the film search; case-insensitive
      * @return JsonNode of film title and ID
      */
-    public JsonNode getFilmIdsByTitle(String title) {
+    public Optional<JsonNode> getFilmIdsByTitle(String title) {
         ObjectMapper mapper = new ObjectMapper();
         List<Film> films = sortAndWrap(this.filmRepository.findFilmByTitleRegexIgnoreCase(title));
 
@@ -55,7 +55,7 @@ public class FilmsService {
             rootNode.add(mapper.createObjectNode().put(film.getTitle(), film.getId()));
         }
 
-        return rootNode;
+        return Optional.ofNullable(rootNode);
     }
 
     /**

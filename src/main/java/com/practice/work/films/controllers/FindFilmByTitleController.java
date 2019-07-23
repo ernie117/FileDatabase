@@ -20,7 +20,6 @@ import java.net.URISyntaxException;
 public class FindFilmByTitleController {
 
     private FilmsService filmsService;
-
     private ConfigProperties configProperties;
 
     @Autowired

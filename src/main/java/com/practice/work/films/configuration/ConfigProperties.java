@@ -14,5 +14,6 @@ import org.springframework.context.annotation.PropertySource;
 public class ConfigProperties {
 
     private String findFilmByTitleURI;
+    private String getFilmIdURI;
 
 }
