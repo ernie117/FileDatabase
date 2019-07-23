@@ -25,6 +25,7 @@ import java.util.Optional;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -78,6 +79,7 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[0].genre").value("test genre"))
                 .andExpect(jsonPath("$[0].releaseDate").value(LocalDate.of(2000, 1, 1).toString()))
                 .andExpect(jsonPath("$[0].releaseDate", isA(String.class)))
+                .andExpect(jsonPath("$[0].actors", isA(List.class)))
                 .andExpect(jsonPath("$[0].actors[0]").value("test actor1"))
                 .andExpect(jsonPath("$[0].actors[1]").value("test actor2"))
                 .andExpect(jsonPath("$[0].actors.length()", is(2)));
@@ -86,8 +88,10 @@ class FindFilmByTitleControllerTest {
     @Test
     @DisplayName("GET /v1/findFilmByTitle -- Not found")
     void testFindNonExistentFilmByRegex() throws Exception {
+        doReturn(Optional.empty()).when(filmsService).findFilmsByTitleRegexIgnoreCase("empty");
+
         this.mockMvc.perform(get("/v1/findFilmByTitle")
-                .param("title", "non-existent film"))
+                .param("title", "empty"))
                 .andExpect(status().isNotFound());
 
     }

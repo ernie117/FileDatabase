@@ -1,0 +1,28 @@
+[
+  {
+    "title": "db test title",
+    "genre": "db test genre",
+    "director": "db test director",
+    "cinematographer": "db test cinematographer",
+    "writer": "db test writer",
+    "composer": "db test composer",
+    "releaseDate": "2000-01-31",
+    "actors": [
+      "db test actor1",
+      "db test actor2"
+    ]
+  },
+  {
+    "title": "db test title2",
+    "genre": "db test genre2",
+    "director": "db test director2",
+    "cinematographer": "db test cinematographer2",
+    "writer": "db test writer2",
+    "composer": "db test composer2",
+    "releaseDate": "2000-02-01",
+    "actors": [
+      "db test actor3",
+      "db test actor4"
+    ]
+  }
+]

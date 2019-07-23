@@ -1,25 +1,16 @@
 package com.practice.work.films.entities;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.tomcat.jni.Local;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.annotation.Persistent;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import static java.util.Comparator.comparing;
@@ -28,6 +19,7 @@ import static java.util.Comparator.comparing;
 @Getter
 @Setter
 @Document(collection = "films")
+@AllArgsConstructor
 public class Film {
 
     // Various comparators for sorting returned films
@@ -156,6 +148,8 @@ public class Film {
     @ApiModelProperty(hidden = true)
     @CreatedDate
     private LocalDateTime dateAdded;
+
+    Film() {}
 
     @Override
     public String toString() {
