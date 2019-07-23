@@ -5,7 +5,6 @@ import com.practice.work.films.entities.Film;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,10 +13,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -40,17 +37,29 @@ class FindFilmByTitleControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private List<Film> testFilmList = Collections.singletonList(
-            Film.builder()
-                    .title("test title")
-                    .director("test director")
-                    .cinematographer("test cinematographer")
-                    .composer("test composer")
-                    .writer("test writer")
-                    .genre("test genre")
-                    .releaseDate(LocalDate.parse("2000-01-01"))
-                    .actors(Arrays.asList("test actor1", "test actor2"))
-                    .build()
+    private List<Film> testFilmList = Collections.unmodifiableList(
+            Arrays.asList(
+                Film.builder()
+                        .title("test title1")
+                        .director("test director1")
+                        .cinematographer("test cinematographer1")
+                        .composer("test composer1")
+                        .writer("test writer1")
+                        .genre("test genre1")
+                        .releaseDate(LocalDate.parse("2000-01-01"))
+                        .actors(Arrays.asList("test actor1", "test actor2"))
+                        .build(),
+                Film.builder()
+                        .title("test title2")
+                        .director("test director2")
+                        .cinematographer("test cinematographer2")
+                        .composer("test composer2")
+                        .writer("test writer2")
+                        .genre("test genre2")
+                        .releaseDate(LocalDate.parse("2002-01-01"))
+                        .actors(Arrays.asList("test actor3", "test actor4"))
+                        .build()
+            )
     );
 
 
@@ -70,19 +79,33 @@ class FindFilmByTitleControllerTest {
                 // validate headers
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/findFilmByTitle"))
 
-                // validate fields in response
-                .andExpect(jsonPath("$[0].title").value("test title"))
-                .andExpect(jsonPath("$[0].director").value("test director"))
-                .andExpect(jsonPath("$[0].cinematographer").value("test cinematographer"))
-                .andExpect(jsonPath("$[0].composer").value("test composer"))
-                .andExpect(jsonPath("$[0].writer").value("test writer"))
-                .andExpect(jsonPath("$[0].genre").value("test genre"))
+                // validate fields in response for first film
+                .andExpect(jsonPath("$[0].title").value("test title1"))
+                .andExpect(jsonPath("$[0].director").value("test director1"))
+                .andExpect(jsonPath("$[0].cinematographer").value("test cinematographer1"))
+                .andExpect(jsonPath("$[0].composer").value("test composer1"))
+                .andExpect(jsonPath("$[0].writer").value("test writer1"))
+                .andExpect(jsonPath("$[0].genre").value("test genre1"))
                 .andExpect(jsonPath("$[0].releaseDate").value(LocalDate.of(2000, 1, 1).toString()))
                 .andExpect(jsonPath("$[0].releaseDate", isA(String.class)))
                 .andExpect(jsonPath("$[0].actors", isA(List.class)))
                 .andExpect(jsonPath("$[0].actors[0]").value("test actor1"))
                 .andExpect(jsonPath("$[0].actors[1]").value("test actor2"))
-                .andExpect(jsonPath("$[0].actors.length()", is(2)));
+                .andExpect(jsonPath("$[0].actors.length()", is(2)))
+
+                // validate fields in response for second film
+                .andExpect(jsonPath("$[1].title").value("test title2"))
+                .andExpect(jsonPath("$[1].director").value("test director2"))
+                .andExpect(jsonPath("$[1].cinematographer").value("test cinematographer2"))
+                .andExpect(jsonPath("$[1].composer").value("test composer2"))
+                .andExpect(jsonPath("$[1].writer").value("test writer2"))
+                .andExpect(jsonPath("$[1].genre").value("test genre2"))
+                .andExpect(jsonPath("$[1].releaseDate").value(LocalDate.of(2002, 1, 1).toString()))
+                .andExpect(jsonPath("$[1].releaseDate", isA(String.class)))
+                .andExpect(jsonPath("$[1].actors", isA(List.class)))
+                .andExpect(jsonPath("$[1].actors[0]").value("test actor3"))
+                .andExpect(jsonPath("$[1].actors[1]").value("test actor4"))
+                .andExpect(jsonPath("$[1].actors.length()", is(2)));
     }
 
     @Test
