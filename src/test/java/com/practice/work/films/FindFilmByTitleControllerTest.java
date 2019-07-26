@@ -66,8 +66,7 @@ class FindFilmByTitleControllerTest {
     @Test
     @DisplayName("GET /v1/findFilmByTitle")
     void testFindByFilmByRegex() throws Exception {
-        given(this.filmsService.findFilmsByTitleRegexIgnoreCase("test title"))
-                .willReturn(Optional.ofNullable(testFilmList));
+        doReturn(Optional.ofNullable(testFilmList)).when(filmsService).findFilmsByTitleRegexIgnoreCase("test title");
 
         this.mockMvc.perform(get("/v1/findFilmByTitle")
                 .param("title", "test title"))

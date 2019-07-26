@@ -6,7 +6,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.repositories.FilmRepository;
 import org.hamcrest.CoreMatchers;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -38,7 +39,7 @@ class FilmRepositoryTest {
 
     @PostConstruct
     void setupObjectMapper() throws Exception {
-        List<Film> films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>(){});
+        List<Film> films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {});
         films.forEach(mongoTemplate::save);
     }
 
