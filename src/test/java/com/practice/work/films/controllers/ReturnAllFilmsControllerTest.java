@@ -1,11 +1,11 @@
 package com.practice.work.films.controllers;
-import com.jayway.jsonpath.JsonPath;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.jayway.jsonpath.JsonPath;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +18,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import springfox.documentation.spring.web.json.Json;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -52,7 +51,8 @@ class ReturnAllFilmsControllerTest {
 
     @PostConstruct
     void setupObjectMapper() throws Exception {
-        films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {});
+        films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+        });
         writers = JsonPath.read(TEST_JSON, "$[*].writer");
     }
 
