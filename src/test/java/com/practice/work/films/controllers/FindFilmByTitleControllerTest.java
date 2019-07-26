@@ -1,4 +1,4 @@
-package com.practice.work.films;
+package com.practice.work.films.controllers;
 
 import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.entities.Film;
