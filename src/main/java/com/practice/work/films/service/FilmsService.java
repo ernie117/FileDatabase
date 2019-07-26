@@ -84,8 +84,8 @@ public class FilmsService {
      * @param director: name of the director to query; case-insensitive
      * @return sorted, immutable List<Film>
      */
-    public List<Film> findFilmsByDirector(String director) {
-        return sortAndWrap(this.filmRepository.findAllByDirectorRegexIgnoreCase(director));
+    public Optional<List<Film>> findFilmsByDirector(String director) {
+        return Optional.of(sortAndWrap(this.filmRepository.findAllByDirectorRegexIgnoreCase(director)));
     }
 
     /**
@@ -93,8 +93,8 @@ public class FilmsService {
      * @param genre: genre to query; case-insensitive
      * @return sorted, immutable List<Film>
      */
-    public List<Film> findFilmsByGenre(String genre) {
-        return sortAndWrap(this.filmRepository.findFilmsByGenreRegexIgnoreCase(genre));
+    public Optional<List<Film>> findFilmsByGenre(String genre) {
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByGenreRegexIgnoreCase(genre)));
     }
 
     /**
@@ -102,16 +102,16 @@ public class FilmsService {
      * @param date: value of the release year to query
      * @return sorted, immutable List<Film>
      */
-    public List<Film> findFilmsByReleaseDate(LocalDate date) {
-        return sortAndWrap(this.filmRepository.findAllByReleaseDate(date));
+    public Optional<List<Film>> findFilmsByReleaseDate(LocalDate date) {
+        return Optional.of(sortAndWrap(this.filmRepository.findAllByReleaseDate(date)));
     }
 
     /**
      * Queries MongoDB for all films
      * @return sorted, immutable List<Film>
      */
-    public List<Film> fetchAllFilms() {
-        return sortAndWrap(this.filmRepository.findAll());
+    public Optional<List<Film>> fetchAllFilms() {
+        return Optional.of(sortAndWrap(this.filmRepository.findAll()));
     }
 
     /**
@@ -119,8 +119,8 @@ public class FilmsService {
      * @param actor: string of actor to search
      * @return sorted, immutable List<Film>
      */
-    public List<Film> fetchFilmsByActor(String actor) {
-        return sortAndWrap(this.filmRepository.findFilmsByActorsRegex(actor));
+    public Optional<List<Film>> fetchFilmsByActor(String actor) {
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByActorsRegex(actor)));
     }
 
     // TODO method to find by composer
