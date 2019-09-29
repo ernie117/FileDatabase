@@ -61,18 +61,18 @@ class ReturnAllFilmsControllerTest {
     void testReturnAllFilms() throws Exception {
         doReturn(Optional.of(films)).when(filmsService).fetchAllFilms();
 
-        MvcResult returns = this.mockMvc.perform(get("/v1/all"))
+        String response = this.mockMvc.perform(get("/v1/all"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/all"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("[0].title").value("db test title1"))
                 .andExpect(jsonPath("[1].title").value("db test title2"))
-                .andReturn();
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
 
-        String returnedTitles = returns.getResponse().getContentAsString();
-        List<String> finalResult = JsonPath.read(returnedTitles, "$[*].writer");
-
-        assertThat(finalResult).isEqualTo(writers);
+        List<String> writerResult = JsonPath.read(response, "$[*].writer");
+        assertThat(writerResult).isEqualTo(writers);
 
     }
 
