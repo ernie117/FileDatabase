@@ -31,13 +31,13 @@ public class FilmIdController {
     public ResponseEntity<?> getFilmIdsByTitle(@ApiParam("Film title to search, as string")
                                       @RequestParam String title) {
         return this.filmsService.getFilmIdsByTitle(title)
-                .map(films -> {
+                .map(jsonNode -> {
                     try {
                         return ResponseEntity
                                 .ok()
                                 .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
                                 .location(new URI(configProperties.getGetFilmIdURI()))
-                                .body(films);
+                                .body(jsonNode);
                     } catch (URISyntaxException use) {
                         return ResponseEntity.badRequest().build();
                     }

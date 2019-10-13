@@ -1,9 +1,11 @@
 package com.practice.work.films.controllers;
 
 import com.practice.work.films.configuration.ConfigProperties;
+import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -24,11 +27,13 @@ public class FindFilmByTitleController {
 
     private FilmsService filmsService;
     private ConfigProperties configProperties;
+    private ModelMapper modelMapper;
 
     @Autowired
-    FindFilmByTitleController(FilmsService filmsService, ConfigProperties configProperties) {
+    FindFilmByTitleController(FilmsService filmsService, ConfigProperties configProperties, ModelMapper modelMapper) {
         this.filmsService = filmsService;
         this.configProperties = configProperties;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping(value = "/v1/findFilmByTitle", produces = "application/json")
@@ -42,7 +47,10 @@ public class FindFilmByTitleController {
                                 .ok()
                                 .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
                                 .location(new URI(configProperties.getFindFilmByTitleURI()))
-                                .body(films);
+                                .body(films
+                                        .stream()
+                                        .map(film -> modelMapper.map(film, FilmDTO.class))
+                                        .collect(Collectors.toList()));
                     } catch (URISyntaxException use) {
                         return ResponseEntity.badRequest().build();
                     }

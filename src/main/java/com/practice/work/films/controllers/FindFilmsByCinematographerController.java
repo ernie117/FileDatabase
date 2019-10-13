@@ -1,9 +1,11 @@
 package com.practice.work.films.controllers;
 
 import com.practice.work.films.configuration.ConfigProperties;
+import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +20,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.stream.Collectors;
 
 @RestController
 @ResponseStatus(HttpStatus.OK)
@@ -27,11 +30,13 @@ public class FindFilmsByCinematographerController {
 
     private FilmsService filmsService;
     private ConfigProperties configProperties;
+    private ModelMapper modelMapper;
 
     @Autowired
-    FindFilmsByCinematographerController(FilmsService filmsService, ConfigProperties configProperties) {
+    FindFilmsByCinematographerController(FilmsService filmsService, ConfigProperties configProperties, ModelMapper modelMapper) {
         this.filmsService = filmsService;
         this.configProperties = configProperties;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/v1/findFilmsByCinematographer")
@@ -46,7 +51,10 @@ public class FindFilmsByCinematographerController {
                                 .ok()
                                 .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
                                 .location(new URI(configProperties.getFindFilmsByCinematographerURI()))
-                                .body(films);
+                                .body(films
+                                        .stream()
+                                        .map(film -> modelMapper.map(film, FilmDTO.class))
+                                        .collect(Collectors.toList()));
                     } catch (URISyntaxException use) {
                         return ResponseEntity.badRequest().build();
                     }
