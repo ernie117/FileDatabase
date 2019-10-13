@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.jayway.jsonpath.JsonPath;
+import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import org.junit.jupiter.api.DisplayName;
@@ -46,12 +47,12 @@ class ReturnAllFilmsControllerTest {
 
     private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
 
-    private List<Film> films;
+    private List<FilmDTO> filmDTOS;
     private List<String> writers;
 
     @PostConstruct
     void setupObjectMapper() throws Exception {
-        films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+        filmDTOS = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
         });
         writers = JsonPath.read(TEST_JSON, "$[*].writer");
     }
@@ -59,7 +60,7 @@ class ReturnAllFilmsControllerTest {
     @Test
     @DisplayName("GET /v1/all")
     void testReturnAllFilms() throws Exception {
-        doReturn(Optional.of(films)).when(filmsService).fetchAllFilms();
+        doReturn(Optional.of(filmDTOS)).when(filmsService).fetchAllFilms();
 
         String response = this.mockMvc.perform(get("/v1/all"))
                 .andExpect(status().isOk())

@@ -34,7 +34,9 @@ public class SwaggerConfig {
                         new Tag("Fetch Films by Exact Date", "REST endpoint to fetch a list of all films by exact date from the mongoDB"),
                         new Tag("Fetch Film IDs by Title", "REST endpoint to fetch a list of film IDs by title"),
                         new Tag("Delete Film by ID", "REST endpoint to fetch a list of all films by one year from the mongoDB"),
-                        new Tag("Fetch Films by Actor", "REST endpoint to fetch a list of all films by actor from the mongoDB")
+                        new Tag("Fetch Films by Actor", "REST endpoint to fetch a list of all films by actor from the mongoDB"),
+                        new Tag("Fetch Films by Composer", "REST endpoint to fetch a list of all films by composer from the mongoDB"),
+                        new Tag("Fetch Films by Cinematographer", "REST endpoint to fetch a list of all films by cinematographer from the mongoDB")
                 );
     }
 

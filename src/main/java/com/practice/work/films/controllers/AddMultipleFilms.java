@@ -4,6 +4,7 @@ import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +22,12 @@ import java.util.List;
 public class AddMultipleFilms {
 
     private FilmsService filmsService;
+    private ModelMapper modelMapper;
 
     @Autowired
-    AddMultipleFilms(FilmsService filmsService) {
+    AddMultipleFilms(FilmsService filmsService, ModelMapper modelMapper) {
         this.filmsService = filmsService;
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping(value = "/v1/addMultipleFilms")

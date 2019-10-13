@@ -117,7 +117,7 @@ public class FilmsService {
     }
 
     /**
-     * Queries MongoDB for films by actor
+     * Queries MongoDB for films by actors
      * @param actor: string of actor to search
      * @return sorted, immutable List<Film>
      */
@@ -125,14 +125,37 @@ public class FilmsService {
         return Optional.of(sortAndWrap(this.filmRepository.findFilmsByActorsRegex(actor)));
     }
 
-    // TODO method to find by composer
-    // TODO method to find by cinematographer
-    // TODO method to find by writer
+    /**
+     * Queries MongoDB for films by composer
+     * @param composer: string of the composer to search
+     * @return sorted, immutable List<Film>
+     */
+    public Optional<List<Film>> fetchFilmsByComposer(String composer) {
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByComposerRegex(composer)));
+    }
+
+    /**
+     * Queries MongoDB for films by cinematographer
+     * @param cinematographer: string of the cinematographer to search
+     * @return sorted, immutable List<Film>
+     */
+    public Optional<List<Film>> fetchFilmsByCinematographer(String cinematographer) {
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByCinematographerRegex(cinematographer)));
+    }
+
+    /**
+     * Queries MongoDB for films by writer
+     * @param writer: string of the writer to search
+     * @return sorted, immutable List<Film>
+     */
+    public Optional<List<Film>> fetchFilmsByWriter(String writer) {
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByWriterRegex(writer)));
+    }
 
     /**
      * Sorts given List<Film> by title, wraps it in an unmodifiable List<>
      * @param films, list of films
-     * @return Sorted, immutable List<Film>
+     * @return sorted, immutable List<Film>
      */
     private List<Film> sortAndWrap(List<Film> films) {
         return Collections.unmodifiableList(films

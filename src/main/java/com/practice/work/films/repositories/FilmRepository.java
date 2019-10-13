@@ -31,7 +31,7 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     List<Film> findFilmsByActorsRegex(String actor);
 
     @Query("{'composer': {$regex: ?0}}")
-    List<Film> findFilmsByComposerRegex(String actor);
+    List<Film> findFilmsByComposerRegex(String composer);
 
     @Query("{'cinematographer': {$regex: ?0}}")
     List<Film> findFilmsByCinematographerRegex(String actor);
