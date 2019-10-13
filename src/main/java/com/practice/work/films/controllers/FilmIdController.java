@@ -29,7 +29,7 @@ public class FilmIdController {
 
     @GetMapping(value = "/v1/getFilmId")
     public ResponseEntity<?> getFilmIdsByTitle(@ApiParam("Film title to search, as string")
-                                      @RequestParam String title) {
+                                               @RequestParam String title) {
         return this.filmsService.getFilmIdsByTitle(title)
                 .map(jsonNode -> {
                     try {

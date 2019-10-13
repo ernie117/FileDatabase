@@ -41,9 +41,9 @@ public class FindFilmsByWriterController {
 
     @GetMapping("/v1/findFilmsByWriter")
     public ResponseEntity<?> fetchFilmsByWriter(@Valid
-                                        @ApiParam("String of writer to search; case-insensitive")
-                                        @Pattern(regexp = "[a-zA-Z]+")
-                                        @RequestParam String writer) {
+                                                @ApiParam("String of writer to search; case-insensitive")
+                                                @Pattern(regexp = "[a-zA-Z]+")
+                                                @RequestParam String writer) {
         return this.filmsService.fetchFilmsByWriter(writer)
                 .map(films -> {
                     try {

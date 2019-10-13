@@ -38,7 +38,7 @@ public class FindFilmsByDirectorController {
 
     @GetMapping(path = "/v1/fetchFilmsByDirector")
     public ResponseEntity<?> fetchFilmsByDirector(@ApiParam("Director to search, as a string. Case-insensitive")
-                                           @RequestParam String director) {
+                                                  @RequestParam String director) {
         return this.filmsService.findFilmsByDirector(director)
                 .map(films -> {
                     try {
