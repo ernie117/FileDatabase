@@ -105,7 +105,7 @@ public class Film {
      * Writer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]+")
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     @ApiModelProperty(
             name = "writer",
             example = "string",
