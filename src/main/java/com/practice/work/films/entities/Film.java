@@ -69,7 +69,7 @@ public class Film {
      * Genre of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]+")
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     @ApiModelProperty(
             name = "genre",
             example = "string",
@@ -81,7 +81,7 @@ public class Film {
      * Director of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]+")
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     @ApiModelProperty(
             name = "director",
             example = "string",
@@ -93,7 +93,7 @@ public class Film {
      * Cinematographer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]+")
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     @ApiModelProperty(
             name = "cinematographer",
             example = "string",
@@ -117,7 +117,7 @@ public class Film {
      * Composer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]+")
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     @ApiModelProperty(
             name = "composer",
             example = "string",

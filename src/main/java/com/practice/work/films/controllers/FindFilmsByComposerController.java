@@ -41,7 +41,7 @@ public class FindFilmsByComposerController {
     @GetMapping("/v1/findFilmsByComposer")
     public ResponseEntity<?> fetchFilmsByActor(@Valid
                                                @ApiParam("String of composer to search; case-insensitive")
-                                               @Pattern(regexp = "[a-zA-Z]+")
+                                               @Pattern(regexp = "[a-zA-Z\\s]+")
                                                @RequestParam String composer) {
         return this.filmsService.fetchFilmsByComposer(composer)
                 .map(films -> {
