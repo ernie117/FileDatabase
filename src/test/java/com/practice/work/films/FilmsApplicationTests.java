@@ -42,6 +42,7 @@ public class FilmsApplicationTests {
 
     /**
      * Testing that the TestController returns expected test string
+     *
      * @throws Exception thrown by perform()
      */
     @Test
@@ -54,6 +55,7 @@ public class FilmsApplicationTests {
 
     /**
      * Asserting that service returns proper JSON content and correct value
+     *
      * @throws Exception thrown by perform()
      */
     @Test

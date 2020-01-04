@@ -42,21 +42,21 @@ public class FindFilmsByReleaseDateController {
     public ResponseEntity<?> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
                                                         @RequestParam
                                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
-    return this.filmsService.findFilmsByReleaseDate(localDate)
-            .map(films -> {
-                try {
-                    return ResponseEntity
-                            .ok()
-                            .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                            .location(new URI(configProperties.getFindFilmsByYearURI()))
-                            .body(films
-                                    .stream()
-                                    .map(film -> modelMapper.map(film, FilmDTO.class))
-                                    .collect(Collectors.toList()));
-                } catch (URISyntaxException use) {
-                    return ResponseEntity.badRequest().build();
-                }
-            }).orElse(ResponseEntity.notFound().build());
+        return this.filmsService.findFilmsByReleaseDate(localDate)
+                .map(films -> {
+                    try {
+                        return ResponseEntity
+                                .ok()
+                                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                                .location(new URI(configProperties.getFindFilmsByYearURI()))
+                                .body(films
+                                        .stream()
+                                        .map(film -> modelMapper.map(film, FilmDTO.class))
+                                        .collect(Collectors.toList()));
+                    } catch (URISyntaxException use) {
+                        return ResponseEntity.badRequest().build();
+                    }
+                }).orElse(ResponseEntity.notFound().build());
     }
 
 }

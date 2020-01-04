@@ -7,7 +7,8 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Builder
-@Getter @Setter
+@Getter
+@Setter
 class Violation {
 
     private final LocalDateTime timestamp = LocalDateTime.now();

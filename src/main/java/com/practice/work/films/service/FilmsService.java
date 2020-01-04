@@ -27,6 +27,7 @@ public class FilmsService {
 
     /**
      * Query that inserts a single Film document in MongoDB
+     *
      * @param film: object to be inserted into the DB
      * @return returns a copy of the inserted Film object
      */
@@ -36,6 +37,7 @@ public class FilmsService {
 
     /**
      * Query that inserts multiple film records into MongoDB
+     *
      * @param films: list of films to add to MongoDB
      * @return returns a copy of param List<Film>
      */
@@ -45,6 +47,7 @@ public class FilmsService {
 
     /**
      * Query that returns Json objects of film titles IDs matching a given title
+     *
      * @param title: title of the film search; case-insensitive
      * @return JsonNode of film title and ID
      */
@@ -62,6 +65,7 @@ public class FilmsService {
 
     /**
      * Query that deletes film document by ID from MongoDB
+     *
      * @param id: ID matching film document to delete
      * @return ConfirmedDeletionMessage object representing deleted document
      */
@@ -74,6 +78,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films that match a given string, by regex
+     *
      * @param title: title of the film query; case-insensitive
      * @return sorted, immutable List<Film>
      */
@@ -83,6 +88,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films with a given director
+     *
      * @param director: name of the director to query; case-insensitive
      * @return sorted, immutable List<Film>
      */
@@ -92,6 +98,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films with a given genre
+     *
      * @param genre: genre to query; case-insensitive
      * @return sorted, immutable List<Film>
      */
@@ -101,6 +108,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films with a given release year
+     *
      * @param date: value of the release year to query
      * @return sorted, immutable List<Film>
      */
@@ -110,6 +118,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for all films
+     *
      * @return sorted, immutable List<Film>
      */
     public Optional<List<Film>> fetchAllFilms() {
@@ -118,6 +127,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for films by actors
+     *
      * @param actor: string of actor to search
      * @return sorted, immutable List<Film>
      */
@@ -127,6 +137,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for films by composer
+     *
      * @param composer: string of the composer to search
      * @return sorted, immutable List<Film>
      */
@@ -136,6 +147,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for films by cinematographer
+     *
      * @param cinematographer: string of the cinematographer to search
      * @return sorted, immutable List<Film>
      */
@@ -145,6 +157,7 @@ public class FilmsService {
 
     /**
      * Queries MongoDB for films by writer
+     *
      * @param writer: string of the writer to search
      * @return sorted, immutable List<Film>
      */
@@ -154,6 +167,7 @@ public class FilmsService {
 
     /**
      * Sorts given List<Film> by title, wraps it in an unmodifiable List<>
+     *
      * @param films, list of films
      * @return sorted, immutable List<Film>
      */

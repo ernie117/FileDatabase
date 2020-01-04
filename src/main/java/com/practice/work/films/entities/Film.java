@@ -152,7 +152,8 @@ public class Film {
     @CreatedDate
     private LocalDateTime dateAdded;
 
-    Film() {}
+    Film() {
+    }
 
     @Override
     public String toString() {

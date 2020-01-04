@@ -25,6 +25,7 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     List<Film> findFilmsByGenreRegexIgnoreCase(String genre);
 
     List<Film> findAllByReleaseDate(LocalDate date);
+
     List<Film> findAll();
 
     @Query("{'actors': {$regex: ?0}}")
