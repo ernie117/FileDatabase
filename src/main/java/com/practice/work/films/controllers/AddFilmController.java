@@ -35,7 +35,7 @@ public class AddFilmController {
     @ResponseStatus(HttpStatus.CREATED)
     public FilmDTO insertFilmDocument(@Valid
                                       @ApiParam("Film json object, structured as in the example")
-                                      @RequestBody com.practice.work.films.dtos.FilmDTO filmDto) {
+                                      @RequestBody FilmDTO filmDto) {
         return modelMapper.map(filmsService.insertSingleFilmDocument(modelMapper.map(filmDto, Film.class)), FilmDTO.class);
     }
 }

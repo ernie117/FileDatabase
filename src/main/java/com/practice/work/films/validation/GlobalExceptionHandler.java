@@ -1,6 +1,7 @@
 package com.practice.work.films.validation;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.practice.work.films.entities.Film;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -15,7 +16,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @ControllerAdvice
@@ -28,15 +28,13 @@ public class GlobalExceptionHandler {
     public Set<Violation> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Set<Violation> violations = new HashSet<>();
 
-        if (Optional.ofNullable(ex.getBindingResult().getFieldErrors()).isPresent()) {
-            for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
-                violations.add(
-                        Violation.builder()
-                                .field(fieldError.getField())
-                                .message(fieldError.getDefaultMessage())
-                                .build()
-                );
-            }
+        for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
+            violations.add(
+                    Violation.builder()
+                            .field(fieldError.getField())
+                            .message(fieldError.getDefaultMessage())
+                            .build()
+            );
         }
 
         return violations;
@@ -107,7 +105,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Set<Violation> handleConstraintException(ConstraintViolationException ex) {
         Set<Violation> violations = new HashSet<>();
-        for (ConstraintViolation cv : ex.getConstraintViolations()) {
+        for (ConstraintViolation<?> cv : ex.getConstraintViolations()) {
             violations.add(
                     Violation.builder()
                             .field(cv.getPropertyPath().toString())

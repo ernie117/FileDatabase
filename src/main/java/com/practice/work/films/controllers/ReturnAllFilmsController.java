@@ -4,6 +4,7 @@ import com.practice.work.films.configuration.ConfigProperties;
 import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
 
+@Slf4j
 @RestController
 @ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch All Films"})
@@ -36,9 +38,11 @@ public class ReturnAllFilmsController {
 
     @GetMapping(value = "/v1/all", produces = "application/json")
     public ResponseEntity<?> fetchAllFilmDocuments() {
+        log.info("Fetch All Films endpoint called.");
         return filmsService.fetchAllFilms()
                 .map(films -> {
                     try {
+                        log.info("Fetch All Films endpoint retrieved {} film object/s from DB.", films.size());
                         return ResponseEntity
                                 .ok()
                                 .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
