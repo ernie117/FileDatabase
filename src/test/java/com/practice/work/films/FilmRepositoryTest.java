@@ -8,22 +8,29 @@ import com.practice.work.films.repositories.FilmRepository;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataMongoTest(properties = "spring.data.mongodb.database=test")
+@DataMongoTest
+@ExtendWith(SpringExtension.class)
+@ActiveProfiles("test")
 class FilmRepositoryTest {
 
     @Autowired
@@ -33,13 +40,13 @@ class FilmRepositoryTest {
     private FilmRepository filmRepository;
 
     // Necessary for deserializing LocalDate
-    private ObjectMapper MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
+    private ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
     private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
 
     @PostConstruct
-    void setupObjectMapper() throws Exception {
-        List<Film> films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+    void setupObjectMapper() throws IOException {
+        List<Film> films = objectMapper.readValue(TEST_JSON, new TypeReference<List<Film>>() {
         });
         films.forEach(mongoTemplate::save);
     }
@@ -55,7 +62,7 @@ class FilmRepositoryTest {
         assertEquals(2, films.size(), "Should be two");
         // Assert films are returned sorted
         List<Film> sortedFilms = films.stream().sorted(Film.BY_TITLE).collect(Collectors.toList());
-        assertThat(sortedFilms, CoreMatchers.is(films));
+        assertThat(sortedFilms, is(films));
     }
 
     @Test
