@@ -26,6 +26,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .tags(
                         new Tag("Add Film", "REST endpoint to add a new film to the mongoDB"),
+                        new Tag("Add Film via HTTP call", "REST endpoint to add a new film to the mongoDB using HTTP params"),
                         new Tag("Add Multiple Films", "REST endpoint to add multiple new films to the mongoDB"),
                         new Tag("Fetch All Films", "REST endpoint to fetch a list of all films in the mongoDB"),
                         new Tag("Fetch Films by Director", "REST endpoint to fetch a list of all film by the same director from the mongoDB"),
