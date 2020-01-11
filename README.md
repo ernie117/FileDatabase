@@ -4,7 +4,7 @@ Remember to start the Docker daemon first
 
 Then start a mongo container attached to the local mongodb volume
 
-> docker run --volume /data/db:/data/db -p 27017:27017 --name <name-of-mongo-container> mongo
+> docker run --volume /data/db:/data/db -p 27017:27017 --name "name of mongo container" mongo
 
 To connect to the mongo container (optional for now):
 
@@ -20,4 +20,4 @@ build the docker image:
 
 run spring boot container and link it to the already running mongo container:
 
-> docker run --volume /data/db:/data/db -p 27017:27017 --name docker-films-mongo mongo
+> docker run --volume /data/db:/data/db -p 27017:27017 --name "name of mongo container" mongo
