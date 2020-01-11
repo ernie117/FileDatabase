@@ -31,8 +31,8 @@ public class FilmsService {
      * @param film: object to be inserted into the DB
      * @return returns a copy of the inserted Film object
      */
-    public Film insertSingleFilmDocument(Film film) {
-        return this.filmRepository.save(film);
+    public Optional<Film> insertSingleFilmDocument(Film film) {
+        return Optional.of(this.filmRepository.save(film));
     }
 
     /**

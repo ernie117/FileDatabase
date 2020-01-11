@@ -1,7 +1,6 @@
 package com.practice.work.films.validation;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.practice.work.films.entities.Film;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;

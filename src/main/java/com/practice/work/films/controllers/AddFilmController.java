@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiParam;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 
 @RestController
@@ -33,9 +36,18 @@ public class AddFilmController {
 
     @PostMapping(value = "/v1/addFilm")
     @ResponseStatus(HttpStatus.CREATED)
-    public FilmDTO insertFilmDocument(@Valid
-                                      @ApiParam("Film json object, structured as in the example")
-                                      @RequestBody FilmDTO filmDto) {
-        return modelMapper.map(filmsService.insertSingleFilmDocument(modelMapper.map(filmDto, Film.class)), FilmDTO.class);
+    public ResponseEntity<?> insertFilmDocument(@Valid
+                                                @ApiParam("Film json object, structured as in the example")
+                                                @RequestBody FilmDTO filmDto) {
+        Optional<Film> film = filmsService.insertSingleFilmDocument(modelMapper.map(filmDto, Film.class));
+
+        return film.map(result -> ResponseEntity
+                .ok()
+                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .body(modelMapper.map(film.get(), FilmDTO.class))
+        ).orElse(ResponseEntity
+                .unprocessableEntity()
+                .build());
     }
 }
+
