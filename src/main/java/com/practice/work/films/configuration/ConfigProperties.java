@@ -13,6 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 @Setter
 public class ConfigProperties {
 
+    private String addMultipleFilmsURI;
     private String findFilmsByActorURI;
     private String findAllFilmsURI;
     private String findFilmsByYearURI;

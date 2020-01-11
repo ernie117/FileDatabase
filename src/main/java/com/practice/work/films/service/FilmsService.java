@@ -41,8 +41,8 @@ public class FilmsService {
      * @param films: list of films to add to MongoDB
      * @return returns a copy of param List<Film>
      */
-    public List<Film> insertMultipleFilmDocument(List<Film> films) {
-        return sortAndWrap(this.filmRepository.saveAll(films));
+    public Optional<List<Film>> insertMultipleFilmDocument(List<Film> films) {
+        return Optional.of(sortAndWrap(this.filmRepository.saveAll(films)));
     }
 
     /**
