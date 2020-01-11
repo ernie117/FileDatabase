@@ -49,7 +49,6 @@ public class FindFilmsByCinematographerController {
                     try {
                         return ResponseEntity
                                 .ok()
-                                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
                                 .location(new URI(configProperties.getFindFilmsByCinematographerURI()))
                                 .body(films
                                         .stream()

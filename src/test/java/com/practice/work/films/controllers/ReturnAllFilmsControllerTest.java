@@ -48,12 +48,12 @@ class ReturnAllFilmsControllerTest {
 
     private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
 
-    private List<FilmDTO> filmDTOS;
+    private List<Film> films;
     private List<String> writers;
 
     @PostConstruct
     void setupObjectMapper() throws Exception {
-        filmDTOS = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+        films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
         });
         writers = JsonPath.read(TEST_JSON, "$[*].writer");
     }
@@ -61,12 +61,12 @@ class ReturnAllFilmsControllerTest {
     @Test
     @DisplayName("GET /v1/all")
     void testReturnAllFilms() throws Exception {
-        doReturn(Optional.of(filmDTOS)).when(filmsService).fetchAllFilms();
+        doReturn(Optional.of(films)).when(filmsService).fetchAllFilms();
 
         String response = this.mockMvc.perform(get("/v1/all"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/all"))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("[0].title").value("db test title1"))
                 .andExpect(jsonPath("[1].title").value("db test title2"))
                 .andReturn()

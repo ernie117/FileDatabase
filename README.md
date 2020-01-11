@@ -1,15 +1,19 @@
 Remember to start the Docker daemon first
 
+> systemctl start docker.service
+
 Then start a mongo container
 
 To connect to the mongo container:
+
 > docker exec -it <container-name> mongo
 
 package:
-./mvnw package
+mvn clean package
 
 build:
 docker build -f Dockerfile -t docker-films-test .
 
 run:
-docker run -p 8888:8888 --link=<name_of_mongo_container> docker-films-test 
+
+> docker run --volume /data/db:/data/db -p 27017:27017 --name <name-of-mongo-container> mongo

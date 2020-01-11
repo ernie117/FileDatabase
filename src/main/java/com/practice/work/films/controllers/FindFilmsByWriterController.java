@@ -45,20 +45,13 @@ public class FindFilmsByWriterController {
                                                 @Pattern(regexp = "[a-zA-Z\\s]+")
                                                 @RequestParam String writer) {
         return this.filmsService.fetchFilmsByWriter(writer)
-                .map(films -> {
-                    try {
-                        return ResponseEntity
-                                .ok()
-                                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                                .location(new URI(configProperties.getFindFilmsByWriterURI()))
-                                .body(films
-                                        .stream()
-                                        .map(film -> modelMapper.map(film, FilmDTO.class))
-                                        .collect(Collectors.toList()));
-                    } catch (URISyntaxException use) {
-                        return ResponseEntity.badRequest().build();
-                    }
-                }).orElse(ResponseEntity.notFound().build());
+                .map(films -> ResponseEntity
+                        .ok()
+                        .location(URI.create(configProperties.getFindFilmsByWriterURI()))
+                        .body(films
+                                .stream()
+                                .map(film -> modelMapper.map(film, FilmDTO.class))
+                                .collect(Collectors.toList()))).orElse(ResponseEntity.notFound().build());
     }
 
 }

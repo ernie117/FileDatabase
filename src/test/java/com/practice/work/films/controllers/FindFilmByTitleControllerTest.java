@@ -74,7 +74,7 @@ class FindFilmByTitleControllerTest {
 
                 // validate response and data type
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
 
                 // validate headers
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/findFilmByTitle"))

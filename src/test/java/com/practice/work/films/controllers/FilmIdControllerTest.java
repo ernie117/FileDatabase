@@ -54,7 +54,7 @@ class FilmIdControllerTest {
         this.mockMvc.perform(get("/v1/getFilmId")
                 .param("title", "test title"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/getFilmId"))
                 .andExpect(jsonPath("$[0]['test title']").value("1234567890"));
     }

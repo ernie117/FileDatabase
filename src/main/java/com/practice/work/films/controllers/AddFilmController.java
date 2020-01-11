@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiParam;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,13 +40,11 @@ public class AddFilmController {
                                                 @RequestBody FilmDTO filmDto) {
         Optional<Film> film = filmsService.insertSingleFilmDocument(modelMapper.map(filmDto, Film.class));
 
-        return film.map(result -> ResponseEntity
-                .ok()
-                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .body(modelMapper.map(film.get(), FilmDTO.class))
-        ).orElse(ResponseEntity
-                .unprocessableEntity()
-                .build());
+        return film
+                .map(result -> ResponseEntity
+                        .ok()
+                        .body(modelMapper.map(film.get(), FilmDTO.class)))
+                .orElse(ResponseEntity.unprocessableEntity().build());
     }
 }
 

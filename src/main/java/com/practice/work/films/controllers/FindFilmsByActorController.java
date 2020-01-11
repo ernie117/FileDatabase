@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiParam;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,20 +43,14 @@ public class FindFilmsByActorController {
                                                @Pattern(regexp = "[a-zA-Z\\s]+")
                                                @RequestParam String actor) {
         return this.filmsService.fetchFilmsByActor(actor)
-                .map(films -> {
-                    try {
-                        return ResponseEntity
-                                .ok()
-                                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                                .location(new URI(configProperties.getFindFilmsByActorURI()))
-                                .body(films
-                                        .stream()
-                                        .map(film -> modelMapper.map(film, FilmDTO.class))
-                                        .collect(Collectors.toList()));
-                    } catch (URISyntaxException use) {
-                        return ResponseEntity.badRequest().build();
-                    }
-                }).orElse(ResponseEntity.notFound().build());
+                .map(films -> ResponseEntity
+                        .ok()
+                        .location(URI.create(configProperties.getFindFilmsByActorURI()))
+                        .body(films
+                                .stream()
+                                .map(film -> modelMapper.map(film, FilmDTO.class))
+                                .collect(Collectors.toList())))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }

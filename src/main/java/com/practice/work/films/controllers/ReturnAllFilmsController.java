@@ -8,14 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
 
@@ -36,24 +34,19 @@ public class ReturnAllFilmsController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping(value = "/v1/all", produces = "application/json")
+    @GetMapping(value = "/v1/all")
     public ResponseEntity<?> fetchAllFilmDocuments() {
         log.info("Fetch All Films endpoint called.");
         return filmsService.fetchAllFilms()
                 .map(films -> {
-                    try {
-                        log.info("Fetch All Films endpoint retrieved {} film object/s from DB.", films.size());
-                        return ResponseEntity
-                                .ok()
-                                .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                                .location(new URI(configProperties.getFindAllFilmsURI()))
-                                .body(films
-                                        .stream()
-                                        .map(film -> modelMapper.map(film, FilmDTO.class))
-                                        .collect(Collectors.toList()));
-                    } catch (URISyntaxException use) {
-                        return ResponseEntity.badRequest().build();
-                    }
+                    log.info("Fetch All Films endpoint retrieved {} film object/s from DB.", films.size());
+                    return ResponseEntity
+                            .ok()
+                            .location(URI.create(configProperties.getFindAllFilmsURI()))
+                            .body(films
+                                    .stream()
+                                    .map(film -> modelMapper.map(film, FilmDTO.class))
+                                    .collect(Collectors.toList()));
                 }).orElse(ResponseEntity.notFound().build());
     }
 }

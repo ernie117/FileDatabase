@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,22 +44,18 @@ public class AddMultipleFilms {
     public ResponseEntity<?> insertManyFilmDocuments(@Valid
                                                      @ApiParam("Array of filmDTO objects, structured as in the example")
                                                      @RequestBody List<FilmDTO> filmDTOS) {
+        log.info("Add Multiple Films endpoint called with {} film objects to save.", filmDTOS.size());
         List<Film> filmsToSave = filmDTOS.stream().map(filmDTO -> modelMapper.map(filmDTO, Film.class)).collect(Collectors.toList());
 
         return filmsService.insertMultipleFilmDocument(filmsToSave).map(films -> {
-            try {
-                log.info("Fetch All Films endpoint retrieved {} film object/s from DB.", films.size());
-                return ResponseEntity
-                        .ok()
-                        .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                        .location(new URI(configProperties.getAddMultipleFilmsURI()))
-                        .body(films
-                                .stream()
-                                .map(film -> modelMapper.map(film, FilmDTO.class))
-                                .collect(Collectors.toList()));
-            } catch (URISyntaxException use) {
-                return ResponseEntity.badRequest().build();
-            }
+            log.info("Add Multiple Films endpoint reflects {} film objects from DB.", films.size());
+            return ResponseEntity
+                    .ok()
+                    .location(URI.create(configProperties.getAddMultipleFilmsURI()))
+                    .body(films
+                            .stream()
+                            .map(film -> modelMapper.map(film, FilmDTO.class))
+                            .collect(Collectors.toList()));
         }).orElse(ResponseEntity.notFound().build());
     }
 }
