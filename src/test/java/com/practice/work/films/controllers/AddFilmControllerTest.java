@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -98,6 +100,7 @@ class AddFilmControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(filmDtoAsString))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath(".title").value("test title"))
                 .andExpect(jsonPath(".genre").value("test genre"))
                 .andExpect(jsonPath(".composer").value("test composer"))
@@ -108,5 +111,21 @@ class AddFilmControllerTest {
                 .andExpect(jsonPath(".actors[0]").value("test actor1"))
                 .andExpect(jsonPath(".actors[1]").value("test actor2"))
                 .andExpect(jsonPath(".director").value("test director"));
+    }
+
+    /**
+     * If, for whatever reason, the DB encounters an error and returns no film object
+     * then the add film endpoint will return an unprocessable entity response
+     *
+     * @throws Exception MockMvc's perform throws generic Exception
+     */
+    @Test
+    void testInsertFilmDocument_EmptyFilmReturnsUnprocessableEntity() throws Exception {
+        doReturn(Optional.empty()).when(filmsService).insertSingleFilmDocument(film);
+
+        this.mockMvc.perform(post("/v1/addFilm/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(filmDtoAsString))
+                .andExpect(status().isUnprocessableEntity());
     }
 }
