@@ -3,7 +3,7 @@ Remember to start the Docker daemon first
 Then start a mongo container
 
 To connect to the mongo container:
-> docker exec -it <container-name> mongo
+> docker exec -it <container-name> <mongo-container-name> mongo
 
 package:
 ./mvnw package
