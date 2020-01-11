@@ -43,7 +43,7 @@ public class AddFilmController {
         return film
                 .map(result -> ResponseEntity
                         .ok()
-                        .body(modelMapper.map(film.get(), FilmDTO.class)))
+                        .body(modelMapper.map(result, FilmDTO.class)))
                 .orElse(ResponseEntity.unprocessableEntity().build());
     }
 }

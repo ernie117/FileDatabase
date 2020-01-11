@@ -7,8 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -36,29 +36,29 @@ public class AddFilmHttpController {
 
     @PostMapping(value = "/v1/addFilmHttp")
     @ResponseStatus(HttpStatus.CREATED)
-    public FilmDTO insertFilmDocumentHttp(@RequestParam(name = "Film's Title")
-                                          @ApiParam(value = "Title", required = true)
-                                          @Pattern(regexp = "[a-zA-Z\\s]+") String title,
-                                          @RequestParam(name = "Film's Genre")
-                                          @ApiParam(value = "Genre", required = true)
-                                          @Pattern(regexp = "[a-zA-Z\\s]+") String genre,
-                                          @RequestParam(name = "Film's Director")
-                                          @ApiParam(value = "Director", required = true)
-                                          @Pattern(regexp = "[a-zA-Z\\s]+") String director,
-                                          @RequestParam(name = "Film's Cinematographer")
-                                          @ApiParam(value = "Cinematographer", required = true)
-                                          @Pattern(regexp = "[a-zA-Z\\s]+") String cinematographer,
-                                          @RequestParam(name = "Film's Writer")
-                                          @ApiParam(value = "Writer", required = true)
-                                          @Pattern(regexp = "[a-zA-Z\\s]+") String writer,
-                                          @RequestParam(name = "Film's Composer")
-                                          @ApiParam(value = "Composer", required = true)
-                                          @Pattern(regexp = "[a-zA-Z\\s]+") String composer,
-                                          @RequestParam(name = "Film's Release Date")
-                                          @ApiParam(value = "Release Date", required = true)
-                                          @Pattern(regexp = "[a-zA-Z\\s]+") String releaseDate,
-                                          @RequestParam(name = "List of the Film's Actors")
-                                          @ApiParam(value = "Actors", required = true) List<String> actors) {
+    public ResponseEntity<?> insertFilmDocumentHttp(@RequestParam(name = "title")
+                                                    @ApiParam(value = "Title", required = true)
+                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String title,
+                                                    @RequestParam(name = "genre")
+                                                    @ApiParam(value = "Genre", required = true)
+                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String genre,
+                                                    @RequestParam(name = "director")
+                                                    @ApiParam(value = "Director", required = true)
+                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String director,
+                                                    @RequestParam(name = "cinematographer")
+                                                    @ApiParam(value = "Cinematographer", required = true)
+                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String cinematographer,
+                                                    @RequestParam(name = "writer")
+                                                    @ApiParam(value = "Writer", required = true)
+                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String writer,
+                                                    @RequestParam(name = "composer")
+                                                    @ApiParam(value = "Composer", required = true)
+                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String composer,
+                                                    @RequestParam(name = "releaseDate")
+                                                    @ApiParam(value = "Release Date", required = true)
+                                                            String releaseDate,
+                                                    @RequestParam(name = "actors")
+                                                    @ApiParam(value = "Actors", required = true) List<String> actors) {
 
         FilmDTO filmDTO = FilmDTO.builder()
                 .title(title)
@@ -67,11 +67,17 @@ public class AddFilmHttpController {
                 .cinematographer(cinematographer)
                 .writer(writer)
                 .composer(composer)
-                .releaseDate(LocalDate.parse(releaseDate, DateTimeFormatter.ofPattern(DateTimeFormat.ISO.DATE.toString())))
-                .actors(actors)
+                .releaseDate(LocalDate.parse(releaseDate))
                 .dateAdded(LocalDateTime.now())
+                .actors(actors)
                 .build();
 
-        return modelMapper.map(filmsService.insertSingleFilmDocument(modelMapper.map(filmDTO, Film.class)), FilmDTO.class);
+        Optional<Film> returnedFilm = filmsService.insertSingleFilmDocument(modelMapper.map(filmDTO, Film.class));
+
+        return returnedFilm
+                .map(film -> ResponseEntity
+                        .ok()
+                        .body(modelMapper.map(film, FilmDTO.class)))
+                .orElse(ResponseEntity.unprocessableEntity().build());
     }
 }
