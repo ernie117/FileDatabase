@@ -69,11 +69,11 @@ public class FilmsService {
      * @param id: ID matching film document to delete
      * @return ConfirmedDeletionMessage object representing deleted document
      */
-    public ConfirmedDeletionMessage deleteFilmById(String id) {
+    public Optional<ConfirmedDeletionMessage> deleteFilmById(String id) {
         String title = this.filmRepository.findFilmById(id).getTitle();
         this.filmRepository.deleteFilmById(id);
 
-        return new ConfirmedDeletionMessage(title);
+        return Optional.of(new ConfirmedDeletionMessage(title));
     }
 
     /**

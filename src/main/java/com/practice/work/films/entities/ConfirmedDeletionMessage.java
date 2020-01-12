@@ -6,10 +6,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class ConfirmedDeletionMessage {
 
     private final String title;
-    private final String message
-            = String.format("'%s': successfully deleted", getTitle());
+    private final String message;
+
+    public ConfirmedDeletionMessage(String title) {
+        this.title = title;
+        message = String.format("'%s': successfully deleted.", title);
+    }
 }
