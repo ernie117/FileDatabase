@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -116,8 +115,6 @@ class AddFilmHttpControllerTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-
-        assertThat(response).isNotNull();
     }
 
     /**
