@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,8 +51,8 @@ class AddMultipleFilmsTest {
     private static List<Film> TEST_FILMS;
     private static List<FilmDTO> TEST_FILM_DTOS;
 
-    @BeforeEach
-    void setup() throws IOException {
+    @BeforeAll
+    static void setup() throws IOException {
         TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
         });
         TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<FilmDTO>>() {

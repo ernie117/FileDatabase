@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 
+import static com.practice.work.films.constants.TestConstants.TEST_TITLE;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -49,10 +50,10 @@ class FilmIdControllerTest {
     @Test
     @DisplayName("GET /v1/getFilmId")
     void testGetFilmIdByTitle() throws Exception {
-        doReturn(Optional.of(mockResult)).when(filmsService).getFilmIdsByTitle("test title");
+        doReturn(Optional.of(mockResult)).when(filmsService).getFilmIdsByTitle(TEST_TITLE);
 
         this.mockMvc.perform(get("/v1/getFilmId")
-                .param("title", "test title"))
+                .param("title", TEST_TITLE))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/getFilmId"))

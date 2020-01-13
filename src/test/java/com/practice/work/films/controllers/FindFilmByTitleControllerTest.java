@@ -1,7 +1,10 @@
 package com.practice.work.films.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,12 +18,15 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static com.practice.work.films.constants.TestConstants.*;
+import static com.practice.work.films.constants.TestConstants.TEST_JSON;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.mockito.Mockito.doReturn;
@@ -39,38 +45,21 @@ class FindFilmByTitleControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private List<Film> testFilmList = Collections.unmodifiableList(
-            Arrays.asList(
-                    Film.builder()
-                            .title("test title1")
-                            .director("test director1")
-                            .cinematographer("test cinematographer1")
-                            .composer("test composer1")
-                            .writer("test writer1")
-                            .genre("test genre1")
-                            .releaseDate(LocalDate.parse("2000-01-01"))
-                            .actors(Arrays.asList("test actor1", "test actor2"))
-                            .build(),
-                    Film.builder()
-                            .title("test title2")
-                            .director("test director2")
-                            .cinematographer("test cinematographer2")
-                            .composer("test composer2")
-                            .writer("test writer2")
-                            .genre("test genre2")
-                            .releaseDate(LocalDate.parse("2002-01-01"))
-                            .actors(Arrays.asList("test actor3", "test actor4"))
-                            .build()
-            )
-    );
+    private static List<Film> TEST_FILMS;
+
+    @BeforeAll
+    static void setup() throws IOException {
+        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+        });
+    }
 
     @Test
     @DisplayName("GET /v1/findFilmByTitle")
     void testFindByFilmByRegex() throws Exception {
-        doReturn(Optional.of(testFilmList)).when(filmsService).findFilmsByTitleRegexIgnoreCase("test title");
+        doReturn(Optional.of(TEST_FILMS)).when(filmsService).findFilmsByTitleRegexIgnoreCase(TEST_TITLE);
 
         this.mockMvc.perform(get("/v1/findFilmByTitle")
-                .param("title", "test title"))
+                .param("title", TEST_TITLE))
 
                 // validate response and data type
                 .andExpect(status().isOk())
@@ -86,7 +75,7 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[0]['composer']").value("test composer1"))
                 .andExpect(jsonPath("$[0]['writer']").value("test writer1"))
                 .andExpect(jsonPath("$[0]['genre']").value("test genre1"))
-                .andExpect(jsonPath("$[0]['releaseDate']").value(LocalDate.of(2000, 1, 1).toString()))
+                .andExpect(jsonPath("$[0]['releaseDate']").value(LocalDate.of(2000, 1, 31).toString()))
                 .andExpect(jsonPath("$[0]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("$[0]['actors']", isA(List.class)))
                 .andExpect(jsonPath("$[0]['actors'][0]").value("test actor1"))
@@ -100,7 +89,7 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[1]['composer']").value("test composer2"))
                 .andExpect(jsonPath("$[1]['writer']").value("test writer2"))
                 .andExpect(jsonPath("$[1]['genre']").value("test genre2"))
-                .andExpect(jsonPath("$[1]['releaseDate']").value(LocalDate.of(2002, 1, 1).toString()))
+                .andExpect(jsonPath("$[1]['releaseDate']").value(LocalDate.of(2000, 1, 1).toString()))
                 .andExpect(jsonPath("$[1]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("$[1]['actors']", isA(List.class)))
                 .andExpect(jsonPath("$[1]['actors'][0]").value("test actor3"))

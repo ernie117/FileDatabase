@@ -67,8 +67,8 @@ class ReturnAllFilmsControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/all"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("[0].title").value("db test title1"))
-                .andExpect(jsonPath("[1].title").value("db test title2"))
+                .andExpect(jsonPath("[0].title").value("test title1"))
+                .andExpect(jsonPath("[1].title").value("test title2"))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
