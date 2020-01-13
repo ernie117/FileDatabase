@@ -36,29 +36,29 @@ public class AddFilmHttpController {
 
     @PostMapping(value = "/v1/addFilmHttp")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> insertFilmDocumentHttp(@RequestParam(name = "title")
-                                                    @ApiParam(value = "Title", required = true)
-                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String title,
-                                                    @RequestParam(name = "genre")
-                                                    @ApiParam(value = "Genre", required = true)
-                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String genre,
-                                                    @RequestParam(name = "director")
-                                                    @ApiParam(value = "Director", required = true)
-                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String director,
-                                                    @RequestParam(name = "cinematographer")
-                                                    @ApiParam(value = "Cinematographer", required = true)
-                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String cinematographer,
-                                                    @RequestParam(name = "writer")
-                                                    @ApiParam(value = "Writer", required = true)
-                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String writer,
-                                                    @RequestParam(name = "composer")
-                                                    @ApiParam(value = "Composer", required = true)
-                                                    @Pattern(regexp = "[a-zA-Z\\s]+") String composer,
-                                                    @RequestParam(name = "releaseDate")
-                                                    @ApiParam(value = "Release Date", required = true)
-                                                            String releaseDate,
-                                                    @RequestParam(name = "actors")
-                                                    @ApiParam(value = "Actors", required = true) List<String> actors) {
+    public ResponseEntity<FilmDTO> insertFilmDocumentHttp(@RequestParam(name = "title")
+                                                          @ApiParam(value = "Title", required = true)
+                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String title,
+                                                          @RequestParam(name = "genre")
+                                                          @ApiParam(value = "Genre", required = true)
+                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String genre,
+                                                          @RequestParam(name = "director")
+                                                          @ApiParam(value = "Director", required = true)
+                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String director,
+                                                          @RequestParam(name = "cinematographer")
+                                                          @ApiParam(value = "Cinematographer", required = true)
+                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String cinematographer,
+                                                          @RequestParam(name = "writer")
+                                                          @ApiParam(value = "Writer", required = true)
+                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String writer,
+                                                          @RequestParam(name = "composer")
+                                                          @ApiParam(value = "Composer", required = true)
+                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String composer,
+                                                          @RequestParam(name = "releaseDate")
+                                                          @ApiParam(value = "Release Date", required = true)
+                                                                  String releaseDate,
+                                                          @RequestParam(name = "actors")
+                                                          @ApiParam(value = "Actors", required = true) List<String> actors) {
 
         FilmDTO filmDTO = FilmDTO.builder()
                 .title(title)
