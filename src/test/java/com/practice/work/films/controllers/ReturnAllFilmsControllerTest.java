@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.jayway.jsonpath.JsonPath;
-import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import org.junit.jupiter.api.DisplayName;

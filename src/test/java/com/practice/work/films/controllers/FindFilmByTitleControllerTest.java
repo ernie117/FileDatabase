@@ -1,7 +1,6 @@
 package com.practice.work.films.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,13 +19,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static com.practice.work.films.constants.TestConstants.*;
-import static com.practice.work.films.constants.TestConstants.TEST_JSON;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.mockito.Mockito.doReturn;
