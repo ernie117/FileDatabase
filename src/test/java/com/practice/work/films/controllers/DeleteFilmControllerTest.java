@@ -14,8 +14,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
-import java.util.UUID;
 
+import static com.practice.work.films.constants.TestConstants.TEST_ID;
+import static com.practice.work.films.constants.TestConstants.TEST_TITLE;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -33,8 +34,6 @@ class DeleteFilmControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static final String TEST_ID = UUID.randomUUID().toString();
-    private static final String TEST_TITLE = "test title";
     private static final String CONFIRM_MSG = String.format("'%s': successfully deleted.", TEST_TITLE);
 
     private final ConfirmedDeletionMessage confirmation = new ConfirmedDeletionMessage(TEST_TITLE);

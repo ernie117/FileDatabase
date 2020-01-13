@@ -1,12 +1,10 @@
 package com.practice.work.films.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.modelmapper.ModelMapper;
@@ -19,11 +17,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.io.File;
-import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import static com.practice.work.films.constants.TestConstants.*;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -47,32 +45,30 @@ class AddMultipleFilmsTest {
     @MockBean
     private ModelMapper mockModelMapper;
 
-    private static final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+    public static String FILM_DTO_AS_STRING;
+    private static String FILM_DTOS_AS_STRING;
+    private static List<Film> TEST_FILMS;
+    private static List<FilmDTO> TEST_FILM_DTOS;
 
-    private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
-
-    private static List<Film> films;
-    private static List<FilmDTO> filmDtos;
-    private static String filmDtosAsString;
-
-    @BeforeAll
-    static void setupObjectMapper() throws Exception {
-        films = objectMapper.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+    @BeforeEach
+    void setup() throws IOException {
+        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
         });
-        filmDtos = objectMapper.readValue(TEST_JSON, new TypeReference<List<FilmDTO>>() {
+        TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<FilmDTO>>() {
         });
-        filmDtosAsString = objectMapper.writeValueAsString(filmDtos);
+        FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTO);
+        FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTOS);
     }
 
     @Test
     void insertManyFilmDocuments_CorrectValues() throws Exception {
-        doReturn(Optional.of(films)).when(filmsService).insertMultipleFilmDocument(films);
-        doReturn(films.get(0), films.get(1)).when(mockModelMapper).map(any(), eq(Film.class));
-        doReturn(filmDtos.get(0), filmDtos.get(1)).when(mockModelMapper).map(any(), eq(FilmDTO.class));
+        doReturn(Optional.of(TEST_FILMS)).when(filmsService).insertMultipleFilmDocument(TEST_FILMS);
+        doReturn(TEST_FILMS.get(0), TEST_FILMS.get(1)).when(mockModelMapper).map(any(), eq(Film.class));
+        doReturn(TEST_FILM_DTOS.get(0), TEST_FILM_DTOS.get(1)).when(mockModelMapper).map(any(), eq(FilmDTO.class));
 
         this.mockMvc.perform(post("/v1/addMultipleFilms")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(filmDtosAsString))
+                .content(FILM_DTOS_AS_STRING))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("[0].*", hasSize(10)))
@@ -81,11 +77,11 @@ class AddMultipleFilmsTest {
 
     @Test
     void insertManyFilmDocuments_Error() throws Exception {
-        doReturn(Optional.empty()).when(filmsService).insertMultipleFilmDocument(films);
+        doReturn(Optional.empty()).when(filmsService).insertMultipleFilmDocument(TEST_FILMS);
 
         this.mockMvc.perform(post("/v1/addMultipleFilms")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(filmDtosAsString))
+                .content(FILM_DTOS_AS_STRING))
                 .andExpect(status().isUnprocessableEntity());
     }
 }

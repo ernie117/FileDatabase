@@ -23,6 +23,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static com.practice.work.films.constants.TestConstants.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -46,72 +48,35 @@ class AddFilmHttpControllerTest {
     @MockBean
     private ModelMapper mockModelMapper;
 
-    private FilmDTO filmDto;
-    private Film film;
-
-    private static final LocalDate release = LocalDate.of(2000, 1, 1);
-    private static final LocalDateTime dateAdded = LocalDateTime.of(2020, 1, 1, 12, 0, 10);
-    private static final List<String> actors = Arrays.asList("test actor1", "test actor2");
-
-    @BeforeEach
-    void setUp() {
-
-        filmDto = FilmDTO.builder()
-                .title("test title")
-                .cinematographer("test cinematographer")
-                .composer("test composer")
-                .writer("test writer")
-                .director("test director")
-                .genre("test genre")
-                .releaseDate(release)
-                .dateAdded(dateAdded)
-                .actors(actors)
-                .build();
-
-        film = Film.builder()
-                .title("test title")
-                .cinematographer("test cinematographer")
-                .composer("test composer")
-                .writer("test writer")
-                .director("test director")
-                .genre("test genre")
-                .releaseDate(release)
-                .dateAdded(dateAdded)
-                .actors(actors)
-                .build();
-
-    }
-
-
     @Test
     void insertFilmDocumentHttp_CorrectValues() throws Exception {
-        doReturn(Optional.of(film)).when(filmsService).insertSingleFilmDocument(film);
-        doReturn(film).when(mockModelMapper).map(any(), eq(Film.class));
-        doReturn(filmDto).when(mockModelMapper).map(any(), eq(FilmDTO.class));
+        doReturn(Optional.of(TEST_FILM)).when(filmsService).insertSingleFilmDocument(TEST_FILM);
+        doReturn(TEST_FILM).when(mockModelMapper).map(any(), eq(Film.class));
+        doReturn(TEST_FILM_DTO).when(mockModelMapper).map(any(), eq(FilmDTO.class));
 
-        String response = this.mockMvc.perform(post("/v1/addFilmHttp")
-                .param("title", "test title")
-                .param("cinematographer", "test cinematographer")
-                .param("composer", "test composer")
-                .param("writer", "test writer")
-                .param("director", "test director")
-                .param("genre", "test genre")
-                .param("releaseDate", release.toString())
-                .param("actors", actors.toString()))
+        this.mockMvc.perform(post("/v1/addFilmHttp")
+                .param("title", TEST_TITLE)
+                .param("cinematographer", TEST_CINEMATOGRAPHER)
+                .param("composer", TEST_COMPOSER)
+                .param("writer", TEST_WRITER)
+                .param("director", TEST_DIRECTOR)
+                .param("genre", TEST_GENRE)
+                .param("releaseDate", TEST_RELEASE_DATE.toString())
+                .param("actors", TEST_DATE_ADDED.toString()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.title").value("test title"))
-                .andExpect(jsonPath("$.genre").value("test genre"))
-                .andExpect(jsonPath("$.composer").value("test composer"))
-                .andExpect(jsonPath("$.writer").value("test writer"))
-                .andExpect(jsonPath("$.cinematographer").value("test cinematographer"))
-                .andExpect(jsonPath("$.releaseDate").value(release.toString()))
-                .andExpect(jsonPath("$.dateAdded").value(dateAdded.toString()))
+                .andExpect(jsonPath("$.title").value(TEST_TITLE))
+                .andExpect(jsonPath("$.genre").value(TEST_GENRE))
+                .andExpect(jsonPath("$.composer").value(TEST_COMPOSER))
+                .andExpect(jsonPath("$.writer").value(TEST_WRITER))
+                .andExpect(jsonPath("$.cinematographer").value(TEST_CINEMATOGRAPHER))
+                .andExpect(jsonPath("$.releaseDate").value(TEST_RELEASE_DATE.toString()))
+                .andExpect(jsonPath("$.dateAdded").value(TEST_DATE_ADDED.toString()))
                 .andExpect(jsonPath("$.actors", Matchers.isA(List.class)))
-                .andExpect(jsonPath("$.actors[0]").value("test actor1"))
-                .andExpect(jsonPath("$.actors[1]").value("test actor2"))
+                .andExpect(jsonPath("$.actors[0]").value(TEST_ACTORS.get(0)))
+                .andExpect(jsonPath("$.actors[1]").value(TEST_ACTORS.get(1)))
                 .andExpect(jsonPath("$.actors.length()", is(2)))
-                .andExpect(jsonPath("$.director").value("test director"))
+                .andExpect(jsonPath("$.director").value(TEST_DIRECTOR))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -125,17 +90,17 @@ class AddFilmHttpControllerTest {
      */
     @Test
     void testInsertFilmDocumentHttp_EmptyFilmReturnsUnprocessableEntity() throws Exception {
-        doReturn(Optional.empty()).when(filmsService).insertSingleFilmDocument(film);
+        doReturn(Optional.empty()).when(filmsService).insertSingleFilmDocument(TEST_FILM);
 
         this.mockMvc.perform(post("/v1/addFilmHttp")
-                .param("title", "test title")
-                .param("cinematographer", "test cinematographer")
-                .param("composer", "test composer")
-                .param("writer", "test writer")
-                .param("director", "test director")
-                .param("genre", "test genre")
-                .param("releaseDate", release.toString())
-                .param("actors", actors.toString()))
+                .param("title", TEST_TITLE)
+                .param("cinematographer", TEST_CINEMATOGRAPHER)
+                .param("composer", TEST_COMPOSER)
+                .param("writer", TEST_WRITER)
+                .param("director", TEST_DIRECTOR)
+                .param("genre", TEST_GENRE)
+                .param("releaseDate", TEST_RELEASE_DATE.toString())
+                .param("actors", TEST_ACTORS.toString()))
                 .andExpect(status().isUnprocessableEntity());
     }
 }
