@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiParam;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -40,10 +39,10 @@ public class FindFilmsByWriterController {
     }
 
     @GetMapping("/v1/findFilmsByWriter")
-    public ResponseEntity<?> fetchFilmsByWriter(@Valid
-                                                @ApiParam("String of writer to search; case-insensitive")
-                                                @Pattern(regexp = "[a-zA-Z\\s]+")
-                                                @RequestParam String writer) {
+    public ResponseEntity<List<FilmDTO>> fetchFilmsByWriter(@Valid
+                                                            @ApiParam("String of writer to search; case-insensitive")
+                                                            @Pattern(regexp = "[a-zA-Z\\s]+")
+                                                            @RequestParam String writer) {
         return this.filmsService.fetchFilmsByWriter(writer)
                 .map(films -> ResponseEntity
                         .ok()
@@ -51,7 +50,8 @@ public class FindFilmsByWriterController {
                         .body(films
                                 .stream()
                                 .map(film -> modelMapper.map(film, FilmDTO.class))
-                                .collect(Collectors.toList()))).orElse(ResponseEntity.notFound().build());
+                                .collect(Collectors.toList())))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }

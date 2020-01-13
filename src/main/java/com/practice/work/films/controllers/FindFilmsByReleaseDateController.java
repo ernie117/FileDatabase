@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -37,7 +38,7 @@ public class FindFilmsByReleaseDateController {
     }
 
     @GetMapping(path = "/v1/findAllByYear")
-    public ResponseEntity<?> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
+    public ResponseEntity<List<FilmDTO>> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
                                                         @RequestParam
                                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
         return this.filmsService.findFilmsByReleaseDate(localDate)

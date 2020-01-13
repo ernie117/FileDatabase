@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiParam;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -40,24 +39,19 @@ public class FindFilmsByCinematographerController {
     }
 
     @GetMapping("/v1/findFilmsByCinematographer")
-    public ResponseEntity<?> fetchFilmsByCinematographer(@Valid
-                                                         @ApiParam("String of actor to search; case-insensitive")
-                                                         @Pattern(regexp = "[a-zA-Z\\s]+")
-                                                         @RequestParam String cinematographer) {
+    public ResponseEntity<List<FilmDTO>> fetchFilmsByCinematographer(@Valid
+                                                                     @ApiParam("String of actor to search; case-insensitive")
+                                                                     @Pattern(regexp = "[a-zA-Z\\s]+")
+                                                                     @RequestParam String cinematographer) {
         return this.filmsService.fetchFilmsByCinematographer(cinematographer)
-                .map(films -> {
-                    try {
-                        return ResponseEntity
-                                .ok()
-                                .location(new URI(configProperties.getFindFilmsByCinematographerURI()))
-                                .body(films
-                                        .stream()
-                                        .map(film -> modelMapper.map(film, FilmDTO.class))
-                                        .collect(Collectors.toList()));
-                    } catch (URISyntaxException use) {
-                        return ResponseEntity.badRequest().build();
-                    }
-                }).orElse(ResponseEntity.notFound().build());
+                .map(films -> ResponseEntity
+                        .ok()
+                        .location(URI.create(configProperties.getFindFilmsByCinematographerURI()))
+                        .body(films
+                                .stream()
+                                .map(film -> modelMapper.map(film, FilmDTO.class))
+                                .collect(Collectors.toList())))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }

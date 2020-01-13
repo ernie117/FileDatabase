@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -35,7 +36,7 @@ public class ReturnAllFilmsController {
     }
 
     @GetMapping(value = "/v1/all")
-    public ResponseEntity<?> fetchAllFilmDocuments() {
+    public ResponseEntity<List<FilmDTO>> fetchAllFilmDocuments() {
         log.info("Fetch All Films endpoint called.");
         return filmsService.fetchAllFilms()
                 .map(films -> {

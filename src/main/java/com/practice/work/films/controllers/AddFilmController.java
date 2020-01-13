@@ -35,7 +35,7 @@ public class AddFilmController {
 
     @PostMapping(value = "/v1/addFilm")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> insertFilmDocument(@Valid
+    public ResponseEntity<FilmDTO> insertFilmDocument(@Valid
                                                 @ApiParam("Film json object, structured as in the example")
                                                 @RequestBody FilmDTO filmDto) {
         Optional<Film> film = filmsService.insertSingleFilmDocument(modelMapper.map(filmDto, Film.class));

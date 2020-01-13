@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -35,7 +36,7 @@ public class FindFilmsByDirectorController {
     }
 
     @GetMapping(path = "/v1/fetchFilmsByDirector")
-    public ResponseEntity<?> fetchFilmsByDirector(@ApiParam("Director to search, as a string. Case-insensitive")
+    public ResponseEntity<List<FilmDTO>> fetchFilmsByDirector(@ApiParam("Director to search, as a string. Case-insensitive")
                                                   @RequestParam String director) {
         return this.filmsService.findFilmsByDirector(director)
                 .map(films -> ResponseEntity

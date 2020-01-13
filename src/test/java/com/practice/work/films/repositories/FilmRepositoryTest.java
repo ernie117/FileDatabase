@@ -1,4 +1,4 @@
-package com.practice.work.films;
+package com.practice.work.films.repositories;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

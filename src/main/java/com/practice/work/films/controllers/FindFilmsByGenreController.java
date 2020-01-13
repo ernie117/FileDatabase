@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -35,7 +36,7 @@ public class FindFilmsByGenreController {
     }
 
     @GetMapping(path = "/v1/findAllByGenre")
-    public ResponseEntity<?> fetchAllFilmsByGenre(@ApiParam("Genre to search as a string. Case-insensitive")
+    public ResponseEntity<List<FilmDTO>> fetchAllFilmsByGenre(@ApiParam("Genre to search as a string. Case-insensitive")
                                                   @RequestParam String genre) {
         return this.filmsService.findFilmsByGenre(genre)
                 .map(films -> ResponseEntity.ok()
@@ -46,5 +47,4 @@ public class FindFilmsByGenreController {
                                 .collect(Collectors.toList())))
                 .orElse(ResponseEntity.badRequest().build());
     }
-
 }

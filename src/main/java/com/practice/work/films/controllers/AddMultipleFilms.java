@@ -40,7 +40,7 @@ public class AddMultipleFilms {
     }
 
     @PostMapping(value = "/v1/addMultipleFilms")
-    public ResponseEntity<?> insertManyFilmDocuments(@Valid
+    public ResponseEntity<List<FilmDTO>> insertManyFilmDocuments(@Valid
                                                      @ApiParam("Array of filmDTO objects, structured as in the example")
                                                      @RequestBody List<FilmDTO> filmDTOS) {
         log.info("Add Multiple Films endpoint called with {} film objects to save.", filmDTOS.size());

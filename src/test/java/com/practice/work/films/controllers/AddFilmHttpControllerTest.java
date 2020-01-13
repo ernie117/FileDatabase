@@ -50,7 +50,7 @@ class AddFilmHttpControllerTest {
     private Film film;
 
     private static final LocalDate release = LocalDate.of(2000, 1, 1);
-    private static final LocalDateTime dateAdded = LocalDateTime.now();
+    private static final LocalDateTime dateAdded = LocalDateTime.of(2020, 1, 1, 12, 0, 10);
     private static final List<String> actors = Arrays.asList("test actor1", "test actor2");
 
     @BeforeEach
