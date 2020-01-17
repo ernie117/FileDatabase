@@ -81,7 +81,7 @@ public class TestConstants {
             .actors(TEST_ACTORS)
             .build();
 
-    public static final FilmDTO INVALID_TEST_FILM_DTO = FilmDTO.builder()
+    public static final FilmDTO INVALID_TEST_FILM_DTO_BLANK_TITLE = FilmDTO.builder()
             .id(RANDOM_UUID)
             .title("") // Should be 'NotBlank'
             .cinematographer(TEST_CINEMATOGRAPHER)
@@ -93,4 +93,19 @@ public class TestConstants {
             .dateAdded(TEST_DATE_ADDED)
             .actors(TEST_ACTORS)
             .build();
+
+    public static final FilmDTO INVALID_TEST_FILM_DTO_WRITER = FilmDTO.builder()
+            .id(RANDOM_UUID)
+            .title(TEST_TITLE) // Should be 'NotBlank'
+            .cinematographer(TEST_CINEMATOGRAPHER)
+            .composer(TEST_COMPOSER)
+            .writer("1111")
+            .director(TEST_DIRECTOR)
+            .genre(TEST_GENRE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .dateAdded(TEST_DATE_ADDED)
+            .actors(TEST_ACTORS)
+            .build();
+
+    public static final String BAD_JSON = "{'field': 'value'";
 }

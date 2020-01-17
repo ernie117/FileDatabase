@@ -10,7 +10,6 @@ import com.practice.work.films.validation.Violation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -48,15 +47,17 @@ class AddFilmControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Mock
-    private AddFilmController addFilmController;
-
     @MockBean
     private ModelMapper mockModelMapper;
 
+    public static String FILM_DTO_AS_STRING;
+    private static String INVALID_WRITER_FIELD_FILM_DTO;
+
     @BeforeAll
     static void stringSetup() throws IOException {
-        INVALID_TEST_FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTO);
+        INVALID_TEST_FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTO_BLANK_TITLE);
+        INVALID_WRITER_FIELD_FILM_DTO = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTO_WRITER);
+        FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTO);
     }
 
     @Test
@@ -120,11 +121,58 @@ class AddFilmControllerTest {
             Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
             });
 
-            for (Violation violation : violations) {
-                assertThat(violation.getMessage()).isEqualTo("must not be blank");
-            }
+            violations.forEach(v -> {
+                assertThat(v.getMessage()).isEqualTo("must not be blank");
+                assertThat(v.getField()).isEqualTo("title");
+            });
+
         } catch (JsonProcessingException ex) {
-            fail("Exception when processing JSON.");
+            fail("Exception when processing JSON.", ex.getCause());
+        }
+    }
+
+    @Test
+    void test_BadJSON_ReturnsViolationWithDetails() throws Exception {
+        String response = this.mockMvc.perform(post("/v1/addFilm/")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(BAD_JSON))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> assertThat(v.getField()).isEqualTo("JsonParseException"));
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
+        }
+    }
+
+    @Test
+    void test_ConstraintViolation_ReturnsViolationWithDetails() throws Exception {
+        String response = this.mockMvc.perform(post("/v1/addFilm/")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(INVALID_WRITER_FIELD_FILM_DTO))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> {
+                assertThat(v.getField()).isEqualTo("writer");
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\s]+\"");
+            });
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
         }
     }
 }
