@@ -67,4 +67,30 @@ public class TestConstants {
             .releaseDate(LocalDate.parse("2002-01-01"))
             .actors(Arrays.asList("test actor3", "test actor4"))
             .build();
+
+    public static final Film INVALID_TEST_FILM = Film.builder()
+            .id(RANDOM_UUID)
+            .title("") // Should be 'NotBlank'
+            .cinematographer(TEST_CINEMATOGRAPHER)
+            .composer(TEST_COMPOSER)
+            .writer(TEST_WRITER)
+            .director(TEST_DIRECTOR)
+            .genre(TEST_GENRE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .dateAdded(TEST_DATE_ADDED)
+            .actors(TEST_ACTORS)
+            .build();
+
+    public static final FilmDTO INVALID_TEST_FILM_DTO = FilmDTO.builder()
+            .id(RANDOM_UUID)
+            .title("") // Should be 'NotBlank'
+            .cinematographer(TEST_CINEMATOGRAPHER)
+            .composer(TEST_COMPOSER)
+            .writer(TEST_WRITER)
+            .director(TEST_DIRECTOR)
+            .genre(TEST_GENRE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .dateAdded(TEST_DATE_ADDED)
+            .actors(TEST_ACTORS)
+            .build();
 }

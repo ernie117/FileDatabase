@@ -49,6 +49,7 @@ class AddMultipleFilmsTest {
     private static String FILM_DTOS_AS_STRING;
     private static List<Film> TEST_FILMS;
     private static List<FilmDTO> TEST_FILM_DTOS;
+    public static String INVALID_TEST_FILM_DTO_AS_STRING;
 
     @BeforeAll
     static void setup() throws IOException {

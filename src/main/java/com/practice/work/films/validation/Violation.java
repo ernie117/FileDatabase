@@ -1,15 +1,14 @@
 package com.practice.work.films.validation;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Builder
-@Getter
-@Setter
-class Violation {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Violation {
 
     private final LocalDateTime timestamp = LocalDateTime.now();
     private String field;

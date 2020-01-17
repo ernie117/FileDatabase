@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.practice.work.films.entities.Film;
-import com.practice.work.films.repositories.FilmRepository;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ class FilmRepositoryTest {
 
     private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
 
-    @PostConstruct
+    @BeforeEach
     void setupObjectMapper() throws IOException {
         List<Film> films = objectMapper.readValue(TEST_JSON, new TypeReference<List<Film>>() {
         });
@@ -66,35 +66,36 @@ class FilmRepositoryTest {
 
     @Test
     void testFindAllByTitleRegex() {
-        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmByTitleRegexIgnoreCase("db test"));
+        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmByTitleRegexIgnoreCase("test title"));
         assertTrue(films.isPresent(), "We should return the films from the JSON file");
+        System.out.println(films.get());
         films.ifPresent(filmsList -> {
             Film film1 = filmsList.get(0);
-            assertEquals("db test title1", film1.getTitle(), "Should be db test title1");
-            assertNotEquals("false genre", film1.getGenre(), "Should be db genre1");
+            assertEquals("test title1", film1.getTitle(), "Should be test title1");
+            assertNotEquals("false genre", film1.getGenre(), "Should be test genre1");
             Film film2 = filmsList.get(1);
-            assertEquals("db test title2", film2.getTitle(), "Should be db test title2");
-            assertNotEquals("false cinematographer", film1.getCinematographer(), "Should be db cinematographer1");
+            assertEquals("test title2", film2.getTitle(), "Should be test title2");
+            assertNotEquals("false cinematographer", film1.getCinematographer(), "Should be test cinematographer1");
         });
     }
 
     @Test
     void testFindAllByDirectorRegex() {
-        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findAllByDirectorRegexIgnoreCase("db test director"));
+        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findAllByDirectorRegexIgnoreCase("test director"));
         assertTrue(films.isPresent(), "We should return the films matching the director in the Json file");
         films.ifPresent((filmsList -> {
-            assertEquals("db test director1", filmsList.get(0).getDirector(), "Should be db test director1");
-            assertEquals("db test director2", filmsList.get(1).getDirector(), "Should be db test director2");
+            assertEquals("test director1", filmsList.get(0).getDirector(), "Should be test director1");
+            assertEquals("test director2", filmsList.get(1).getDirector(), "Should be test director2");
         }));
     }
 
     @Test
     void findAllFilmsByGenreRegex() {
-        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByGenreRegexIgnoreCase("db test genre"));
+        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByGenreRegexIgnoreCase("test genre"));
         assertTrue(films.isPresent(), "We should return the films matching the genre in the JSON file");
         films.ifPresent((filmsList -> {
-            assertEquals("db test genre1", filmsList.get(0).getGenre(), "Should be db test genre1");
-            assertNotEquals("db test made-up genre", filmsList.get(0).getGenre(), "Should be db test genre1");
+            assertEquals("test genre1", filmsList.get(0).getGenre(), "Should be test genre1");
+            assertEquals("test genre2", filmsList.get(1).getGenre(), "Should be test genre2");
         }));
     }
 
@@ -110,11 +111,11 @@ class FilmRepositoryTest {
 
     @Test
     void findAllFilmsByActors() {
-        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByActorsRegex("db test actor"));
+        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByActorsRegex("test actor"));
         assertTrue(films.isPresent(), "We should return the films matching one of the actors in the Json file");
         films.ifPresent((filmsList -> {
-            assertEquals("db test actor1", filmsList.get(0).getActors().get(0), "Should be db test actor1");
-            assertEquals("db test actor2", filmsList.get(0).getActors().get(1), "Should be db test actor2");
+            assertEquals("test actor1", filmsList.get(0).getActors().get(0), "Should be test actor1");
+            assertEquals("test actor2", filmsList.get(0).getActors().get(1), "Should be test actor2");
         }));
     }
 
