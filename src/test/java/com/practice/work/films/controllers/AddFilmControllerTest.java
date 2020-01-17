@@ -116,16 +116,15 @@ class AddFilmControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        Set<Violation> violations = null;
         try {
-            violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
             });
+
+            for (Violation violation : violations) {
+                assertThat(violation.getMessage()).isEqualTo("must not be blank");
+            }
         } catch (JsonProcessingException ex) {
             fail("Exception when processing JSON.");
-        }
-
-        for (Violation violation : violations) {
-            assertThat(violation.getMessage()).isEqualTo("must not be blank");
         }
     }
 }
