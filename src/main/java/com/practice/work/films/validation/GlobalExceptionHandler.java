@@ -14,8 +14,8 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.Path;
+import java.util.*;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -104,11 +104,17 @@ public class GlobalExceptionHandler {
     public Set<Violation> handleConstraintException(ConstraintViolationException ex) {
         Set<Violation> violations = new HashSet<>();
         for (ConstraintViolation<?> cv : ex.getConstraintViolations()) {
+            // Simply splitting the PropertyPath string throws another exception so we
+            // have to stream the nodes and get the names this way
+            List<String> paths = new ArrayList<>();
+            cv.getPropertyPath().forEach(node -> paths.add(node.getName()));
+
             violations.add(
                     Violation.builder()
-                            .field(cv.getPropertyPath().toString())
+                            .field(paths.get(1))
                             .message(cv.getMessage())
-                            .build());
+                            .build()
+            );
         }
 
         return violations;

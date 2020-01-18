@@ -9,11 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +25,7 @@ import java.util.Optional;
 
 @RestController
 @Api(tags = {"Add Film via HTTP call"})
+@Validated
 public class AddFilmHttpController {
 
     private FilmsService filmsService;
@@ -38,7 +41,7 @@ public class AddFilmHttpController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<FilmDTO> insertFilmDocumentHttp(@RequestParam(name = "title")
                                                           @ApiParam(value = "Title", required = true)
-                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String title,
+                                                          @Pattern(regexp = "[a-zA-Z\\d\\s]+") String title,
                                                           @RequestParam(name = "genre")
                                                           @ApiParam(value = "Genre", required = true)
                                                           @Pattern(regexp = "[a-zA-Z\\s]+") String genre,

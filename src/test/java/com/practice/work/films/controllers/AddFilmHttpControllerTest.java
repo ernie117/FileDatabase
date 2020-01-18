@@ -107,7 +107,7 @@ class AddFilmHttpControllerTest {
     }
 
     @Test
-    void testEndpoint_MissingField_ReturnsViolationWithDetails() throws Exception {
+    void testAddFilmHttp_MissingField_ReturnsViolationsWithDetails() throws Exception {
         // Cinematographer missing
         String response = this.mockMvc.perform(post("/v1/addFilmHttp/")
                 .param("title", TEST_TITLE)
@@ -135,5 +135,36 @@ class AddFilmHttpControllerTest {
             fail("Exception when processing JSON.", ex.getCause());
         }
     }
+
+    @Test
+    void testAddFilmHttp_InvalidField_ReturnsViolationsWithDetails() throws Exception {
+        String response = this.mockMvc.perform(post("/v1/addFilmHttp/")
+                .param("title", TEST_TITLE)
+                .param("composer", "111") // Can't just be numbers
+                .param("cinematographer", TEST_CINEMATOGRAPHER)
+                .param("writer", TEST_WRITER)
+                .param("director", TEST_DIRECTOR)
+                .param("genre", TEST_GENRE)
+                .param("releaseDate", TEST_RELEASE_DATE.toString())
+                .param("actors", TEST_ACTORS.toString()))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> {
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\s]+\"");
+                assertThat(v.getField()).isEqualTo("composer");
+            });
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
+        }
+    }
+
 
 }
