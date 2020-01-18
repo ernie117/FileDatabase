@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 @RestController
 @ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch Films by Exact Date"})
+@Validated
 public class FindFilmsByReleaseDateController {
 
     private FilmsService filmsService;
@@ -39,8 +41,8 @@ public class FindFilmsByReleaseDateController {
 
     @GetMapping(path = "/v1/findAllByYear")
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
-                                                        @RequestParam
-                                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
+                                                                    @RequestParam
+                                                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
         return this.filmsService.findFilmsByReleaseDate(localDate)
                 .map(films -> ResponseEntity
                         .ok()

@@ -9,11 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Pattern;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 @ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch Films by Director"})
+@Validated
 public class FindFilmsByDirectorController {
 
     private FilmsService filmsService;
@@ -37,7 +40,8 @@ public class FindFilmsByDirectorController {
 
     @GetMapping(path = "/v1/fetchFilmsByDirector")
     public ResponseEntity<List<FilmDTO>> fetchFilmsByDirector(@ApiParam("Director to search, as a string. Case-insensitive")
-                                                  @RequestParam String director) {
+                                                              @Pattern(regexp = "[a-zA-Z\\s]+")
+                                                              @RequestParam String director) {
         return this.filmsService.findFilmsByDirector(director)
                 .map(films -> ResponseEntity
                         .ok()
