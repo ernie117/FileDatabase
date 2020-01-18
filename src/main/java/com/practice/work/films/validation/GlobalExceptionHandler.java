@@ -15,6 +15,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Path;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 @ControllerAdvice
@@ -71,7 +72,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public Set<Violation> handleDatetimeParseError(HttpMessageNotReadableException ex) {
+    public Set<Violation> handleMessageNotReadableError(HttpMessageNotReadableException ex) {
         Set<Violation> violations = new HashSet<>();
         violations.add(
                 Violation.builder()
@@ -119,4 +120,21 @@ public class GlobalExceptionHandler {
 
         return violations;
     }
+
+    @ExceptionHandler(DateTimeParseException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Set<Violation> handleDatetimeParseError(DateTimeParseException ex) {
+        Set<Violation> violations = new HashSet<>();
+        violations.add(
+                Violation.builder()
+                        .field(ex.getClass().getSimpleName())
+                        .message(ex.getLocalizedMessage())
+                        .build()
+
+        );
+
+        return violations;
+    }
+
 }

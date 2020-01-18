@@ -166,5 +166,34 @@ class AddFilmHttpControllerTest {
         }
     }
 
+    @Test
+    void testAddFilmHttp_BadDate_ReturnsViolationsWithDetails() throws Exception {
+        String response = this.mockMvc.perform(post("/v1/addFilmHttp/")
+                .param("title", TEST_TITLE)
+                .param("cinematographer", TEST_CINEMATOGRAPHER)
+                .param("composer", TEST_COMPOSER)
+                .param("writer", TEST_WRITER)
+                .param("director", TEST_DIRECTOR)
+                .param("genre", TEST_GENRE)
+                .param("releaseDate", "20-1-1")
+                .param("actors", TEST_DATE_ADDED.toString()))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> {
+                assertThat(v.getField()).isEqualTo("DateTimeParseException");
+                assertThat(v.getMessage()).isEqualTo("Text '20-1-1' could not be parsed at index 0");
+            });
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
+        }
+    }
 
 }
