@@ -1,8 +1,11 @@
 package com.practice.work.films.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
+import com.practice.work.films.validation.Violation;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,10 +19,14 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.practice.work.films.constants.TestConstants.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -98,4 +105,35 @@ class AddFilmHttpControllerTest {
                 .param("actors", TEST_ACTORS.toString()))
                 .andExpect(status().isUnprocessableEntity());
     }
+
+    @Test
+    void testEndpoint_MissingField_ReturnsViolationWithDetails() throws Exception {
+        // Cinematographer missing
+        String response = this.mockMvc.perform(post("/v1/addFilmHttp/")
+                .param("title", TEST_TITLE)
+                .param("composer", TEST_COMPOSER)
+                .param("writer", TEST_WRITER)
+                .param("director", TEST_DIRECTOR)
+                .param("genre", TEST_GENRE)
+                .param("releaseDate", TEST_RELEASE_DATE.toString())
+                .param("actors", TEST_ACTORS.toString()))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> {
+                assertThat(v.getMessage()).isEqualTo("Required String parameter 'cinematographer' is not present");
+                assertThat(v.getField()).isEqualTo("cinematographer");
+            });
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
+        }
+    }
+
 }

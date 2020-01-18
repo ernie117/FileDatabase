@@ -83,7 +83,7 @@ public class TestConstants {
 
     public static final FilmDTO INVALID_TEST_FILM_DTO_BLANK_TITLE = FilmDTO.builder()
             .id(RANDOM_UUID)
-            .title("") // Should be 'NotBlank'
+            .title("")
             .cinematographer(TEST_CINEMATOGRAPHER)
             .composer(TEST_COMPOSER)
             .writer(TEST_WRITER)
@@ -96,7 +96,7 @@ public class TestConstants {
 
     public static final FilmDTO INVALID_TEST_FILM_DTO_WRITER = FilmDTO.builder()
             .id(RANDOM_UUID)
-            .title(TEST_TITLE) // Should be 'NotBlank'
+            .title(TEST_TITLE)
             .cinematographer(TEST_CINEMATOGRAPHER)
             .composer(TEST_COMPOSER)
             .writer("1111")

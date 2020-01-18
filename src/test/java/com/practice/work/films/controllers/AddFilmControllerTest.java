@@ -27,7 +27,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import static com.practice.work.films.constants.TestConstants.*;
-import static com.practice.work.films.controllers.AddMultipleFilmsTest.FILM_DTO_AS_STRING;
 import static com.practice.work.films.controllers.AddMultipleFilmsTest.INVALID_TEST_FILM_DTO_AS_STRING;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
