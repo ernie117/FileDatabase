@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
+FROM openjdk:13-alpine
 COPY target/spring-films-app.jar spring-films-app
 EXPOSE 8888
-ENTRYPOINT ["java", "-jar", "spring-films-app"]
+ENTRYPOINT ["java", "--enable-preview", "-jar", "spring-films-app"]

@@ -60,11 +60,11 @@ class AddMultipleFilmsControllerTest {
 
     @BeforeAll
     static void setup() throws IOException {
-        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<List<Film>>() {
+        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<>() {
         });
-        TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<List<FilmDTO>>() {
+        TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<>() {
         });
-        List<FilmDTO> invalidTestFilmDtos = OBJECT_MAPPER.readValue(INVALID_GENRE_TEST_JSON, new TypeReference<List<FilmDTO>>() {
+        List<FilmDTO> invalidTestFilmDtos = OBJECT_MAPPER.readValue(INVALID_GENRE_TEST_JSON, new TypeReference<>() {
         });
         FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTO);
         FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTOS);
