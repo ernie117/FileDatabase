@@ -28,14 +28,14 @@ import java.util.stream.Collectors;
 @ResponseStatus(HttpStatus.CREATED)
 @Api(tags = {"Add Multiple Films"})
 @Validated
-public class AddMultipleFilms {
+public class AddMultipleFilmsController {
 
     private FilmsService filmsService;
     private ModelMapper modelMapper;
     private ConfigProperties configProperties;
 
     @Autowired
-    AddMultipleFilms(FilmsService filmsService, ModelMapper modelMapper, ConfigProperties configProperties) {
+    AddMultipleFilmsController(FilmsService filmsService, ModelMapper modelMapper, ConfigProperties configProperties) {
         this.filmsService = filmsService;
         this.modelMapper = modelMapper;
         this.configProperties = configProperties;

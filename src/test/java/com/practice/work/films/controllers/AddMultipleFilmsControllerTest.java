@@ -40,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-class AddMultipleFilmsTest {
+class AddMultipleFilmsControllerTest {
 
     @MockBean
     private FilmsService filmsService;
@@ -55,7 +55,6 @@ class AddMultipleFilmsTest {
     private static String FILM_DTOS_AS_STRING;
     private static List<Film> TEST_FILMS;
     private static List<FilmDTO> TEST_FILM_DTOS;
-    private static List<FilmDTO> INVALID_TEST_FILM_DTOS;
     public static String INVALID_TEST_FILM_DTO_AS_STRING;
     private static String INVALID_FILM_DTOS_AS_STRING;
 
@@ -65,11 +64,11 @@ class AddMultipleFilmsTest {
         });
         TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<List<FilmDTO>>() {
         });
-        INVALID_TEST_FILM_DTOS = OBJECT_MAPPER.readValue(INVALID_GENRE_TEST_JSON, new TypeReference<List<FilmDTO>>() {
+        List<FilmDTO> invalidTestFilmDtos = OBJECT_MAPPER.readValue(INVALID_GENRE_TEST_JSON, new TypeReference<List<FilmDTO>>() {
         });
         FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTO);
         FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTOS);
-        INVALID_FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTOS);
+        INVALID_FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(invalidTestFilmDtos);
     }
 
     @Test
