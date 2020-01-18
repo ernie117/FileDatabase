@@ -22,8 +22,6 @@ run the mongo container:
 
 > docker run
 >--volume /data/db:/data/db \
->-e DOCKER_MONGO_USERNAME=<> \
->-e DOCKER_MONGO_PASSWORD=<> \
 >-p 27017:27017 \
 >--name "name of mongo container" "name of mongo image"
 
