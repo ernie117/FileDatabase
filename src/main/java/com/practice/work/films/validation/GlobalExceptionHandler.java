@@ -1,6 +1,7 @@
 package com.practice.work.films.validation;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -18,6 +19,7 @@ import javax.validation.Path;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -25,6 +27,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public Set<Violation> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        log.error("Handling an instance of MethodArgumentNotValidException or its children", ex);
         Set<Violation> violations = new HashSet<>();
 
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
@@ -43,6 +46,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public Set<Violation> handleValidationExceptions(MethodArgumentTypeMismatchException ex) {
+        log.error("Handling an instance of MethodArgumentTypeMismatchException or its children", ex);
         Set<Violation> violations = new HashSet<>();
         violations.add(
                 Violation.builder()
@@ -58,6 +62,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public Set<Violation> handleEmptyParameter(MissingServletRequestParameterException ex) {
+        log.error("Handling an instance of MissingServletRequestParameterException or its children", ex);
         Set<Violation> violations = new HashSet<>();
         violations.add(
                 Violation.builder()
@@ -73,11 +78,12 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public Set<Violation> handleMessageNotReadableError(HttpMessageNotReadableException ex) {
+        log.error("Handling an instance of HttpMessageNotReadableException or its children", ex);
         Set<Violation> violations = new HashSet<>();
         violations.add(
                 Violation.builder()
                         .field(ex.getCause().getClass().getSimpleName())
-                        .message(ex.getMostSpecificCause().getLocalizedMessage())
+                        .message(ex.getCause().getLocalizedMessage())
                         .build()
         );
 
@@ -88,6 +94,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public Set<Violation> handleJsonParseException(JsonParseException ex) {
+        log.error("Handling an instance of JsonParseException or its children", ex);
         Set<Violation> violations = new HashSet<>();
         violations.add(
                 Violation.builder()
@@ -103,6 +110,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public Set<Violation> handleConstraintException(ConstraintViolationException ex) {
+        log.error("Handling an instance of ConstraintViolationException or its children", ex);
         Set<Violation> violations = new HashSet<>();
         for (ConstraintViolation<?> cv : ex.getConstraintViolations()) {
             // Simply splitting the PropertyPath string throws another exception
@@ -125,6 +133,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public Set<Violation> handleDatetimeParseError(DateTimeParseException ex) {
+        log.error("Handling an instance of DateTimeParseException or its children", ex);
         Set<Violation> violations = new HashSet<>();
         violations.add(
                 Violation.builder()

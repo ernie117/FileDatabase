@@ -119,4 +119,26 @@ class AddMultipleFilmsControllerTest {
             fail("Exception when processing JSON.", ex.getCause());
         }
     }
+
+    @Test
+    void test_BadJSON_ReturnsViolationWithDetails() throws Exception {
+        String response = this.mockMvc.perform(post("/v1/addMultipleFilms/")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(BAD_JSON))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> assertThat(v.getField()).isEqualTo("MismatchedInputException"));
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
+        }
+    }
+
 }
