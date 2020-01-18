@@ -37,7 +37,7 @@ public class FindFilmByTitleController {
 
     @GetMapping(value = "/v1/findFilmByTitle", produces = "application/json")
     public ResponseEntity<List<FilmDTO>> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
-                                              @RequestParam String title) {
+                                                          @RequestParam String title) {
         return this.filmsService.findFilmsByTitleRegexIgnoreCase(title)
                 .map(films -> ResponseEntity
                         .ok()

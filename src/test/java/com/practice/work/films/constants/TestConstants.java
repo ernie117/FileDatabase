@@ -58,30 +58,6 @@ public class TestConstants {
             .actors(TEST_ACTORS)
             .build();
 
-    public static final Film TEST_FILM_2 = Film.builder()
-            .title("test title2")
-            .director("test director2")
-            .cinematographer("test cinematographer2")
-            .composer("test composer2")
-            .writer("test writer2")
-            .genre("test genre2")
-            .releaseDate(LocalDate.parse("2002-01-01"))
-            .actors(Arrays.asList("test actor3", "test actor4"))
-            .build();
-
-    public static final Film INVALID_TEST_FILM = Film.builder()
-            .id(RANDOM_UUID)
-            .title("") // Should be 'NotBlank'
-            .cinematographer(TEST_CINEMATOGRAPHER)
-            .composer(TEST_COMPOSER)
-            .writer(TEST_WRITER)
-            .director(TEST_DIRECTOR)
-            .genre(TEST_GENRE)
-            .releaseDate(TEST_RELEASE_DATE)
-            .dateAdded(TEST_DATE_ADDED)
-            .actors(TEST_ACTORS)
-            .build();
-
     public static final FilmDTO INVALID_TEST_FILM_DTO_BLANK_TITLE = FilmDTO.builder()
             .id(RANDOM_UUID)
             .title("")
@@ -95,12 +71,12 @@ public class TestConstants {
             .actors(TEST_ACTORS)
             .build();
 
-    public static final FilmDTO INVALID_TEST_FILM_DTO_WRITER = FilmDTO.builder()
+    public static final FilmDTO INVALID_TEST_FILM_DTO_INVALID_WRITER = FilmDTO.builder()
             .id(RANDOM_UUID)
             .title(TEST_TITLE)
             .cinematographer(TEST_CINEMATOGRAPHER)
             .composer(TEST_COMPOSER)
-            .writer("1111")
+            .writer("111")
             .director(TEST_DIRECTOR)
             .genre(TEST_GENRE)
             .releaseDate(TEST_RELEASE_DATE)

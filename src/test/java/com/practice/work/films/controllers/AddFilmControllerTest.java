@@ -55,7 +55,7 @@ class AddFilmControllerTest {
     @BeforeAll
     static void stringSetup() throws IOException {
         INVALID_TEST_FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTO_BLANK_TITLE);
-        INVALID_WRITER_FIELD_FILM_DTO = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTO_WRITER);
+        INVALID_WRITER_FIELD_FILM_DTO = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTO_INVALID_WRITER);
         FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTO);
     }
 

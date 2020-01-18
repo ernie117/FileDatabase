@@ -1,10 +1,7 @@
 package com.practice.work.films.entities;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,34 +15,15 @@ import java.util.List;
 
 import static java.util.Comparator.comparing;
 
+@Data
 @Builder
-@Getter
-@Setter
 @Document(collection = "films")
+@NoArgsConstructor
 @AllArgsConstructor
 public class Film {
 
-    // Various comparators for sorting returned films
     public static final Comparator<Film> BY_TITLE
             = comparing(Film::getTitle);
-
-    public static final Comparator<Film> BY_DATE
-            = comparing(Film::getReleaseDate);
-
-    public static final Comparator<Film> BY_GENRE
-            = comparing(Film::getGenre);
-
-    public static final Comparator<Film> BY_CINEMATOGRAPHER
-            = comparing(Film::getCinematographer);
-
-    public static final Comparator<Film> BY_DIRECTOR
-            = comparing(Film::getDirector);
-
-    public static final Comparator<Film> BY_WRITER
-            = comparing(Film::getWriter);
-
-    public static final Comparator<Film> BY_COMPOSER
-            = comparing(Film::getComposer);
 
     /**
      * Auto-generated MongoDB ID, unique to a document
@@ -151,9 +129,6 @@ public class Film {
     @ApiModelProperty(hidden = true)
     @CreatedDate
     private LocalDateTime dateAdded;
-
-    Film() {
-    }
 
     @Override
     public String toString() {
