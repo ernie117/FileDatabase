@@ -21,3 +21,12 @@ build the docker image:
 run spring boot container and link it to the already running mongo container:
 
 > docker run --volume /data/db:/data/db -p 27017:27017 --name "name of mongo container" mongo
+
+> docker run -e DOCKER_MONGO_USERNAME=<> \
+>-e DOCKER_MONGO_PASSWORD=<> \
+>-e SSL_KEY_STORE_PASSWORD=<> \
+>-e SSL_KEY_STORE_ALIAS=<> \
+>-p 8888:8888 \
+>--link="name of mongo container" \
+>docker-films-test
+
