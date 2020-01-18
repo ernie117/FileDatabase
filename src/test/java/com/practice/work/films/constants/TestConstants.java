@@ -86,5 +86,12 @@ public class TestConstants {
             .actors(TEST_ACTORS)
             .build();
 
-    public static final String BAD_JSON = "{'field': 'value'";
+    // missing a comma
+    public static final String BAD_JSON =
+                    """
+                    {
+                        "field": "value"
+                        "field2": "value"
+                    }
+                    """;
 }
