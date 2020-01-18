@@ -1,9 +1,11 @@
 package com.practice.work.films.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
+import com.practice.work.films.validation.Violation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,11 +20,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.practice.work.films.constants.TestConstants.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
@@ -49,7 +55,9 @@ class AddMultipleFilmsTest {
     private static String FILM_DTOS_AS_STRING;
     private static List<Film> TEST_FILMS;
     private static List<FilmDTO> TEST_FILM_DTOS;
+    private static List<FilmDTO> INVALID_TEST_FILM_DTOS;
     public static String INVALID_TEST_FILM_DTO_AS_STRING;
+    private static String INVALID_FILM_DTOS_AS_STRING;
 
     @BeforeAll
     static void setup() throws IOException {
@@ -57,8 +65,11 @@ class AddMultipleFilmsTest {
         });
         TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<List<FilmDTO>>() {
         });
+        INVALID_TEST_FILM_DTOS = OBJECT_MAPPER.readValue(INVALID_GENRE_TEST_JSON, new TypeReference<List<FilmDTO>>() {
+        });
         FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTO);
         FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTOS);
+        INVALID_FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(INVALID_TEST_FILM_DTOS);
     }
 
     @Test
@@ -84,5 +95,29 @@ class AddMultipleFilmsTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(FILM_DTOS_AS_STRING))
                 .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    void test_ConstraintViolation_ReturnsViolationWithDetails() throws Exception {
+        String response = this.mockMvc.perform(post("/v1/addMultipleFilms/")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(INVALID_FILM_DTOS_AS_STRING))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> {
+                assertThat(v.getField()).isEqualTo("genre");
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\s]+\"");
+            });
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
+        }
     }
 }

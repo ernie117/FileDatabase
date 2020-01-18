@@ -32,6 +32,8 @@ public class TestConstants {
     public static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
     public static final File TEST_JSON_2 = Paths.get("src", "test", "resources", "test_json2.json").toFile();
 
+    public static final File INVALID_GENRE_TEST_JSON = Paths.get("src", "test", "resources", "invalid_json.json").toFile();
+
     public static final FilmDTO TEST_FILM_DTO = FilmDTO.builder()
             .id(RANDOM_UUID)
             .title(TEST_TITLE)
