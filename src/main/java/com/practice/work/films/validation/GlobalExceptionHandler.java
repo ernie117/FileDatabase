@@ -82,7 +82,7 @@ public class GlobalExceptionHandler {
         Set<Violation> violations = new HashSet<>();
         violations.add(
                 Violation.builder()
-                        .field(ex.getCause().getClass().getSimpleName())
+                        .field(ex.getClass().getSimpleName())
                         .message(ex.getCause().getLocalizedMessage())
                         .build()
         );

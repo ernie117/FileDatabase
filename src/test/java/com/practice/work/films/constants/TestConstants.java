@@ -88,9 +88,11 @@ public class TestConstants {
 
     // missing a comma
     public static final String BAD_JSON = """
-                    {
-                        "field": "value"
-                        "field2": "value"
-                    }
-                    """;
+                                          [
+                                              {
+                                                  "field": "value"
+                                                  "field2": "value"
+                                              }
+                                          ]
+                                          """;
 }

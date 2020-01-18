@@ -144,7 +144,7 @@ class AddFilmControllerTest {
             Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
             });
 
-            violations.forEach(v -> assertThat(v.getField()).isEqualTo("JsonParseException"));
+            violations.forEach(v -> assertThat(v.getField()).isEqualTo("HttpMessageNotReadableException"));
 
         } catch (JsonProcessingException ex) {
             fail("Exception when processing JSON.", ex.getCause());

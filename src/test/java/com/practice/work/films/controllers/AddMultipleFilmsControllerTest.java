@@ -134,7 +134,7 @@ class AddMultipleFilmsControllerTest {
             Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
             });
 
-            violations.forEach(v -> assertThat(v.getField()).isEqualTo("MismatchedInputException"));
+            violations.forEach(v -> assertThat(v.getField()).isEqualTo("HttpMessageNotReadableException"));
 
         } catch (JsonProcessingException ex) {
             fail("Exception when processing JSON.", ex.getCause());
