@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 @RestController
 @ResponseStatus(HttpStatus.CREATED)
 @Api(tags = {"Add Multiple Films"})
+@Validated
 public class AddMultipleFilms {
 
     private FilmsService filmsService;
@@ -41,8 +43,8 @@ public class AddMultipleFilms {
 
     @PostMapping(value = "/v1/addMultipleFilms")
     public ResponseEntity<List<FilmDTO>> insertManyFilmDocuments(@Valid
-                                                     @ApiParam("Array of filmDTO objects, structured as in the example")
-                                                     @RequestBody List<FilmDTO> filmDTOS) {
+                                                                 @ApiParam("Array of filmDTO objects, structured as in the example")
+                                                                 @RequestBody List<FilmDTO> filmDTOS) {
         log.info("Add Multiple Films endpoint called with {} film objects to save.", filmDTOS.size());
         List<Film> filmsToSave = filmDTOS.stream()
                 .map(filmDTO -> modelMapper.map(filmDTO, Film.class))

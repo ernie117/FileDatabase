@@ -30,6 +30,7 @@ public class TestConstants {
     public static final List<String> TEST_ACTORS = Arrays.asList("test actor1", "test actor2");
 
     public static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
+    public static final File TEST_JSON_2 = Paths.get("src", "test", "resources", "test_json2.json").toFile();
 
     public static final FilmDTO TEST_FILM_DTO = FilmDTO.builder()
             .id(RANDOM_UUID)

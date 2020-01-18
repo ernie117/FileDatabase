@@ -53,9 +53,9 @@ class AddMultipleFilmsTest {
 
     @BeforeAll
     static void setup() throws IOException {
-        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<List<Film>>() {
         });
-        TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<FilmDTO>>() {
+        TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<List<FilmDTO>>() {
         });
         FILM_DTO_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTO);
         FILM_DTOS_AS_STRING = OBJECT_MAPPER.writeValueAsString(TEST_FILM_DTOS);

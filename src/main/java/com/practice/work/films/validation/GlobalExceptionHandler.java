@@ -105,14 +105,14 @@ public class GlobalExceptionHandler {
     public Set<Violation> handleConstraintException(ConstraintViolationException ex) {
         Set<Violation> violations = new HashSet<>();
         for (ConstraintViolation<?> cv : ex.getConstraintViolations()) {
-            // Simply splitting the PropertyPath string throws another exception so we
-            // have to stream the nodes and get the names this way
+            // Simply splitting the PropertyPath string throws another exception
+            // so we have to stream the nodes and get the names this way
             List<String> paths = new ArrayList<>();
             cv.getPropertyPath().forEach(node -> paths.add(node.getName()));
 
             violations.add(
                     Violation.builder()
-                            .field(paths.get(1))
+                            .field(!paths.isEmpty() ? paths.get(paths.size() - 1) : "Unknown field.")
                             .message(cv.getMessage())
                             .build()
             );
