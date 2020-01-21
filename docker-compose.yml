@@ -3,20 +3,21 @@ version: "3.7"
 services:
   films-mongo:
     container_name: films-mongo
-    image: mongo:4.2
+    init: true
+    image: mongo:4.2.2
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     ports:
       - 27017:27017
-    # No volumes for now but will be added
-#    volumes:
-#      - /data/db:/data/db
+    volumes:
+      - /data/db:/data/db
     networks:
       - spring-mongo-films-network
 
   spring-films:
     container_name: spring-films
+    init: true
     build:
       context: .
       dockerfile: Dockerfile
