@@ -35,3 +35,7 @@ build/
 
 # Our keystore
 *.p12
+
+# Excluding mvnw stuff
+mvnw
+mvnw.cmd
