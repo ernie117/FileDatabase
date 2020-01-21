@@ -30,4 +30,8 @@ build/
 ### VS Code ###
 .vscode/
 
+# The env file containing environment variables for the spring boot app
 *.env
+
+# Our keystore
+*.p12
