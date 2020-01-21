@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  films-mongo:
+    container_name: films-mongo
+    image: mongo:4.2
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - 27017:27017
+    # No volumes for now but will be added
+#    volumes:
+#      - /data/db:/data/db
+    networks:
+      - spring-mongo-films-network
+
+  spring-films:
+    container_name: spring-films
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spring-films-image
+    environment:
+      - DOCKER_MONGO_USERNAME=${DOCKER_MONGO_USERNAME}
+      - DOCKER_MONGO_PASSWORD=${DOCKER_MONGO_PASSWORD}
+      - SSL_KEY_STORE_PASSWORD=${SSL_KEY_STORE_PASSWORD}
+      - SSL_KEY_STORE_ALIAS=${SSL_KEY_STORE_ALIAS}
+    expose:
+      - 8888
+    ports:
+      - 8888:8888
+    networks:
+      - spring-mongo-films-network
+
+networks:
+  spring-mongo-films-network:
+    driver: bridge
