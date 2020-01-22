@@ -3,6 +3,7 @@ package com.practice.work.films.controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.practice.work.films.service.FilmsService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +17,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 import static com.practice.work.films.constants.TestConstants.TEST_TITLE;
@@ -36,12 +36,12 @@ class FilmIdControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private JsonNode mockResult;
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static JsonNode mockResult;
 
-    @PostConstruct
-    void setup() {
-        this.mockResult = objectMapper
+    @BeforeAll
+    static void setup() {
+        mockResult = objectMapper
                 .createArrayNode()
                 .add(objectMapper.createObjectNode()
                         .put("test title", "1234567890"));

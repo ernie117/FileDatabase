@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.jayway.jsonpath.JsonPath;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +20,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
@@ -43,16 +43,16 @@ class ReturnAllFilmsControllerTest {
     private MockMvc mockMvc;
 
     // Necessary for deserializing LocalDate
-    private ObjectMapper MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
+    private static ObjectMapper MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
 
     private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
 
-    private List<Film> films;
-    private List<String> writers;
+    private static List<Film> films;
+    private static List<String> writers;
 
-    @PostConstruct
-    void setupObjectMapper() throws Exception {
-        films = MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+    @BeforeAll
+    static void setupObjectMapper() throws Exception {
+        films = MAPPER.readValue(TEST_JSON, new TypeReference<>() {
         });
         writers = JsonPath.read(TEST_JSON, "$[*].writer");
     }
