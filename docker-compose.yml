@@ -19,6 +19,8 @@ services:
   spring-films:
     container_name: spring-films
     init: true
+    depends_on:
+      - films-mongo
     build:
       context: .
       dockerfile: Dockerfile
