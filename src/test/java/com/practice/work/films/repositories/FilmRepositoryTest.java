@@ -70,10 +70,10 @@ class FilmRepositoryTest {
         System.out.println(films.get());
         films.ifPresent(filmsList -> {
             Film film1 = filmsList.get(0);
-            assertEquals("test title1", film1.getTitle(), "Should be test title1");
+            assertEquals("test title one", film1.getTitle(), "Should be test title1");
             assertNotEquals("false genre", film1.getGenre(), "Should be test genre1");
             Film film2 = filmsList.get(1);
-            assertEquals("test title2", film2.getTitle(), "Should be test title2");
+            assertEquals("test title two", film2.getTitle(), "Should be test title2");
             assertNotEquals("false cinematographer", film1.getCinematographer(), "Should be test cinematographer1");
         });
     }
@@ -83,8 +83,8 @@ class FilmRepositoryTest {
         Optional<List<Film>> films = Optional.ofNullable(filmRepository.findAllByDirectorRegexIgnoreCase("test director"));
         assertTrue(films.isPresent(), "We should return the films matching the director in the Json file");
         films.ifPresent((filmsList -> {
-            assertEquals("test director1", filmsList.get(0).getDirector(), "Should be test director1");
-            assertEquals("test director2", filmsList.get(1).getDirector(), "Should be test director2");
+            assertEquals("test director one", filmsList.get(0).getDirector(), "Should be test director one");
+            assertEquals("test director two", filmsList.get(1).getDirector(), "Should be test director two");
         }));
     }
 
@@ -93,8 +93,8 @@ class FilmRepositoryTest {
         Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByGenreRegexIgnoreCase("test genre"));
         assertTrue(films.isPresent(), "We should return the films matching the genre in the JSON file");
         films.ifPresent((filmsList -> {
-            assertEquals("test genre1", filmsList.get(0).getGenre(), "Should be test genre1");
-            assertEquals("test genre2", filmsList.get(1).getGenre(), "Should be test genre2");
+            assertEquals("test genre one", filmsList.get(0).getGenre(), "Should be test genre one");
+            assertEquals("test genre two", filmsList.get(1).getGenre(), "Should be test genre two");
         }));
     }
 

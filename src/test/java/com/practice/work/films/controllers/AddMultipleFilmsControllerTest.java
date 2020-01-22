@@ -60,9 +60,9 @@ class AddMultipleFilmsControllerTest {
 
     @BeforeAll
     static void setup() throws IOException {
-        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<>() {
+        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<>() {
         });
-        TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON_2, new TypeReference<>() {
+        TEST_FILM_DTOS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<>() {
         });
         List<FilmDTO> invalidTestFilmDtos = OBJECT_MAPPER.readValue(INVALID_GENRE_TEST_JSON, new TypeReference<>() {
         });
@@ -112,7 +112,7 @@ class AddMultipleFilmsControllerTest {
 
             violations.forEach(v -> {
                 assertThat(v.getField()).isEqualTo("genre");
-                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\s]+\"");
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z,.'\\-\\s]+\"");
             });
 
         } catch (JsonProcessingException ex) {

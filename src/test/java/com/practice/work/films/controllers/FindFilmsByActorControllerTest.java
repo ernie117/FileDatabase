@@ -33,9 +33,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -57,8 +55,9 @@ class FindFilmsByActorControllerTest {
         });
         TEST_FILM_1.add(testFilms.get(0));
     }
+
     @Test
-    void fetchFilmsByActor_CorrectValues() throws Exception {
+    void testFetchFilmsByActor_CorrectValues() throws Exception {
         doReturn(Optional.of(TEST_FILM_1)).when(filmsService).fetchFilmsByActor(TEST_ACTORS.get(0));
 
         this.mockMvc.perform(get("/v1/findFilmsByActor")
@@ -66,12 +65,12 @@ class FindFilmsByActorControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/findFilmsByActor"))
-                .andExpect(jsonPath("[0]['title']").value("test title1"))
-                .andExpect(jsonPath("[0]['director']").value("test director1"))
-                .andExpect(jsonPath("[0]['cinematographer']").value("test cinematographer1"))
-                .andExpect(jsonPath("[0]['composer']").value("test composer1"))
-                .andExpect(jsonPath("[0]['writer']").value("test writer1"))
-                .andExpect(jsonPath("[0]['genre']").value("test genre1"))
+                .andExpect(jsonPath("[0]['title']").value("test title one"))
+                .andExpect(jsonPath("[0]['director']").value("test director one"))
+                .andExpect(jsonPath("[0]['cinematographer']").value("test cinematographer one"))
+                .andExpect(jsonPath("[0]['composer']").value("test composer one"))
+                .andExpect(jsonPath("[0]['writer']").value("test writer one"))
+                .andExpect(jsonPath("[0]['genre']").value("test genre one"))
                 .andExpect(jsonPath("[0]['releaseDate']").value(LocalDate.of(2000, 1, 31).toString()))
                 .andExpect(jsonPath("[0]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("[0]['actors']", isA(List.class)))
@@ -81,7 +80,7 @@ class FindFilmsByActorControllerTest {
     }
 
     @Test
-    void actorNotStoredReturns_NotFoundResponse() throws Exception {
+    void testActorNotStoredReturns_NotFoundResponse() throws Exception {
         doReturn(Optional.empty()).when(filmsService).fetchFilmsByActor("non-existent actor");
 
         this.mockMvc.perform(get("/v1/findFilmsByActor")

@@ -47,7 +47,7 @@ public class Film {
      * Genre of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z\\s]+")
+    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
     @ApiModelProperty(
             name = "genre",
             example = "string",
@@ -59,7 +59,7 @@ public class Film {
      * Director of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z\\s]+")
+    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
     @ApiModelProperty(
             name = "director",
             example = "string",
@@ -71,7 +71,7 @@ public class Film {
      * Cinematographer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z\\s]+")
+    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
     @ApiModelProperty(
             name = "cinematographer",
             example = "string",
@@ -83,7 +83,7 @@ public class Film {
      * Writer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z\\s]+")
+    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
     @ApiModelProperty(
             name = "writer",
             example = "string",
@@ -95,7 +95,7 @@ public class Film {
      * Composer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z\\s]+")
+    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
     @ApiModelProperty(
             name = "composer",
             example = "string",
@@ -124,7 +124,7 @@ public class Film {
             example = "['string', 'string', ...]",
             position = 8)
     @Size(min = 1, max = 10)
-    private List<String> actors;
+    private List<@Pattern(regexp = "[a-zA-Z,.'\\-\\s]+") String> actors;
 
     @ApiModelProperty(hidden = true)
     @CreatedDate

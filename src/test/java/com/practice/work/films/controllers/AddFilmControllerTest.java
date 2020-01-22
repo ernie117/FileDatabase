@@ -167,7 +167,7 @@ class AddFilmControllerTest {
 
             violations.forEach(v -> {
                 assertThat(v.getField()).isEqualTo("writer");
-                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\s]+\"");
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z,.'\\-\\s]+\"");
             });
 
         } catch (JsonProcessingException ex) {

@@ -30,7 +30,6 @@ public class TestConstants {
     public static final List<String> TEST_ACTORS = Arrays.asList("test actor one", "test actor two");
 
     public static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
-    public static final File TEST_JSON_2 = Paths.get("src", "test", "resources", "test_json2.json").toFile();
 
     public static final File INVALID_GENRE_TEST_JSON = Paths.get("src", "test", "resources", "invalid_json.json").toFile();
 
