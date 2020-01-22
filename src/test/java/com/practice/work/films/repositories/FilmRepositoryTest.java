@@ -44,7 +44,7 @@ class FilmRepositoryTest {
 
     @BeforeEach
     void setupObjectMapper() throws IOException {
-        List<Film> films = objectMapper.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+        List<Film> films = objectMapper.readValue(TEST_JSON, new TypeReference<>() {
         });
         films.forEach(mongoTemplate::save);
     }
