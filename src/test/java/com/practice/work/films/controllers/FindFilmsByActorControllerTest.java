@@ -110,4 +110,27 @@ class FindFilmsByActorControllerTest {
             fail("Exception when processing JSON.", ex.getCause());
         }
     }
+
+    @Test
+    void testNameBlank_ReturnsViolation() throws Exception {
+        String response = this.mockMvc.perform(get("/v1/findFilmsByActor")
+                .param("actor", ""))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        try {
+            Set<Violation> violations = OBJECT_MAPPER.readValue(response, new TypeReference<HashSet<Violation>>() {
+            });
+
+            violations.forEach(v -> {
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\-\\s]+\"");
+                assertThat(v.getField()).isEqualTo("actor");
+            });
+
+        } catch (JsonProcessingException ex) {
+            fail("Exception when processing JSON.", ex.getCause());
+        }
+    }
 }
