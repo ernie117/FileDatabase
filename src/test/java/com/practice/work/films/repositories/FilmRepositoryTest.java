@@ -113,8 +113,8 @@ class FilmRepositoryTest {
         Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByActorsRegex("test actor"));
         assertTrue(films.isPresent(), "We should return the films matching one of the actors in the Json file");
         films.ifPresent((filmsList -> {
-            assertEquals("test actor1", filmsList.get(0).getActors().get(0), "Should be test actor1");
-            assertEquals("test actor2", filmsList.get(0).getActors().get(1), "Should be test actor2");
+            assertEquals("test actor one", filmsList.get(0).getActors().get(0), "Should be test actor one");
+            assertEquals("test actor two", filmsList.get(0).getActors().get(1), "Should be test actor two");
         }));
     }
 

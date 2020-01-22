@@ -45,7 +45,7 @@ class FindFilmByTitleControllerTest {
 
     @BeforeAll
     static void setup() throws IOException {
-        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<List<Film>>() {
+        TEST_FILMS = OBJECT_MAPPER.readValue(TEST_JSON, new TypeReference<>() {
         });
     }
 
@@ -74,8 +74,8 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[0]['releaseDate']").value(LocalDate.of(2000, 1, 31).toString()))
                 .andExpect(jsonPath("$[0]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("$[0]['actors']", isA(List.class)))
-                .andExpect(jsonPath("$[0]['actors'][0]").value("test actor1"))
-                .andExpect(jsonPath("$[0]['actors'][1]").value("test actor2"))
+                .andExpect(jsonPath("$[0]['actors'][0]").value("test actor one"))
+                .andExpect(jsonPath("$[0]['actors'][1]").value("test actor two"))
                 .andExpect(jsonPath("$[0]['actors'].length()", is(2)))
 
                 // validate fields in response for second film
@@ -88,8 +88,8 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[1]['releaseDate']").value(LocalDate.of(2000, 1, 1).toString()))
                 .andExpect(jsonPath("$[1]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("$[1]['actors']", isA(List.class)))
-                .andExpect(jsonPath("$[1]['actors'][0]").value("test actor3"))
-                .andExpect(jsonPath("$[1]['actors'][1]").value("test actor4"))
+                .andExpect(jsonPath("$[1]['actors'][0]").value("test actor three"))
+                .andExpect(jsonPath("$[1]['actors'][1]").value("test actor four"))
                 .andExpect(jsonPath("$[1]['actors'].length()", is(2)));
     }
 

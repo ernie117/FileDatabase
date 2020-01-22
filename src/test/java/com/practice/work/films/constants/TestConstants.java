@@ -27,7 +27,7 @@ public class TestConstants {
     public static final String RANDOM_UUID = UUID.randomUUID().toString();
     public static final LocalDate TEST_RELEASE_DATE = LocalDate.of(2000, 1, 1);
     public static final LocalDateTime TEST_DATE_ADDED = LocalDateTime.of(2020, 1, 1, 12, 0, 15);
-    public static final List<String> TEST_ACTORS = Arrays.asList("test actor1", "test actor2");
+    public static final List<String> TEST_ACTORS = Arrays.asList("test actor one", "test actor two");
 
     public static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
     public static final File TEST_JSON_2 = Paths.get("src", "test", "resources", "test_json2.json").toFile();
