@@ -41,7 +41,7 @@ public class FindFilmsByCinematographerController {
     @GetMapping("/v1/findFilmsByCinematographer")
     public ResponseEntity<List<FilmDTO>> fetchFilmsByCinematographer(@Valid
                                                                      @ApiParam("String of actor to search; case-insensitive")
-                                                                     @Pattern(regexp = "[a-zA-Z\\s]+")
+                                                                     @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
                                                                      @RequestParam String cinematographer) {
         return this.filmsService.fetchFilmsByCinematographer(cinematographer)
                 .map(films -> ResponseEntity

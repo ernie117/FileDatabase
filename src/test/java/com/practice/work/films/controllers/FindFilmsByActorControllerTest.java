@@ -102,7 +102,7 @@ class FindFilmsByActorControllerTest {
             });
 
             violations.forEach(v -> {
-                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\-\\s]+\"");
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z,.'\\-\\s]+\"");
                 assertThat(v.getField()).isEqualTo("actor");
             });
 
@@ -125,7 +125,7 @@ class FindFilmsByActorControllerTest {
             });
 
             violations.forEach(v -> {
-                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z\\-\\s]+\"");
+                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z,.'\\-\\s]+\"");
                 assertThat(v.getField()).isEqualTo("actor");
             });
 
