@@ -9,9 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.File;
@@ -26,9 +25,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataMongoTest
+@SpringBootTest(properties = {"spring.data.mongodb.database=embeddedDB", "logging.level.root=OFF"})
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("test")
 class FilmRepositoryTest {
 
     @Autowired
@@ -38,7 +36,7 @@ class FilmRepositoryTest {
     private FilmRepository filmRepository;
 
     // Necessary for deserializing LocalDate
-    private ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+    private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
     private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
 
@@ -67,7 +65,6 @@ class FilmRepositoryTest {
     void testFindAllByTitleRegex() {
         Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmByTitleRegexIgnoreCase("test title"));
         assertTrue(films.isPresent(), "We should return the films from the JSON file");
-        System.out.println(films.get());
         films.ifPresent(filmsList -> {
             Film film1 = filmsList.get(0);
             assertEquals("test title one", film1.getTitle(), "Should be test title1");
