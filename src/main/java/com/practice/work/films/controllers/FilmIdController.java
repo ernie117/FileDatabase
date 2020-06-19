@@ -17,8 +17,8 @@ import java.net.URI;
 @Api(tags = {"Fetch Film IDs by Title"})
 public class FilmIdController {
 
-    private FilmsService filmsService;
-    private ConfigProperties configProperties;
+    private final FilmsService filmsService;
+    private final ConfigProperties configProperties;
 
     @Autowired
     FilmIdController(FilmsService filmsService, ConfigProperties configProperties) {

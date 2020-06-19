@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 @Validated
 public class AddMultipleFilmsController {
 
-    private FilmsService filmsService;
-    private ModelMapper modelMapper;
-    private ConfigProperties configProperties;
+    private final FilmsService filmsService;
+    private final ModelMapper modelMapper;
+    private final ConfigProperties configProperties;
 
     @Autowired
     AddMultipleFilmsController(FilmsService filmsService, ModelMapper modelMapper, ConfigProperties configProperties) {

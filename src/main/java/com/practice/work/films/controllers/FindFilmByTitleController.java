@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 @Api(tags = {"Fetch Films by Title"})
 public class FindFilmByTitleController {
 
-    private FilmsService filmsService;
-    private ConfigProperties configProperties;
-    private ModelMapper modelMapper;
+    private final FilmsService filmsService;
+    private final ConfigProperties configProperties;
+    private final ModelMapper modelMapper;
 
     @Autowired
     FindFilmByTitleController(FilmsService filmsService, ConfigProperties configProperties, ModelMapper modelMapper) {

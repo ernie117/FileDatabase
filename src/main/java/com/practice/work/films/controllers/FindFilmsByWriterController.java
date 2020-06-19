@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 @Validated
 public class FindFilmsByWriterController {
 
-    private FilmsService filmsService;
-    private ConfigProperties configProperties;
-    private ModelMapper modelMapper;
+    private final FilmsService filmsService;
+    private final ConfigProperties configProperties;
+    private final ModelMapper modelMapper;
 
     @Autowired
     FindFilmsByWriterController(FilmsService filmsService, ConfigProperties configProperties, ModelMapper modelMapper) {

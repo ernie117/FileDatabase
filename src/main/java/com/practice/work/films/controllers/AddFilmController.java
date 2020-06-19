@@ -24,8 +24,8 @@ import java.util.Optional;
 @Validated
 public class AddFilmController {
 
-    private FilmsService filmsService;
-    private ModelMapper modelMapper;
+    private final FilmsService filmsService;
+    private final ModelMapper modelMapper;
 
     @Autowired
     AddFilmController(FilmsService filmsService, ModelMapper modelMapper) {

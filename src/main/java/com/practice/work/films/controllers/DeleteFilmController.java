@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"Delete Film by ID"})
 public class DeleteFilmController {
 
-    private FilmsService filmsService;
+    private final FilmsService filmsService;
 
     @Autowired
     DeleteFilmController(FilmsService filmsService) {

@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 @Api(tags = {"Fetch All Films"})
 public class ReturnAllFilmsController {
 
-    private FilmsService filmsService;
-    private ConfigProperties configProperties;
-    private ModelMapper modelMapper;
+    private final FilmsService filmsService;
+    private final ConfigProperties configProperties;
+    private final ModelMapper modelMapper;
 
     @Autowired
     ReturnAllFilmsController(FilmsService filmsService, ConfigProperties configProperties, ModelMapper modelMapper) {
