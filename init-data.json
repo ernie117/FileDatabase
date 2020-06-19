@@ -1,0 +1,34 @@
+[
+  {
+    "id": "5d2394080c8f02325b049b49",
+    "title": "MONGO TESTING",
+    "genre": "string",
+    "director": "string",
+    "cinematographer": "string",
+    "writer": "string",
+    "composer": "string",
+    "releaseDate": null,
+    "actors": [
+      "string",
+      "string",
+      "..."
+    ],
+    "dateAdded": null
+  },
+  {
+    "id": "5da315250c8f0225ac6ae3fb",
+    "title": "MONGO TESTING 2",
+    "genre": "string",
+    "director": "string",
+    "cinematographer": "string",
+    "writer": "string",
+    "composer": "string",
+    "releaseDate": "1999-01-31",
+    "actors": [
+      "string",
+      "string",
+      "..."
+    ],
+    "dateAdded": "2019-10-13T12:14:29.202"
+  }
+]
