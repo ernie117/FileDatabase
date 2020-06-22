@@ -18,19 +18,20 @@ services:
       - spring-mongo-films-network
 
   spring-films:
-    container_name: spring-films
+    container_name: spring-film
     init: true
     depends_on:
       - films-mongo
-    build:
-      context: .
-      dockerfile: Dockerfile
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
     image: spring-films-image
     environment:
       - DOCKER_MONGO_USERNAME=${DOCKER_MONGO_USERNAME}
       - DOCKER_MONGO_PASSWORD=${DOCKER_MONGO_PASSWORD}
       - SSL_KEY_STORE_PASSWORD=${SSL_KEY_STORE_PASSWORD}
       - SSL_KEY_STORE_ALIAS=${SSL_KEY_STORE_ALIAS}
+      - JAVA_OPTS=${JAVA_OPTS}
     expose:
       - 8888
     ports:
