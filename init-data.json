@@ -1,34 +1,62 @@
-[
-  {
-    "id": "5d2394080c8f02325b049b49",
-    "title": "MONGO TESTING",
-    "genre": "string",
-    "director": "string",
-    "cinematographer": "string",
-    "writer": "string",
-    "composer": "string",
-    "releaseDate": null,
-    "actors": [
-      "string",
-      "string",
-      "..."
-    ],
-    "dateAdded": null
-  },
-  {
-    "id": "5da315250c8f0225ac6ae3fb",
-    "title": "MONGO TESTING 2",
-    "genre": "string",
-    "director": "string",
-    "cinematographer": "string",
-    "writer": "string",
-    "composer": "string",
-    "releaseDate": "1999-01-31",
-    "actors": [
-      "string",
-      "string",
-      "..."
-    ],
-    "dateAdded": "2019-10-13T12:14:29.202"
-  }
-]
+[{
+	"_id": {
+		"$oid": "5ef09580635f029302082781"
+	},
+	"id": "5da315250c8f0225ac6ae3fb",
+	"title": "MONGO TESTING 2",
+	"genre": "string",
+	"director": "string",
+	"cinematographer": "string",
+	"writer": "string",
+	"composer": "string",
+	"releaseDate": "1999-01-31",
+	"actors": [
+		"string",
+		"string",
+		"..."
+	],
+	"dateAdded": "2019-10-13T12:14:29.202"
+},
+{
+	"_id": {
+		"$oid": "5ef09580635f029302082782"
+	},
+	"id": "5d2394080c8f02325b049b49",
+	"title": "MONGO TESTING",
+	"genre": "string",
+	"director": "string",
+	"cinematographer": "string",
+	"writer": "string",
+	"composer": "string",
+	"releaseDate": null,
+	"actors": [
+		"string",
+		"string",
+		"..."
+	],
+	"dateAdded": null
+},
+{
+	"_id": {
+		"$oid": "5ef38169d4af6755bf10c6a8"
+	},
+	"title": "The Girl with the Dragon Tattoo",
+	"genre": "Thriller",
+	"director": "David Fincher",
+	"cinematographer": "Jeff Cronenweth",
+	"writer": "Steve Zaillian",
+	"composer": "Trent Reznor",
+	"releaseDate": {
+		"$date": "2011-12-12T00:00:00Z"
+	},
+	"actors": [
+		"Daniel Craig",
+		"Rooney Mara",
+		"Stellan Skarsgard"
+	],
+	"dateAdded": {
+		"$date": "2020-06-24T16:38:01.093Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+}]
+

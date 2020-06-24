@@ -35,10 +35,10 @@ public interface FilmRepository extends MongoRepository<Film, String> {
     List<Film> findFilmsByComposerRegexIgnoreCase(String composer);
 
     @Query("{'cinematographer': {$regex: ?0, $options: i}}")
-    List<Film> findFilmsByCinematographerRegexIgnoreCase(String actor);
+    List<Film> findFilmsByCinematographerRegexIgnoreCase(String cinematographer);
 
     @Query("{'writer': {$regex: ?0, $options: i}}")
-    List<Film> findFilmsByWriterRegexIgnoreCase(String actor);
+    List<Film> findFilmsByWriterRegexIgnoreCase(String writer);
 
     void deleteFilmById(String id);
 }
