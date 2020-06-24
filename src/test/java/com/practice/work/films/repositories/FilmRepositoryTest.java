@@ -63,7 +63,7 @@ class FilmRepositoryTest {
 
     @Test
     void testFindAllByTitleRegex() {
-        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmByTitleRegexIgnoreCase("test title"));
+        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmByTitleRegexIgnoreCase("Test title"));
         assertTrue(films.isPresent(), "We should return the films from the JSON file");
         films.ifPresent(filmsList -> {
             Film film1 = filmsList.get(0);
@@ -107,7 +107,7 @@ class FilmRepositoryTest {
 
     @Test
     void findAllFilmsByActors() {
-        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByActorsRegex("test actor"));
+        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByActorsRegexIgnoreCase("test actor"));
         assertTrue(films.isPresent(), "We should return the films matching one of the actors in the Json file");
         films.ifPresent((filmsList -> {
             assertEquals("test actor one", filmsList.get(0).getActors().get(0), "Should be test actor one");

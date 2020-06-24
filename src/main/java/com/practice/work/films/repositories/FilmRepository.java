@@ -15,30 +15,30 @@ public interface FilmRepository extends MongoRepository<Film, String> {
 
     Film findFilmById(String id);
 
-    @Query("{'title': {$regex: ?0}}")
+    @Query("{'title': {$regex: ?0, $options: i}}")
     List<Film> findFilmByTitleRegexIgnoreCase(String title);
 
-    @Query("{'director': {$regex: ?0}}")
+    @Query("{'director': {$regex: ?0, $options: i}}")
     List<Film> findAllByDirectorRegexIgnoreCase(String director);
 
-    @Query("{'genre': {$regex: ?0}}")
+    @Query("{'genre': {$regex: ?0, $options: i}}")
     List<Film> findFilmsByGenreRegexIgnoreCase(String genre);
 
     List<Film> findAllByReleaseDate(LocalDate date);
 
     List<Film> findAll();
 
-    @Query("{'actors': {$regex: ?0}}")
-    List<Film> findFilmsByActorsRegex(String actor);
+    @Query("{'actors': {$regex: ?0, $options: i}}")
+    List<Film> findFilmsByActorsRegexIgnoreCase(String actor);
 
-    @Query("{'composer': {$regex: ?0}}")
-    List<Film> findFilmsByComposerRegex(String composer);
+    @Query("{'composer': {$regex: ?0, $options: i}}")
+    List<Film> findFilmsByComposerRegexIgnoreCase(String composer);
 
-    @Query("{'cinematographer': {$regex: ?0}}")
-    List<Film> findFilmsByCinematographerRegex(String actor);
+    @Query("{'cinematographer': {$regex: ?0, $options: i}}")
+    List<Film> findFilmsByCinematographerRegexIgnoreCase(String actor);
 
-    @Query("{'writer': {$regex: ?0}}")
-    List<Film> findFilmsByWriterRegex(String actor);
+    @Query("{'writer': {$regex: ?0, $options: i}}")
+    List<Film> findFilmsByWriterRegexIgnoreCase(String actor);
 
     void deleteFilmById(String id);
 }

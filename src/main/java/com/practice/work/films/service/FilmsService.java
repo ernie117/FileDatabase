@@ -54,10 +54,11 @@ public class FilmsService {
         ObjectMapper mapper = new ObjectMapper();
         List<Film> films = sortAndWrap(this.filmRepository.findFilmByTitleRegexIgnoreCase(title));
 
-        ArrayNode rootNode = mapper.createArrayNode();
-        for (Film film : films) {
-            rootNode.add(mapper.createObjectNode().put(film.getTitle(), film.getId()));
-        }
+        ArrayNode rootNode = mapper.createArrayNode().addAll(
+                films.stream()
+                        .map(film -> mapper.createObjectNode().put(film.getTitle(), film.getId()))
+                        .collect(Collectors.toList())
+        );
 
         return Optional.ofNullable(rootNode);
     }
@@ -131,7 +132,7 @@ public class FilmsService {
      * @return sorted, immutable List<Film>
      */
     public Optional<List<Film>> fetchFilmsByActor(String actor) {
-        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByActorsRegex(actor)));
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByActorsRegexIgnoreCase(actor)));
     }
 
     /**
@@ -141,7 +142,7 @@ public class FilmsService {
      * @return sorted, immutable List<Film>
      */
     public Optional<List<Film>> fetchFilmsByComposer(String composer) {
-        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByComposerRegex(composer)));
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByComposerRegexIgnoreCase(composer)));
     }
 
     /**
@@ -151,7 +152,7 @@ public class FilmsService {
      * @return sorted, immutable List<Film>
      */
     public Optional<List<Film>> fetchFilmsByCinematographer(String cinematographer) {
-        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByCinematographerRegex(cinematographer)));
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByCinematographerRegexIgnoreCase(cinematographer)));
     }
 
     /**
@@ -161,7 +162,7 @@ public class FilmsService {
      * @return sorted, immutable List<Film>
      */
     public Optional<List<Film>> fetchFilmsByWriter(String writer) {
-        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByWriterRegex(writer)));
+        return Optional.of(sortAndWrap(this.filmRepository.findFilmsByWriterRegexIgnoreCase(writer)));
     }
 
     /**
