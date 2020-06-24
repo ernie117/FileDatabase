@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.practice.work.films.entities.Film.NAME_REGEX;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -42,7 +44,7 @@ public class FilmDTO {
      * Genre of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "genre",
             example = "string",
@@ -54,7 +56,7 @@ public class FilmDTO {
      * Director of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "director",
             example = "string",
@@ -66,7 +68,7 @@ public class FilmDTO {
      * Cinematographer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "cinematographer",
             example = "string",
@@ -78,7 +80,7 @@ public class FilmDTO {
      * Writer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "writer",
             example = "string",
@@ -90,7 +92,7 @@ public class FilmDTO {
      * Composer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "composer",
             example = "string",
@@ -119,7 +121,7 @@ public class FilmDTO {
             example = "['string', 'string', ...]",
             position = 8)
     @Size(min = 1, max = 10)
-    private List<@Pattern(regexp = "[a-zA-Z,.'\\-\\s]+") String> actors;
+    private List<@Pattern(regexp = NAME_REGEX) String> actors;
 
     @ApiModelProperty(hidden = true)
     @CreatedDate

@@ -22,8 +22,8 @@ import static java.util.Comparator.comparing;
 @AllArgsConstructor
 public class Film {
 
-    public static final Comparator<Film> BY_TITLE
-            = comparing(Film::getTitle);
+    public static final String NAME_REGEX = "[a-zA-Z,.'\\-\\s]+";
+    public static final Comparator<Film> BY_TITLE = comparing(Film::getTitle);
 
     /**
      * Auto-generated MongoDB ID, unique to a document
@@ -47,7 +47,7 @@ public class Film {
      * Genre of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "genre",
             example = "string",
@@ -59,7 +59,7 @@ public class Film {
      * Director of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "director",
             example = "string",
@@ -71,7 +71,7 @@ public class Film {
      * Cinematographer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "cinematographer",
             example = "string",
@@ -83,7 +83,7 @@ public class Film {
      * Writer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "writer",
             example = "string",
@@ -95,7 +95,7 @@ public class Film {
      * Composer of the film
      */
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z,.'\\-\\s]+")
+    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "composer",
             example = "string",
@@ -124,7 +124,7 @@ public class Film {
             example = "['string', 'string', ...]",
             position = 8)
     @Size(min = 1, max = 10)
-    private List<@Pattern(regexp = "[a-zA-Z,.'\\-\\s]+") String> actors;
+    private List<@Pattern(regexp = NAME_REGEX) String> actors;
 
     @ApiModelProperty(hidden = true)
     @CreatedDate
