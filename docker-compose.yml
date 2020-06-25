@@ -18,7 +18,7 @@ services:
       - spring-mongo-films-network
 
   spring-films:
-    container_name: spring-film
+    container_name: spring-films
     init: true
     depends_on:
       - films-mongo

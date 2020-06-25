@@ -18,3 +18,5 @@ mongoexport --username <username> \
     --jsonArray --pretty \
     --out init-data.json
 ```
+
+### Remember if altering the init-data.json containers must be brought down with `docker-compose down` not Ctrl+c otherwise the images will not update with new data
