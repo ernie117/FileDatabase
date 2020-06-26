@@ -1,10 +1,17 @@
 [
   {
     "title": "test title one",
-    "genre": "test genre one",
+    "genre": [
+      "test genre one",
+      "test genre two",
+      "test genre three"
+    ],
     "director": "test director one",
     "cinematographer": "test cinematographer one",
-    "writer": "test writer one",
+    "writers": [
+      "test writer one",
+      "test writer two"
+    ],
     "composer": "test composer one",
     "releaseDate": "2000-01-31",
     "actors": [
@@ -14,10 +21,17 @@
   },
   {
     "title": "test title two",
-    "genre": "test genre two",
+    "genre": [
+      "test genre four",
+      "test genre five",
+      "test genre six"
+    ],
     "director": "test director two",
     "cinematographer": "test cinematographer two",
-    "writer": "test writer two",
+    "writers": [
+      "test writer three",
+      "test writer four"
+    ],
     "composer": "test composer two",
     "releaseDate": "2000-01-01",
     "actors": [

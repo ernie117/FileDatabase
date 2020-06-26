@@ -1,0 +1,267 @@
+[{
+	"_id": {
+		"$oid": "5ef38169d4af6755bf10c6a8"
+	},
+	"title": "The Girl with the Dragon Tattoo",
+	"genre": [
+		"crime",
+		"drama",
+		"mystery"
+	],
+	"director": "David Fincher",
+	"cinematographer": "Jeff Cronenweth",
+	"writers": [
+        "Steve Zaillian"
+    ],
+	"composer": "Trent Reznor",
+	"releaseDate": {
+		"$date": "2011-12-12T00:00:00Z"
+	},
+	"actors": [
+		"Daniel Craig",
+		"Rooney Mara",
+		"Stellan Skarsgard"
+	],
+	"dateAdded": {
+		"$date": "2020-06-24T16:38:01.093Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef50257adb9d821bcec4ef0"
+	},
+	"title": "The Departed",
+	"genre": [
+		"crime",
+		"drama",
+		"thriller"
+	],
+	"director": "Martin Scorsese",
+	"cinematographer": "Michael Ballhaus",
+	"writers": [
+        "William Monahan"
+    ],
+	"composer": "Howard Shore",
+	"releaseDate": {
+		"$date": "2006-09-26T00:00:00Z"
+	},
+	"actors": [
+		"Leonardo DiCaprio",
+		"Matt Damon",
+		"Jack Nicholson",
+		"Mark Wahlberg",
+		"Martin Sheen"
+	],
+	"dateAdded": {
+		"$date": "2020-06-25T20:00:23.411Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef6152a69b509473e1fa458"
+	},
+	"title": "Sunshine",
+	"genre": [
+		"Sci-fi",
+		"Thriller"
+	],
+	"director": "Danny Boyle",
+	"cinematographer": "Alwin H. Kuchler",
+	"writers": [
+        "Alex Garland"
+    ],
+	"composer": "John Murphy",
+	"releaseDate": {
+		"$date": "2007-04-06T00:00:00Z"
+	},
+	"actors": [
+		"Cillian Murphy",
+		"Rose Byrne",
+		"Chris Evans"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T15:32:58.465Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef6268c69b509473e1fa45a"
+	},
+	"title": "Ex Machina",
+	"genre": [
+		"Sci-fi",
+		"Drama",
+		"Mystery"
+	],
+	"director": "Alex Garland",
+	"cinematographer": "Rob Hardy",
+	"writers": [
+        "Alex Garland"
+    ],
+	"composer": "Ben Salisbury",
+	"releaseDate": {
+		"$date": "2014-12-16T00:00:00Z"
+	},
+	"actors": [
+		"Domhnall Gleeson",
+		"Oscar Isaac",
+		"Alicia Vikander"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T16:47:08.028Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef6172f69b509473e1fa459"
+	},
+	"title": "Dallas Buyers Club",
+	"genre": [
+		"Drama",
+		"Biography"
+	],
+	"director": "Jean-Marc Vallee",
+	"cinematographer": "Yves Belanger",
+	"writers": [
+        "Craig Borten"
+    ],
+	"composer": "unknown",
+	"releaseDate": {
+		"$date": "2013-09-07T00:00:00Z"
+	},
+	"actors": [
+		"Matthew McConaughey",
+		"Jared Leto",
+		"Jennifer Garner"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T15:41:35.878Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef62badde79ca57cec07b71"
+	},
+	"title": "Final Fantasy VII: Advent Children",
+	"genre": [
+		"Animation",
+		"Action",
+		"Adventure"
+	],
+	"director": "Tetsuya Nomura",
+	"cinematographer": "Yasuharu Yoshizawa",
+	"writers": [
+        "Brian Gray"
+    ],
+	"composer": "Nobuo Uematsu",
+	"releaseDate": {
+		"$date": "2005-09-14T00:00:00Z"
+	},
+	"actors": [
+		"Steve Burton",
+		"Rachael Leigh-Cook",
+		"Mena Suvari",
+		"Steve Blum"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T17:09:01.733Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef627c569b509473e1fa45b"
+	},
+	"title": "Looper",
+	"genre": [
+		"Sci-fi",
+		"Drama",
+		"Action"
+	],
+	"director": "Rian Johnson",
+	"cinematographer": "Steve Yedlin",
+	"writers": [
+        "Rian Johnson"
+    ],
+	"composer": "Nathan Johnson",
+	"releaseDate": {
+		"$date": "2012-09-06T00:00:00Z"
+	},
+	"actors": [
+		"Joseph Gordon-Levitt",
+		"Bruce Willis",
+		"Emily Blunt",
+		"Paul Dano"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T16:52:21.221Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef6561387e7056866953f09"
+	},
+	"title": "Scott Pilgrim vs. The World",
+	"genre": [
+		"Comedy",
+		"Action",
+		"Fantasy"
+	],
+	"director": "Edgar Wright",
+	"cinematographer": "Bill Pope",
+	"writers": [
+		"Michael Bacall",
+		"Edgar Wright"
+	],
+	"composer": "Nigel Godrich",
+	"releaseDate": {
+		"$date": "2010-07-27T00:00:00Z"
+	},
+	"actors": [
+		"Michael Cera",
+		"Mary Elizabeth Winstead",
+		"Chris Evans",
+		"Alison Pill"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T20:09:55.889Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef6561387e7056866953f0a"
+	},
+	"title": "Django Unchained",
+	"genre": [
+		"Western",
+		"Drama",
+		"Action"
+	],
+	"director": "Quentin Tarantino",
+	"cinematographer": "Robert Richardson",
+	"writers": [
+		"Quentin Tarantino"
+	],
+	"composer": "unknown",
+	"releaseDate": {
+		"$date": "2012-12-11T00:00:00Z"
+	},
+	"actors": [
+		"Jamie Foxx",
+		"Christoph Waltz",
+		"Samuel L. Jackson",
+		"Leonardo DiCaprio"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T20:09:55.912Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+}]
+

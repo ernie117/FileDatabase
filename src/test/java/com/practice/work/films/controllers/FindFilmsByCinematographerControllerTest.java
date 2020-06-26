@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.validation.Violation;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -63,8 +64,13 @@ class FindFilmsByCinematographerControllerTest {
                 .andExpect(jsonPath("[0]['director']").value("test director one"))
                 .andExpect(jsonPath("[0]['cinematographer']").value("test cinematographer one"))
                 .andExpect(jsonPath("[0]['composer']").value("test composer one"))
-                .andExpect(jsonPath("[0]['writer']").value("test writer one"))
-                .andExpect(jsonPath("[0]['genre']").value("test genre one"))
+                .andExpect(jsonPath("[0]['writers']", Matchers.isA(List.class)))
+                .andExpect(jsonPath("[0]['writers'][0]").value("test writer one"))
+                .andExpect(jsonPath("[0]['writers'][1]").value("test writer two"))
+                .andExpect(jsonPath("[0]['genre']", Matchers.isA(List.class)))
+                .andExpect(jsonPath("[0]['genre'][0]").value("test genre one"))
+                .andExpect(jsonPath("[0]['genre'][1]").value("test genre two"))
+                .andExpect(jsonPath("[0]['genre'][2]").value("test genre three"))
                 .andExpect(jsonPath("[0]['releaseDate']").value(LocalDate.of(2000, 1, 31).toString()))
                 .andExpect(jsonPath("[0]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("[0]['actors']", isA(List.class)))

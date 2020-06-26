@@ -43,14 +43,13 @@ public class FilmDTO {
     /**
      * Genre of the film
      */
-    @NotBlank
-    @Pattern(regexp = NAME_REGEX)
+    @NotEmpty
     @ApiModelProperty(
             name = "genre",
-            example = "string",
+            example = "['string', 'string', ...]",
             position = 2
     )
-    private String genre;
+    private List<String> genre;
 
     /**
      * Director of the film
@@ -79,14 +78,13 @@ public class FilmDTO {
     /**
      * Writer of the film
      */
-    @NotBlank
-    @Pattern(regexp = NAME_REGEX)
+    @NotEmpty
     @ApiModelProperty(
             name = "writer",
-            example = "string",
+            example = "['string', 'string', ...]",
             position = 5
     )
-    private String writer;
+    private List<@Pattern(regexp = NAME_REGEX) String> writers;
 
     /**
      * Composer of the film

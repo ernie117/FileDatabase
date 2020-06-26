@@ -46,14 +46,13 @@ public class Film {
     /**
      * Genre of the film
      */
-    @NotBlank
-    @Pattern(regexp = NAME_REGEX)
+    @NotEmpty
     @ApiModelProperty(
             name = "genre",
             example = "string",
             position = 2
     )
-    private String genre;
+    private List<String> genre;
 
     /**
      * Director of the film
@@ -80,16 +79,15 @@ public class Film {
     private String cinematographer;
 
     /**
-     * Writer of the film
+     * Writers of the film
      */
     @NotBlank
-    @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
             name = "writer",
-            example = "string",
+            example = "['string', 'string', ...]",
             position = 5
     )
-    private String writer;
+    private List<@Pattern(regexp = NAME_REGEX) String> writers;
 
     /**
      * Composer of the film
@@ -134,7 +132,7 @@ public class Film {
     public String toString() {
         return String.format(
                 "Film[id=%s, title=%s, genre=%s, director=%s, cinematographer=%s, writer=%s, composer=%s, yearReleased=%s, actors=%s]",
-                id, title, genre, cinematographer, writer, composer, director, releaseDate, String.join(", ", actors)
+                id, title, genre, cinematographer, writers, composer, director, releaseDate, String.join(", ", actors)
         );
     }
 }

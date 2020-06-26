@@ -78,7 +78,7 @@ class AddMultipleFilmsControllerTest {
         this.mockMvc.perform(post("/v1/addMultipleFilms")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(FILM_DTOS_AS_STRING))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("[0].*", hasSize(10)))
                 .andExpect(jsonPath("[1].*", hasSize(10)));
@@ -110,7 +110,7 @@ class AddMultipleFilmsControllerTest {
 
             violations.forEach(v -> {
                 assertThat(v.getField()).isEqualTo("genre");
-                assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z,.'\\-\\s]+\"");
+                assertThat(v.getMessage()).isEqualTo("must not be empty");
             });
 
         } catch (JsonProcessingException ex) {

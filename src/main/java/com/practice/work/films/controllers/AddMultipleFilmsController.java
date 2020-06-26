@@ -53,7 +53,7 @@ public class AddMultipleFilmsController {
         return filmsService.insertMultipleFilmDocument(filmsToSave).map(films -> {
             log.info("Add Multiple Films endpoint reflects {} film objects from DB.", films.size());
             return ResponseEntity
-                    .ok()
+                    .created(URI.create(configProperties.getAddMultipleFilmsURI()))
                     .location(URI.create(configProperties.getAddMultipleFilmsURI()))
                     .body(films
                             .stream()

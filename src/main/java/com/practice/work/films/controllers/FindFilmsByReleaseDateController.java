@@ -39,14 +39,14 @@ public class FindFilmsByReleaseDateController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping(path = "/v1/findAllByYear")
+    @GetMapping(path = "/v1/findFilmByReleaseDate")
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
                                                                     @RequestParam
                                                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
         return this.filmsService.findFilmsByReleaseDate(localDate)
                 .map(films -> ResponseEntity
                         .ok()
-                        .location(URI.create(configProperties.getFindFilmsByYearURI()))
+                        .location(URI.create(configProperties.getFindFilmsByReleaseDateURI()))
                         .body(films
                                 .stream()
                                 .map(film -> modelMapper.map(film, FilmDTO.class))

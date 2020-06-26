@@ -7,6 +7,7 @@ import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import com.practice.work.films.validation.Violation;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -66,14 +68,19 @@ class AddFilmControllerTest {
         String response = this.mockMvc.perform(post("/v1/addFilm/")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(FILM_DTO_AS_STRING))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath(".id").value(RANDOM_UUID))
                 .andExpect(jsonPath(".title").value(TEST_TITLE))
-                .andExpect(jsonPath(".genre").value(TEST_GENRE))
+                .andExpect(jsonPath(".genre", Matchers.isA(List.class)))
+                .andExpect(jsonPath(".genre[0]").value(TEST_GENRE.get(0)))
+                .andExpect(jsonPath(".genre[1]").value(TEST_GENRE.get(1)))
+                .andExpect(jsonPath(".genre[2]").value(TEST_GENRE.get(2)))
                 .andExpect(jsonPath(".composer").value(TEST_COMPOSER))
-                .andExpect(jsonPath(".writer").value(TEST_WRITER))
+                .andExpect(jsonPath(".writers", Matchers.isA(List.class)))
+                .andExpect(jsonPath(".writers[0]").value(TEST_WRITER.get(0)))
+                .andExpect(jsonPath(".writers[1]").value(TEST_WRITER.get(1)))
                 .andExpect(jsonPath(".cinematographer").value(TEST_CINEMATOGRAPHER))
                 .andExpect(jsonPath(".releaseDate").value(TEST_RELEASE_DATE.toString()))
                 .andExpect(jsonPath(".dateAdded").value(TEST_DATE_ADDED.toString()))
@@ -164,7 +171,7 @@ class AddFilmControllerTest {
             });
 
             violations.forEach(v -> {
-                assertThat(v.getField()).isEqualTo("writer");
+                assertThat(v.getField()).isEqualTo("writers[0]");
                 assertThat(v.getMessage()).isEqualTo("must match \"[a-zA-Z,.'\\-\\s]+\"");
             });
 

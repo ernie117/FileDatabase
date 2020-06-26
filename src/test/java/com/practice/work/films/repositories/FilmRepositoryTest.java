@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,8 +91,8 @@ class FilmRepositoryTest {
         Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByGenreRegexIgnoreCase("test genre"));
         assertTrue(films.isPresent(), "We should return the films matching the genre in the JSON file");
         films.ifPresent((filmsList -> {
-            assertEquals("test genre one", filmsList.get(0).getGenre(), "Should be test genre one");
-            assertEquals("test genre two", filmsList.get(1).getGenre(), "Should be test genre two");
+            assertEquals(Arrays.asList("test genre one", "test genre two", "test genre three"), filmsList.get(0).getGenre(), "Should be list of one, two, three");
+            assertEquals(Arrays.asList("test genre four", "test genre five", "test genre six"), filmsList.get(1).getGenre(), "Should be list of three, four, five");
         }));
     }
 

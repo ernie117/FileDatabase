@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,16 +19,16 @@ public class TestConstants {
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
 
     public static final String TEST_ID = UUID.randomUUID().toString();
-    public static final String TEST_TITLE = "test title";
-    public static final String TEST_CINEMATOGRAPHER = "test cinematographer";
-    public static final String TEST_COMPOSER = "test composer";
-    public static final String TEST_WRITER = "test writer";
-    public static final String TEST_DIRECTOR = "test director";
-    public static final String TEST_GENRE = "test genre";
+    public static final String TEST_TITLE = "TeSt TItlE";
+    public static final String TEST_CINEMATOGRAPHER = "TESt CinEMAtOGraPhER";
+    public static final String TEST_COMPOSER = "TESt COmPoSeR";
+    public static final List<String> TEST_WRITER = Arrays.asList("tEST WRiTer one", "TEst writER twO");
+    public static final String TEST_DIRECTOR = "Test diRECtor";
+    public static final List<String> TEST_GENRE = Arrays.asList("teSt GenRe oNe", "test Genre tWO", "TESt GenRe THRee");
     public static final String RANDOM_UUID = UUID.randomUUID().toString();
     public static final LocalDate TEST_RELEASE_DATE = LocalDate.of(2000, 1, 1);
     public static final LocalDateTime TEST_DATE_ADDED = LocalDateTime.of(2020, 1, 1, 12, 0, 15);
-    public static final List<String> TEST_ACTORS = Arrays.asList("test actor one", "test actor two");
+    public static final List<String> TEST_ACTORS = Arrays.asList("tESt ACtor One", "tesT ACtoR TWo");
 
     public static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
 
@@ -38,7 +39,7 @@ public class TestConstants {
             .title(TEST_TITLE)
             .cinematographer(TEST_CINEMATOGRAPHER)
             .composer(TEST_COMPOSER)
-            .writer(TEST_WRITER)
+            .writers(TEST_WRITER)
             .director(TEST_DIRECTOR)
             .genre(TEST_GENRE)
             .releaseDate(TEST_RELEASE_DATE)
@@ -51,7 +52,7 @@ public class TestConstants {
             .title(TEST_TITLE)
             .cinematographer(TEST_CINEMATOGRAPHER)
             .composer(TEST_COMPOSER)
-            .writer(TEST_WRITER)
+            .writers(TEST_WRITER)
             .director(TEST_DIRECTOR)
             .genre(TEST_GENRE)
             .releaseDate(TEST_RELEASE_DATE)
@@ -64,7 +65,7 @@ public class TestConstants {
             .title("")
             .cinematographer(TEST_CINEMATOGRAPHER)
             .composer(TEST_COMPOSER)
-            .writer(TEST_WRITER)
+            .writers(TEST_WRITER)
             .director(TEST_DIRECTOR)
             .genre(TEST_GENRE)
             .releaseDate(TEST_RELEASE_DATE)
@@ -77,7 +78,7 @@ public class TestConstants {
             .title(TEST_TITLE)
             .cinematographer(TEST_CINEMATOGRAPHER)
             .composer(TEST_COMPOSER)
-            .writer("111")
+            .writers(Collections.singletonList("111"))
             .director(TEST_DIRECTOR)
             .genre(TEST_GENRE)
             .releaseDate(TEST_RELEASE_DATE)

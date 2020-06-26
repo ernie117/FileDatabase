@@ -3,6 +3,7 @@ package com.practice.work.films.controllers;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,8 +68,13 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[0]['director']").value("test director one"))
                 .andExpect(jsonPath("$[0]['cinematographer']").value("test cinematographer one"))
                 .andExpect(jsonPath("$[0]['composer']").value("test composer one"))
-                .andExpect(jsonPath("$[0]['writer']").value("test writer one"))
-                .andExpect(jsonPath("$[0]['genre']").value("test genre one"))
+                .andExpect(jsonPath("$[0]['writers']", Matchers.isA(List.class)))
+                .andExpect(jsonPath("$[0]['writers'][0]").value("test writer one"))
+                .andExpect(jsonPath("$[0]['writers'][1]").value("test writer two"))
+                .andExpect(jsonPath("$[0]['genre']", Matchers.isA(List.class)))
+                .andExpect(jsonPath("$[0]['genre'][0]").value("test genre one"))
+                .andExpect(jsonPath("$[0]['genre'][1]").value("test genre two"))
+                .andExpect(jsonPath("$[0]['genre'][2]").value("test genre three"))
                 .andExpect(jsonPath("$[0]['releaseDate']").value(LocalDate.of(2000, 1, 31).toString()))
                 .andExpect(jsonPath("$[0]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("$[0]['actors']", isA(List.class)))
@@ -81,8 +87,13 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[1]['director']").value("test director two"))
                 .andExpect(jsonPath("$[1]['cinematographer']").value("test cinematographer two"))
                 .andExpect(jsonPath("$[1]['composer']").value("test composer two"))
-                .andExpect(jsonPath("$[1]['writer']").value("test writer two"))
-                .andExpect(jsonPath("$[1]['genre']").value("test genre two"))
+                .andExpect(jsonPath("$[1]['writers']", Matchers.isA(List.class)))
+                .andExpect(jsonPath("$[1]['writers'][0]").value("test writer three"))
+                .andExpect(jsonPath("$[1]['writers'][1]").value("test writer four"))
+                .andExpect(jsonPath("$[1]['genre']", Matchers.isA(List.class)))
+                .andExpect(jsonPath("$[1]['genre'][0]").value("test genre four"))
+                .andExpect(jsonPath("$[1]['genre'][1]").value("test genre five"))
+                .andExpect(jsonPath("$[1]['genre'][2]").value("test genre six"))
                 .andExpect(jsonPath("$[1]['releaseDate']").value(LocalDate.of(2000, 1, 1).toString()))
                 .andExpect(jsonPath("$[1]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("$[1]['actors']", isA(List.class)))

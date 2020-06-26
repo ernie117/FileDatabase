@@ -1,5 +1,6 @@
 package com.practice.work.films.controllers;
 
+import com.practice.work.films.configuration.ConfigProperties;
 import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
@@ -17,10 +18,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Pattern;
+import java.io.ObjectInputFilter;
+import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import static com.practice.work.films.entities.Film.NAME_REGEX;
 
 
 @RestController
@@ -30,33 +35,32 @@ public class AddFilmHttpController {
 
     private final FilmsService filmsService;
     private final ModelMapper modelMapper;
+    private final ConfigProperties configProperties;
 
     @Autowired
-    AddFilmHttpController(FilmsService filmsService, ModelMapper modelMapper) {
+    AddFilmHttpController(FilmsService filmsService, ModelMapper modelMapper, ConfigProperties configProperties) {
         this.filmsService = filmsService;
         this.modelMapper = modelMapper;
+        this.configProperties = configProperties;
     }
 
     @PostMapping(value = "/v1/addFilmHttp")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<FilmDTO> insertFilmDocumentHttp(@RequestParam(name = "title")
-                                                          @ApiParam(value = "Title", required = true)
-                                                          @Pattern(regexp = "[a-zA-Z\\d\\s]+") String title,
+                                                          @ApiParam(value = "Title", required = true) String title,
                                                           @RequestParam(name = "genre")
-                                                          @ApiParam(value = "Genre", required = true)
-                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String genre,
+                                                          @ApiParam(value = "Genre", required = true) List<String> genre,
                                                           @RequestParam(name = "director")
                                                           @ApiParam(value = "Director", required = true)
-                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String director,
+                                                          @Pattern(regexp = NAME_REGEX) String director,
                                                           @RequestParam(name = "cinematographer")
                                                           @ApiParam(value = "Cinematographer", required = true)
-                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String cinematographer,
-                                                          @RequestParam(name = "writer")
-                                                          @ApiParam(value = "Writer", required = true)
-                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String writer,
+                                                          @Pattern(regexp = NAME_REGEX) String cinematographer,
+                                                          @RequestParam(name = "writers")
+                                                          @ApiParam(value = "Writer", required = true) List<String> writers,
                                                           @RequestParam(name = "composer")
                                                           @ApiParam(value = "Composer", required = true)
-                                                          @Pattern(regexp = "[a-zA-Z\\s]+") String composer,
+                                                          @Pattern(regexp = NAME_REGEX) String composer,
                                                           @RequestParam(name = "releaseDate")
                                                           @ApiParam(value = "Release Date", required = true)
                                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String releaseDate,
@@ -68,7 +72,7 @@ public class AddFilmHttpController {
                 .genre(genre)
                 .director(director)
                 .cinematographer(cinematographer)
-                .writer(writer)
+                .writers(writers)
                 .composer(composer)
                 .releaseDate(LocalDate.parse(releaseDate))
                 .dateAdded(LocalDateTime.now())
@@ -79,7 +83,7 @@ public class AddFilmHttpController {
 
         return returnedFilm
                 .map(film -> ResponseEntity
-                        .ok()
+                        .created(URI.create(configProperties.getAddFilmHttpURI()))
                         .body(modelMapper.map(film, FilmDTO.class)))
                 .orElse(ResponseEntity.unprocessableEntity().build());
     }

@@ -40,7 +40,6 @@ public class FindFilmsByGenreController {
 
     @GetMapping(path = "/v1/findAllByGenre")
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByGenre(@ApiParam("Genre to search as a string. Case-insensitive")
-                                                              @Pattern(regexp = "[a-zA-Z\\s]+")
                                                               @RequestParam String genre) {
         return this.filmsService.findFilmsByGenre(genre)
                 .map(films -> ResponseEntity.ok()
