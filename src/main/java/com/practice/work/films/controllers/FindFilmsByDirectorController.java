@@ -20,6 +20,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
+
 
 @RestController
 @ResponseStatus(HttpStatus.OK)
@@ -40,7 +42,7 @@ public class FindFilmsByDirectorController {
 
     @GetMapping(path = "/v1/fetchFilmsByDirector")
     public ResponseEntity<List<FilmDTO>> fetchFilmsByDirector(@ApiParam("Director to search, as a string. Case-insensitive")
-                                                              @Pattern(regexp = "[a-zA-Z\\s]+")
+                                                              @Pattern(regexp = NAME_REGEX)
                                                               @RequestParam String director) {
         return this.filmsService.findFilmsByDirector(director)
                 .map(films -> ResponseEntity

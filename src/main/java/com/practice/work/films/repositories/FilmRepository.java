@@ -26,6 +26,9 @@ public interface FilmRepository extends MongoRepository<Film, String> {
 
     List<Film> findAllByReleaseDate(LocalDate date);
 
+    @Query("{'releaseDate': {$gt: ?0, $lt: ?1}}")
+    List<Film> findAllFilmsByYear(LocalDate from, LocalDate to);
+
     List<Film> findAll();
 
     @Query("{'actors': {$regex: ?0, $options: i}}")

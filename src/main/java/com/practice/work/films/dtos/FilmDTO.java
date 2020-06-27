@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.practice.work.films.entities.Film.NAME_REGEX;
+import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 
 @Data
 @Builder
@@ -46,7 +46,7 @@ public class FilmDTO {
     @NotEmpty
     @ApiModelProperty(
             name = "genre",
-            example = "['string', 'string', ...]",
+            example = "['string', 'string']",
             position = 2
     )
     private List<String> genre;
@@ -81,7 +81,7 @@ public class FilmDTO {
     @NotEmpty
     @ApiModelProperty(
             name = "writer",
-            example = "['string', 'string', ...]",
+            example = "['string', 'string']",
             position = 5
     )
     private List<@Pattern(regexp = NAME_REGEX) String> writers;
@@ -116,7 +116,7 @@ public class FilmDTO {
     @NotEmpty
     @ApiModelProperty(
             name = "actors",
-            example = "['string', 'string', ...]",
+            example = "['string', 'string']",
             position = 8)
     @Size(min = 1, max = 10)
     private List<@Pattern(regexp = NAME_REGEX) String> actors;

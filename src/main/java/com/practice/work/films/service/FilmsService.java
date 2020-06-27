@@ -107,13 +107,24 @@ public class FilmsService {
     }
 
     /**
-     * Queries MongoDB for all films with a given release year
+     * Queries MongoDB for all films with a given release date
      *
      * @param date: value of the release year to query
      * @return sorted, immutable List<Film>
      */
     public Optional<List<Film>> findFilmsByReleaseDate(LocalDate date) {
         return Optional.of(sortAndWrap(this.filmRepository.findAllByReleaseDate(date)));
+    }
+
+    /**
+     * Queries MongoDB for all films with a given release year
+     *
+     * @param date: value of the release year to query
+     * @return sorted, immutable List<Film>
+     */
+    public Optional<List<Film>> findFilmsByReleaseYear(String from) {
+        LocalDate fromDate = LocalDate.of(Integer.parseInt(from), 1, 1);
+        return Optional.of(sortAndWrap(this.filmRepository.findAllFilmsByYear(fromDate, fromDate.plusYears(1))));
     }
 
     /**

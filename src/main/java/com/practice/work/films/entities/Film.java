@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 import static java.util.Comparator.comparing;
 
 @Data
@@ -22,7 +23,6 @@ import static java.util.Comparator.comparing;
 @AllArgsConstructor
 public class Film {
 
-    public static final String NAME_REGEX = "[a-zA-Z,.'\\-\\s]+";
     public static final Comparator<Film> BY_TITLE = comparing(Film::getTitle);
 
     /**
@@ -84,7 +84,7 @@ public class Film {
     @NotBlank
     @ApiModelProperty(
             name = "writer",
-            example = "['string', 'string', ...]",
+            example = "['string', 'string']",
             position = 5
     )
     private List<@Pattern(regexp = NAME_REGEX) String> writers;
@@ -119,7 +119,7 @@ public class Film {
     @NotEmpty
     @ApiModelProperty(
             name = "actors",
-            example = "['string', 'string', ...]",
+            example = "['string', 'string']",
             position = 8)
     @Size(min = 1, max = 10)
     private List<@Pattern(regexp = NAME_REGEX) String> actors;

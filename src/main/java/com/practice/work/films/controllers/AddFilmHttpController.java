@@ -18,14 +18,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Pattern;
-import java.io.ObjectInputFilter;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static com.practice.work.films.entities.Film.NAME_REGEX;
+import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 
 
 @RestController
