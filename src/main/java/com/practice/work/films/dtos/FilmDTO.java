@@ -22,16 +22,10 @@ import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 @NoArgsConstructor
 public class FilmDTO {
 
-    /**
-     * Auto-generated MongoDB ID, unique to a document
-     */
     @Id
     @ApiModelProperty(hidden = true)
     private String id;
 
-    /**
-     * Title of the film
-     */
     @NotBlank
     @ApiModelProperty(
             name = "title",
@@ -40,9 +34,6 @@ public class FilmDTO {
     )
     private String title;
 
-    /**
-     * Genre of the film
-     */
     @NotEmpty
     @ApiModelProperty(
             name = "genre",
@@ -51,9 +42,6 @@ public class FilmDTO {
     )
     private List<String> genre;
 
-    /**
-     * Director of the film
-     */
     @NotBlank
     @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
@@ -63,9 +51,6 @@ public class FilmDTO {
     )
     private String director;
 
-    /**
-     * Cinematographer of the film
-     */
     @NotBlank
     @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
@@ -75,9 +60,6 @@ public class FilmDTO {
     )
     private String cinematographer;
 
-    /**
-     * Writer of the film
-     */
     @NotEmpty
     @ApiModelProperty(
             name = "writer",
@@ -86,9 +68,6 @@ public class FilmDTO {
     )
     private List<@Pattern(regexp = NAME_REGEX) String> writers;
 
-    /**
-     * Composer of the film
-     */
     @NotBlank
     @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
@@ -98,9 +77,6 @@ public class FilmDTO {
     )
     private String composer;
 
-    /**
-     * Year/month/day the film was released
-     */
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Past
@@ -110,9 +86,6 @@ public class FilmDTO {
             position = 7)
     private LocalDate releaseDate;
 
-    /**
-     * List of the main actors
-     */
     @NotEmpty
     @ApiModelProperty(
             name = "actors",

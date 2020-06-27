@@ -25,16 +25,10 @@ public class Film {
 
     public static final Comparator<Film> BY_TITLE = comparing(Film::getTitle);
 
-    /**
-     * Auto-generated MongoDB ID, unique to a document
-     */
     @Id
     @ApiModelProperty(hidden = true)
     private String id;
 
-    /**
-     * Title of the film
-     */
     @NotBlank
     @ApiModelProperty(
             name = "title",
@@ -43,9 +37,6 @@ public class Film {
     )
     private String title;
 
-    /**
-     * Genre of the film
-     */
     @NotEmpty
     @ApiModelProperty(
             name = "genre",
@@ -54,9 +45,6 @@ public class Film {
     )
     private List<String> genre;
 
-    /**
-     * Director of the film
-     */
     @NotBlank
     @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
@@ -66,9 +54,6 @@ public class Film {
     )
     private String director;
 
-    /**
-     * Cinematographer of the film
-     */
     @NotBlank
     @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
@@ -78,9 +63,6 @@ public class Film {
     )
     private String cinematographer;
 
-    /**
-     * Writers of the film
-     */
     @NotBlank
     @ApiModelProperty(
             name = "writer",
@@ -89,9 +71,6 @@ public class Film {
     )
     private List<@Pattern(regexp = NAME_REGEX) String> writers;
 
-    /**
-     * Composer of the film
-     */
     @NotBlank
     @Pattern(regexp = NAME_REGEX)
     @ApiModelProperty(
@@ -101,9 +80,6 @@ public class Film {
     )
     private String composer;
 
-    /**
-     * Year/month/day the film was released
-     */
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Past
@@ -113,9 +89,6 @@ public class Film {
             position = 7)
     private LocalDate releaseDate;
 
-    /**
-     * List of the main actors
-     */
     @NotEmpty
     @ApiModelProperty(
             name = "actors",
