@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,8 @@ public class AddMultipleFilmsController {
     public ResponseEntity<List<FilmDTO>> insertManyFilmDocuments(@Valid
                                                                  @ApiParam("Array of filmDTO objects, structured as in the example")
                                                                  @RequestBody List<FilmDTO> filmDTOS) {
-        log.info("Add Multiple Films endpoint called with {} film objects to save.", filmDTOS.size());
+        log.info("Add Multiple Films endpoint called with titles: {}",
+                Arrays.deepToString(filmDTOS.stream().map(FilmDTO::getTitle).toArray()));
         List<Film> filmsToSave = filmDTOS.stream()
                 .map(filmDTO -> modelMapper.map(filmDTO, Film.class))
                 .collect(Collectors.toList());

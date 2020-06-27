@@ -6,6 +6,7 @@ import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import java.net.URI;
 import java.util.Optional;
 
 
+@Slf4j
 @RestController
 @Api(tags = {"Add Film"})
 @Validated
@@ -43,6 +45,7 @@ public class AddFilmController {
     public ResponseEntity<FilmDTO> insertFilmDocument(@Valid
                                                       @ApiParam("Film json object, structured as in the example")
                                                       @RequestBody FilmDTO filmDto) {
+        log.info("Adding new film with title: {}", filmDto.getTitle());
         Optional<Film> film = filmsService.insertSingleFilmDocument(modelMapper.map(filmDto, Film.class));
 
         return film

@@ -6,6 +6,7 @@ import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,6 +28,7 @@ import java.util.Optional;
 import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 
 
+@Slf4j
 @RestController
 @Api(tags = {"Add Film via HTTP call"})
 @Validated
@@ -77,6 +79,8 @@ public class AddFilmHttpController {
                 .dateAdded(LocalDateTime.now())
                 .actors(actors)
                 .build();
+
+        log.info("Adding new film with title: {}", filmDTO.getTitle());
 
         Optional<Film> returnedFilm = filmsService.insertSingleFilmDocument(modelMapper.map(filmDTO, Film.class));
 
