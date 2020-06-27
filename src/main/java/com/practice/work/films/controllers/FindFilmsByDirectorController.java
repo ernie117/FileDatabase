@@ -40,7 +40,7 @@ public class FindFilmsByDirectorController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping(path = "/v1/fetchFilmsByDirector")
+    @GetMapping(path = "/v1/findFilmsByDirector")
     public ResponseEntity<List<FilmDTO>> fetchFilmsByDirector(@ApiParam("Director to search, as a string. Case-insensitive")
                                                               @Pattern(regexp = NAME_REGEX)
                                                               @RequestParam String director) {

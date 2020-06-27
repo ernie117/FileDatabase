@@ -119,7 +119,7 @@ public class FilmsService {
     /**
      * Queries MongoDB for all films with a given release year
      *
-     * @param date: value of the release year to query
+     * @param from: value of the release year to query
      * @return sorted, immutable List<Film>
      */
     public Optional<List<Film>> findFilmsByReleaseYear(String from) {

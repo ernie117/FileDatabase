@@ -41,7 +41,7 @@ public class FindFilmsByComposerController {
     }
 
     @GetMapping("/v1/findFilmsByComposer")
-    public ResponseEntity<List<FilmDTO>> fetchFilmsByActor(@Valid
+    public ResponseEntity<List<FilmDTO>> fetchFilmsByComposer(@Valid
                                                            @ApiParam("String of composer to search; case-insensitive")
                                                            @Pattern(regexp = NAME_REGEX)
                                                            @RequestParam String composer) {

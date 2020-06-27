@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiParam;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
 import java.net.URI;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,11 +42,12 @@ public class FindFilmsByReleaseDateController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping(path = "/v1/findFilmByReleaseDate")
+    @GetMapping(path = "/v1/findFilmsByReleaseDate")
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
                                                                     @RequestParam
-                                                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
-        return this.filmsService.findFilmsByReleaseDate(localDate)
+                                                                    @NotBlank
+                                                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String releaseDate) {
+        return this.filmsService.findFilmsByReleaseDate(LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE))
                 .map(films -> ResponseEntity
                         .ok()
                         .location(URI.create(configProperties.getFindFilmsByReleaseDateURI()))

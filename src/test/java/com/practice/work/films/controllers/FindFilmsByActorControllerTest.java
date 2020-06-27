@@ -42,7 +42,7 @@ class FindFilmsByActorControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static List<Film> TEST_FILM_1 = new ArrayList<>();
+    private static final List<Film> TEST_FILM_1 = new ArrayList<>();
 
     @BeforeAll
     static void setup() throws IOException {

@@ -27,6 +27,7 @@ public class TestConstants {
     public static final List<String> TEST_GENRE = Arrays.asList("teSt GenRe oNe", "test Genre tWO", "TESt GenRe THRee");
     public static final String RANDOM_UUID = UUID.randomUUID().toString();
     public static final LocalDate TEST_RELEASE_DATE = LocalDate.of(2000, 1, 1);
+    public static final String TEST_RELEASE_YEAR = "2000";
     public static final LocalDateTime TEST_DATE_ADDED = LocalDateTime.of(2020, 1, 1, 12, 0, 15);
     public static final List<String> TEST_ACTORS = Arrays.asList("tESt ACtor One", "tesT ACtoR TWo");
 

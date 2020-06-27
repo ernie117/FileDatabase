@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotBlank;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,7 +40,8 @@ public class FindFilmsByGenreController {
 
     @GetMapping(path = "/v1/findAllByGenre")
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByGenre(@ApiParam("Genre to search as a string. Case-insensitive")
-                                                              @RequestParam String genre) {
+                                                              @RequestParam
+                                                              @NotBlank String genre) {
         return this.filmsService.findFilmsByGenre(genre)
                 .map(films -> ResponseEntity.ok()
                         .location(URI.create(configProperties.getFindFilmsByGenreURI()))
@@ -48,6 +49,6 @@ public class FindFilmsByGenreController {
                                 .stream()
                                 .map(film -> modelMapper.map(film, FilmDTO.class))
                                 .collect(Collectors.toList())))
-                .orElse(ResponseEntity.badRequest().build());
+                .orElse(ResponseEntity.notFound().build());
     }
 }

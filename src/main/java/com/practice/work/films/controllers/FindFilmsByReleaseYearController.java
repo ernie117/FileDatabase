@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
@@ -38,14 +39,14 @@ public class FindFilmsByReleaseYearController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping(path = "/v1/findFilmByReleaseYear")
+    @GetMapping(path = "/v1/findFilmsByReleaseYear")
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByReleaseYear(@ApiParam("Year to search, as string")
                                                                     @RequestParam
-                                                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String year) {
+                                                                    @NotBlank String year) {
         return this.filmsService.findFilmsByReleaseYear(year)
                 .map(films -> ResponseEntity
                         .ok()
-                        .location(URI.create(configProperties.getFindFilmsByReleaseDateURI()))
+                        .location(URI.create(configProperties.getFindFilmsByReleaseYearURI()))
                         .body(films
                                 .stream()
                                 .map(film -> modelMapper.map(film, FilmDTO.class))

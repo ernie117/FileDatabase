@@ -19,6 +19,7 @@ public class ConfigProperties {
     private String findFilmsByActorURI;
     private String findAllFilmsURI;
     private String findFilmsByReleaseDateURI;
+    private String findFilmsByReleaseYearURI;
     private String findFilmsByGenreURI;
     private String findFilmsByDirectorURI;
     private String findFilmsByComposerURI;

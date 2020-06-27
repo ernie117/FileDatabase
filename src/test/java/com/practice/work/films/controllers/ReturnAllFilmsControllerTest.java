@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.jayway.jsonpath.JsonPath;
 import com.practice.work.films.entities.Film;
 import com.practice.work.films.service.FilmsService;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doReturn;
+import static org.modelmapper.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -40,7 +43,6 @@ class ReturnAllFilmsControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    // Necessary for deserializing LocalDate
     private static final ObjectMapper MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
 
     private static final File TEST_JSON = Paths.get("src", "test", "resources", "test.json").toFile();
@@ -64,6 +66,7 @@ class ReturnAllFilmsControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.LOCATION, "/v1/all"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.length()", Matchers.is(2)))
                 .andExpect(jsonPath("[0].title").value("test title one"))
                 .andExpect(jsonPath("[1].title").value("test title two"))
                 .andReturn()
