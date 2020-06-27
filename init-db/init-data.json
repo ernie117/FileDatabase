@@ -59,31 +59,31 @@
 },
 {
 	"_id": {
-		"$oid": "5ef62badde79ca57cec07b71"
+		"$oid": "5ef6561387e7056866953f0a"
 	},
-	"title": "Final Fantasy VII: Advent Children",
+	"title": "Django Unchained",
 	"genre": [
-		"Animation",
-		"Action",
-		"Adventure"
+		"Western",
+		"Drama",
+		"Action"
 	],
-	"director": "Tetsuya Nomura",
-	"cinematographer": "Yasuharu Yoshizawa",
+	"director": "Quentin Tarantino",
+	"cinematographer": "Robert Richardson",
 	"writers": [
-		"Brian Gray"
+		"Quentin Tarantino"
 	],
-	"composer": "Nobuo Uematsu",
+	"composer": "unknown",
 	"releaseDate": {
-		"$date": "2005-09-14T00:00:00Z"
+		"$date": "2012-12-11T00:00:00Z"
 	},
 	"actors": [
-		"Steve Burton",
-		"Rachael Leigh-Cook",
-		"Mena Suvari",
-		"Steve Blum"
+		"Jamie Foxx",
+		"Christoph Waltz",
+		"Samuel L. Jackson",
+		"Leonardo DiCaprio"
 	],
 	"dateAdded": {
-		"$date": "2020-06-26T17:09:01.733Z"
+		"$date": "2020-06-26T20:09:55.912Z"
 	},
 	"_class": "com.practice.work.films.entities.Film"
 },
@@ -119,62 +119,29 @@
 },
 {
 	"_id": {
-		"$oid": "5ef6561387e7056866953f09"
+		"$oid": "5ef6152a69b509473e1fa458"
 	},
-	"title": "Scott Pilgrim vs. The World",
+	"title": "Sunshine",
 	"genre": [
-		"Comedy",
-		"Action",
-		"Fantasy"
+		"Sci-fi",
+		"Thriller"
 	],
-	"director": "Edgar Wright",
-	"cinematographer": "Bill Pope",
+	"director": "Danny Boyle",
+	"cinematographer": "Alwin H. Kuchler",
 	"writers": [
-		"Michael Bacall",
-		"Edgar Wright"
+		"Alex Garland"
 	],
-	"composer": "Nigel Godrich",
+	"composer": "John Murphy",
 	"releaseDate": {
-		"$date": "2010-07-27T00:00:00Z"
+		"$date": "2007-04-06T00:00:00Z"
 	},
 	"actors": [
-		"Michael Cera",
-		"Mary Elizabeth Winstead",
-		"Chris Evans",
-		"Alison Pill"
+		"Cillian Murphy",
+		"Rose Byrne",
+		"Chris Evans"
 	],
 	"dateAdded": {
-		"$date": "2020-06-26T20:09:55.889Z"
-	},
-	"_class": "com.practice.work.films.entities.Film"
-},
-{
-	"_id": {
-		"$oid": "5ef6561387e7056866953f0a"
-	},
-	"title": "Django Unchained",
-	"genre": [
-		"Western",
-		"Drama",
-		"Action"
-	],
-	"director": "Quentin Tarantino",
-	"cinematographer": "Robert Richardson",
-	"writers": [
-		"Quentin Tarantino"
-	],
-	"composer": "unknown",
-	"releaseDate": {
-		"$date": "2012-12-11T00:00:00Z"
-	},
-	"actors": [
-		"Jamie Foxx",
-		"Christoph Waltz",
-		"Samuel L. Jackson",
-		"Leonardo DiCaprio"
-	],
-	"dateAdded": {
-		"$date": "2020-06-26T20:09:55.912Z"
+		"$date": "2020-06-26T15:32:58.465Z"
 	},
 	"_class": "com.practice.work.films.entities.Film"
 },
@@ -209,34 +176,6 @@
 },
 {
 	"_id": {
-		"$oid": "5ef6152a69b509473e1fa458"
-	},
-	"title": "Sunshine",
-	"genre": [
-		"Sci-fi",
-		"Thriller"
-	],
-	"director": "Danny Boyle",
-	"cinematographer": "Alwin H. Kuchler",
-	"writers": [
-		"Alex Garland"
-	],
-	"composer": "John Murphy",
-	"releaseDate": {
-		"$date": "2007-04-06T00:00:00Z"
-	},
-	"actors": [
-		"Cillian Murphy",
-		"Rose Byrne",
-		"Chris Evans"
-	],
-	"dateAdded": {
-		"$date": "2020-06-26T15:32:58.465Z"
-	},
-	"_class": "com.practice.work.films.entities.Film"
-},
-{
-	"_id": {
 		"$oid": "5ef6268c69b509473e1fa45a"
 	},
 	"title": "Ex Machina",
@@ -266,6 +205,36 @@
 },
 {
 	"_id": {
+		"$oid": "5ef62badde79ca57cec07b71"
+	},
+	"title": "Final Fantasy VII: Advent Children",
+	"genre": [
+		"Animation",
+		"Action",
+		"Adventure"
+	],
+	"director": "Tetsuya Nomura",
+	"cinematographer": "Yasuharu Yoshizawa",
+	"writers": [
+		"Brian Gray"
+	],
+	"composer": "Nobuo Uematsu",
+	"releaseDate": {
+		"$date": "2005-09-14T00:00:00Z"
+	},
+	"actors": [
+		"Steve Burton",
+		"Rachael Leigh-Cook",
+		"Mena Suvari",
+		"Steve Blum"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T17:09:01.733Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
 		"$oid": "5ef751d6574fe36db2d203f2"
 	},
 	"title": "Sicario",
@@ -290,36 +259,6 @@
 	],
 	"dateAdded": {
 		"$date": "2020-06-27T14:04:06.17Z"
-	},
-	"_class": "com.practice.work.films.entities.Film"
-},
-{
-	"_id": {
-		"$oid": "5ef751d6574fe36db2d203f3"
-	},
-	"title": "Silver Linings Playbook",
-	"genre": [
-		"Comedy",
-		"Drama",
-		"Romance"
-	],
-	"director": "David O. Russell",
-	"cinematographer": "Masanobu Takayanagi",
-	"writers": [
-		"David O. Russell"
-	],
-	"composer": "Danny Elfman",
-	"releaseDate": {
-		"$date": "2012-09-08T00:00:00Z"
-	},
-	"actors": [
-		"Bradley Cooper",
-		"Jennifer Lawrence",
-		"Robert De Niro",
-		"Chris Tucker"
-	],
-	"dateAdded": {
-		"$date": "2020-06-27T14:04:06.182Z"
 	},
 	"_class": "com.practice.work.films.entities.Film"
 },
@@ -382,6 +321,634 @@
 	],
 	"dateAdded": {
 		"$date": "2020-06-27T14:18:11.032Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef751d6574fe36db2d203f3"
+	},
+	"title": "Silver Linings Playbook",
+	"genre": [
+		"Comedy",
+		"Drama",
+		"Romance"
+	],
+	"director": "David O. Russell",
+	"cinematographer": "Masanobu Takayanagi",
+	"writers": [
+		"David O. Russell"
+	],
+	"composer": "Danny Elfman",
+	"releaseDate": {
+		"$date": "2012-09-08T00:00:00Z"
+	},
+	"actors": [
+		"Bradley Cooper",
+		"Jennifer Lawrence",
+		"Robert De Niro",
+		"Chris Tucker"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T14:04:06.182Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef6561387e7056866953f09"
+	},
+	"title": "Scott Pilgrim vs. The World",
+	"genre": [
+		"Comedy",
+		"Action",
+		"Fantasy"
+	],
+	"director": "Edgar Wright",
+	"cinematographer": "Bill Pope",
+	"writers": [
+		"Michael Bacall",
+		"Edgar Wright"
+	],
+	"composer": "Nigel Godrich",
+	"releaseDate": {
+		"$date": "2010-07-27T00:00:00Z"
+	},
+	"actors": [
+		"Michael Cera",
+		"Mary Elizabeth Winstead",
+		"Chris Evans",
+		"Alison Pill"
+	],
+	"dateAdded": {
+		"$date": "2020-06-26T20:09:55.889Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b54a"
+	},
+	"title": "Whiplash",
+	"genre": [
+		"Drama"
+	],
+	"director": "Damien Chazelle",
+	"cinematographer": "Sharone Meir",
+	"writers": [
+		"Damien Chazelle"
+	],
+	"composer": "Justin Hurwitz",
+	"releaseDate": {
+		"$date": "2014-10-10T00:00:00Z"
+	},
+	"actors": [
+		"Miles Teller",
+		"J.K. Simmons",
+		"Paul Reiser",
+		"Melissa Benoist"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.156Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b54b"
+	},
+	"title": "Ghost In The Shell",
+	"genre": [
+		"Anime",
+		"Action",
+		"Crime"
+	],
+	"director": "Mamoru Oshii",
+	"cinematographer": "Hisao Shirai",
+	"writers": [
+		"Kazunori Ito"
+	],
+	"composer": "Kenji Kawai",
+	"releaseDate": {
+		"$date": "1995-12-08T00:00:00Z"
+	},
+	"actors": [
+		"Mimi Woods",
+		"Richard Epcar",
+		"Tom Wyner"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.17Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b54c"
+	},
+	"title": "Terminator 2",
+	"genre": [
+		"Action",
+		"Sci-fi"
+	],
+	"director": "James Cameron",
+	"cinematographer": "Adam Greenberg",
+	"writers": [
+		"James Cameron",
+		"William Wisher"
+	],
+	"composer": "Brad Fiedel",
+	"releaseDate": {
+		"$date": "1991-07-03T00:00:00Z"
+	},
+	"actors": [
+		"Arnold Schwarzenegger",
+		"Linda Hamilton",
+		"Robert Patrick",
+		"Edward Furlong"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.173Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b54d"
+	},
+	"title": "Rise of the Planet of the Apes",
+	"genre": [
+		"Drama",
+		"Action",
+		"Sci-fi"
+	],
+	"director": "Rupert Wyatt",
+	"cinematographer": "Andrew Lesnie",
+	"writers": [
+		"Rick Jaffa",
+		"Amanda Silver"
+	],
+	"composer": "Patrick Doyle",
+	"releaseDate": {
+		"$date": "2011-08-05T00:00:00Z"
+	},
+	"actors": [
+		"James Franco",
+		"Freida Pinto",
+		"John Lithgow",
+		"Brian Cox",
+		"Andy Serkis"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.175Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b54e"
+	},
+	"title": "Gran Torino",
+	"genre": [
+		"Drama"
+	],
+	"director": "Clint Eastwood",
+	"cinematographer": "Tom Stern",
+	"writers": [
+		"Nick Schenk"
+	],
+	"composer": "Kyle Eastwood",
+	"releaseDate": {
+		"$date": "2008-12-12T00:00:00Z"
+	},
+	"actors": [
+		"Clint Eastwood"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.178Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b54f"
+	},
+	"title": "Unforgiven",
+	"genre": [
+		"Western",
+		"Drama"
+	],
+	"director": "Clint Eastwood",
+	"cinematographer": "Jack N. Green",
+	"writers": [
+		"David Webb Peoples"
+	],
+	"composer": "Lennie Niehaus",
+	"releaseDate": {
+		"$date": "1992-08-07T00:00:00Z"
+	},
+	"actors": [
+		"Clint Eastwood",
+		"Gene Hackman",
+		"Morgan Freeman",
+		"Richard Harris"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.179Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b550"
+	},
+	"title": "Source Code",
+	"genre": [
+		"Action",
+		"Drama",
+		"Mystery",
+		"Sci-fi"
+	],
+	"director": "Duncan Jones",
+	"cinematographer": "Don Burgess",
+	"writers": [
+		"Ben Ripley"
+	],
+	"composer": "Chris Bacon",
+	"releaseDate": {
+		"$date": "2011-04-01T00:00:00Z"
+	},
+	"actors": [
+		"Jake Gyllenhaal",
+		"Michelle Monaghan",
+		"Vera Farmiga",
+		"Jeffrey Wright"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.179Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b551"
+	},
+	"title": "There Will Be Blood",
+	"genre": [
+		"Drama"
+	],
+	"director": "Paul Thomas Anderson",
+	"cinematographer": "Robert Elswit",
+	"writers": [
+		"Paul Thomas Anderson"
+	],
+	"composer": "Jonny Greenwood",
+	"releaseDate": {
+		"$date": "2007-12-26T00:00:00Z"
+	},
+	"actors": [
+		"Daniel Day-Lewis",
+		"Paul Dano"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.18Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b552"
+	},
+	"title": "X-Men: First Class",
+	"genre": [
+		"Action",
+		"Adventure",
+		"Sci-fi"
+	],
+	"director": "Matthew Vaughn",
+	"cinematographer": "John Mathieson",
+	"writers": [
+		"Matthew Vaughn",
+		"Ashley Edward Miller",
+		"Zack Stentz",
+		"Jane Goldman"
+	],
+	"composer": "Henry Jackman",
+	"releaseDate": {
+		"$date": "2011-06-01T00:00:00Z"
+	},
+	"actors": [
+		"James McAvoy",
+		"Michael Fassbender",
+		"Rose Byrne",
+		"Kevin Bacon"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.181Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b553"
+	},
+	"title": "Prisoners",
+	"genre": [
+		"Drama",
+		"Mystery",
+		"Crime"
+	],
+	"director": "Denis Villeneuve",
+	"cinematographer": "Roger Deakins",
+	"writers": [
+		"Aaron Guzikowski"
+	],
+	"composer": "Johan Johansson",
+	"releaseDate": {
+		"$date": "2013-09-20T00:00:00Z"
+	},
+	"actors": [
+		"Hugh Jackman",
+		"Jake Gyllenhaal",
+		"Paul Dano"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.181Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b554"
+	},
+	"title": "Arrival",
+	"genre": [
+		"Mystery",
+		"Sci-fi",
+		"Drama"
+	],
+	"director": "Denis Villeneuve",
+	"cinematographer": "Bradford Young",
+	"writers": [
+		"Eric Heisserer"
+	],
+	"composer": "Johan Johansson",
+	"releaseDate": {
+		"$date": "2016-11-11T00:00:00Z"
+	},
+	"actors": [
+		"Amy Adams",
+		"Jeremy Renner",
+		"Forest Whitaker"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.182Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b555"
+	},
+	"title": "Superman",
+	"genre": [
+		"Action",
+		"Adventure",
+		"Drama"
+	],
+	"director": "Richard Donner",
+	"cinematographer": "Geoffrey Unsworth",
+	"writers": [
+		"Mario Puzo",
+		"David Newman",
+		"Leslie Newman",
+		"Robert Benton"
+	],
+	"composer": "John Williams",
+	"releaseDate": {
+		"$date": "1978-12-14T00:00:00Z"
+	},
+	"actors": [
+		"Christopher Reeve",
+		"Gene Hackman",
+		"Marlon Brando",
+		"Margot Kidder"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.182Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b556"
+	},
+	"title": "Superman 2",
+	"genre": [
+		"Action",
+		"Adventure",
+		"Drama"
+	],
+	"director": "Richard Lester, Richard Donner",
+	"cinematographer": "Robert Paynter",
+	"writers": [
+		"Mario Puzo",
+		"David Newman",
+		"Leslie Newman"
+	],
+	"composer": "Ken Thorne",
+	"releaseDate": {
+		"$date": "1980-12-04T00:00:00Z"
+	},
+	"actors": [
+		"Christopher Reeve",
+		"Gene Hackman",
+		"Terence Stamp"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.184Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b557"
+	},
+	"title": "Superman 3",
+	"genre": [
+		"Action",
+		"Adventure",
+		"Comedy"
+	],
+	"director": "Richard Lester",
+	"cinematographer": "Robert Paynter",
+	"writers": [
+		"David Newman",
+		"Leslie Newman"
+	],
+	"composer": "Ken Thorne, John Williams",
+	"releaseDate": {
+		"$date": "1983-06-12T00:00:00Z"
+	},
+	"actors": [
+		"Christopher Reeve",
+		"Richard Pryor",
+		"Robert Vaughn"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.184Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b558"
+	},
+	"title": "Superman 4: The Quest for Peace",
+	"genre": [
+		"Action",
+		"Adventure"
+	],
+	"director": "Sidney J. Furie",
+	"cinematographer": "Ernest Day",
+	"writers": [
+		"Lawrence Konner",
+		"Mark Rosenthal"
+	],
+	"composer": "Alexander Courage",
+	"releaseDate": {
+		"$date": "1987-07-24T00:00:00Z"
+	},
+	"actors": [
+		"Christopher Reeve",
+		"Gene Hackman"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.185Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef77f56386d2b709bd0b559"
+	},
+	"title": "Superman Returns",
+	"genre": [
+		"Action",
+		"Sci-fi"
+	],
+	"director": "Bryan Singer",
+	"cinematographer": "Newton Thomas Sigel",
+	"writers": [
+		"Michael Dougherty",
+		"Dan Harris"
+	],
+	"composer": "John Ottman",
+	"releaseDate": {
+		"$date": "2006-06-21T00:00:00Z"
+	},
+	"actors": [
+		"Brandon Routh",
+		"Kate Bosworth",
+		"Kevin Spacey"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:18:14.186Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef7818a386d2b709bd0b55a"
+	},
+	"title": "The Bourne Identity",
+	"genre": [
+		"Action",
+		"Mystery",
+		"Thriller"
+	],
+	"director": "Doug Liman",
+	"cinematographer": "Oliver Wood",
+	"writers": [
+		"Tony Gilroy",
+		"William Blake Herron"
+	],
+	"composer": "John Powell",
+	"releaseDate": {
+		"$date": "2002-06-14T00:00:00Z"
+	},
+	"actors": [
+		"Matt Damon",
+		"Franka Potente",
+		"Clive Owen",
+		"Brian Cox"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:27:38.138Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef7818a386d2b709bd0b55b"
+	},
+	"title": "The Bourne Ultimatum",
+	"genre": [
+		"Action",
+		"Mystery",
+		"Thriller"
+	],
+	"director": "Paul Greengrass",
+	"cinematographer": "Oliver Wood",
+	"writers": [
+		"Tony Gilroy",
+		"Scott Z. Burns",
+		"George Nolfi"
+	],
+	"composer": "John Powell",
+	"releaseDate": {
+		"$date": "2007-07-25T00:00:00Z"
+	},
+	"actors": [
+		"Matt Damon",
+		"Julia Stiles",
+		"David Strathairn",
+		"Joan Allen"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:27:38.14Z"
+	},
+	"_class": "com.practice.work.films.entities.Film"
+},
+{
+	"_id": {
+		"$oid": "5ef7818a386d2b709bd0b55c"
+	},
+	"title": "The Bourne Supremacy",
+	"genre": [
+		"Action",
+		"Mystery",
+		"Thriller"
+	],
+	"director": "Paul Greengrass",
+	"cinematographer": "Oliver Wood",
+	"writers": [
+		"Tony Gilroy"
+	],
+	"composer": "John Powell",
+	"releaseDate": {
+		"$date": "2004-07-23T00:00:00Z"
+	},
+	"actors": [
+		"Matt Damon",
+		"Franka Potente",
+		"Brian Cox",
+		"Julia Stiles",
+		"Karl Urban",
+		"Joan Allen"
+	],
+	"dateAdded": {
+		"$date": "2020-06-27T17:27:38.142Z"
 	},
 	"_class": "com.practice.work.films.entities.Film"
 }]
