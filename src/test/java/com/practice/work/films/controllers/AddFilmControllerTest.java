@@ -21,11 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static com.practice.work.films.constants.TestConstants.*;
 import static com.practice.work.films.controllers.AddMultipleFilmsControllerTest.INVALID_TEST_FILM_DTO_AS_STRING;

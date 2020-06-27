@@ -1,7 +1,6 @@
 package com.practice.work.films.entities;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
