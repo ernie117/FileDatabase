@@ -5,6 +5,7 @@ import com.practice.work.films.dtos.FilmDTO;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
+@Slf4j
 @ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch Films by Title"})
 public class FindFilmByTitleController {
@@ -38,14 +40,19 @@ public class FindFilmByTitleController {
     @GetMapping(value = "/v1/findFilmByTitle", produces = "application/json")
     public ResponseEntity<List<FilmDTO>> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
                                                           @RequestParam String title) {
+        log.info("Find film by title endpoint called.");
+
         return this.filmsService.findFilmsByTitleRegexIgnoreCase(title)
-                .map(films -> ResponseEntity
-                        .ok()
-                        .location(URI.create(configProperties.getFindFilmByTitleURI()))
-                        .body(films
-                                .stream()
-                                .map(film -> modelMapper.map(film, FilmDTO.class))
-                                .collect(Collectors.toList())))
+                .map(films -> {
+                    log.info("Find films by title endpoint retrieved {} film object/s from DB.", films.size());
+                    return ResponseEntity
+                            .ok()
+                            .location(URI.create(configProperties.getFindFilmByTitleURI()))
+                            .body(films
+                                    .stream()
+                                    .map(film -> modelMapper.map(film, FilmDTO.class))
+                                    .collect(Collectors.toList()));
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
 }
