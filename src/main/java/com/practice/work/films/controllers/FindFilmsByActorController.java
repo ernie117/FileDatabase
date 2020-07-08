@@ -55,5 +55,4 @@ public class FindFilmsByActorController {
                                 .collect(Collectors.toList())))
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }

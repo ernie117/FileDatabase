@@ -55,6 +55,5 @@ public class FindFilmsByWriterController {
                                 .collect(Collectors.toList())))
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }
 

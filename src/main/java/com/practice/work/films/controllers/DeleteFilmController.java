@@ -30,5 +30,4 @@ public class DeleteFilmController {
                         .body(confirmedDeletionMessage))
                 .orElse(ResponseEntity.unprocessableEntity().build());
     }
-
 }

@@ -56,5 +56,4 @@ public class FindFilmsByReleaseDateController {
                                 .collect(Collectors.toList())))
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }

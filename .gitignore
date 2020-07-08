@@ -39,3 +39,6 @@ build/
 # Excluding mvnw stuff
 mvnw
 mvnw.cmd
+
+# Python things
+venv

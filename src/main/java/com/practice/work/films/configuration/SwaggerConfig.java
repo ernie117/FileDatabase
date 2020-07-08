@@ -47,9 +47,9 @@ public class SwaggerConfig {
         return new ApiInfo(
                 "Film MongoDB REST Service",
                 "Provides endpoints to query my mongo film database",
+                "0.0.1",
                 "",
-                "",
-                new Contact("", "", ""),
+                new Contact("Matthew Stephens", "", ""),
                 "", "", Collections.emptyList()
         );
     }
