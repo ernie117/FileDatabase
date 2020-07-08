@@ -1,4 +1,4 @@
-Feature: Finding films
+Feature: Finding films by various means
 
   Scenario Outline: Searching for a film by title
     Given the application is running
