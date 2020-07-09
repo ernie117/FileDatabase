@@ -2,15 +2,57 @@ Feature: Finding films by various means
 
   Scenario Outline: Searching for a film by title
     Given the application is running
-    When we search for a <film>
-    Then it should return <id>
+    When we call the find film by title endpoint with <title>
+    Then it should return a JSON list
+    And it should contain an object that matches this <title>
+    And the film objects contain the expected fields
 
     Examples:
-      | film                               | id                       |
+      | title                              |
+      | the departed                       |
+      | django unchained                   |
+      | ghost in the shell                 |
+      | terminator 2                       |
+      | rise of the planet of the apes     |
+      | gran torino                        |
+      | unforgiven                         |
+      | source code                        |
+      | there will be blood                |
+      | x-men: first class                 |
+      | prisoners                          |
+      | arrival                            |
+      | superman                           |
+      | superman 2                         |
+      | superman 3                         |
+      | superman 4: the quest for peace    |
+      | superman returns                   |
+      | the bourne identity                |
+      | the bourne ultimatum               |
+      | the bourne supremacy               |
+      | looper                             |
+      | sunshine                           |
+      | the girl with the dragon tattoo    |
+      | ex machina                         |
+      | final fantasy vii: advent children |
+      | sicario                            |
+      | the fifth element                  |
+      | forgetting sarah marshall          |
+      | silver linings playbook            |
+      | scott pilgrim vs. the world        |
+      | whiplash                           |
+
+  Scenario Outline: Searching for a film ID by title
+    Given the application is running
+    When we call the get film ID endpoint with <title>
+    Then it should return a JSON list
+    And we receive a response containing this <id>
+
+    Examples:
+      | title                              | id                       |
       | the departed                       | 5ef50257adb9d821bcec4ef0 |
       | django unchained                   | 5ef6561387e7056866953f0a |
       | ghost in the shell                 | 5ef77f56386d2b709bd0b54b |
-      | terminator                         | 5ef77f56386d2b709bd0b54c |
+      | terminator 2                       | 5ef77f56386d2b709bd0b54c |
       | rise of the planet of the apes     | 5ef77f56386d2b709bd0b54d |
       | gran torino                        | 5ef77f56386d2b709bd0b54e |
       | unforgiven                         | 5ef77f56386d2b709bd0b54f |
