@@ -22,9 +22,9 @@ jobs:
   include:
     - stage: unit tests
       script:
-        - mvn test -B
+        - mvn clean test
       after_success:
-        - bash <(curl -s https://codecov.io/bash) -v
+        - bash <(curl -s https://codecov.io/bash)
 
     - stage: functional tests
       script:

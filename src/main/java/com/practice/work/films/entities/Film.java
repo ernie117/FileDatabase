@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -19,11 +20,11 @@ import java.util.List;
 import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 import static java.util.Comparator.comparing;
 
-@Data
 @Builder
 @Document(collection = "films")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Film {
 
     public static final Comparator<Film> BY_TITLE = comparing(Film::getTitle);
