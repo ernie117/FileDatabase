@@ -9,6 +9,8 @@ jdk: openjdk14
 
 script:
   - mvn test -B
+  - sudo apt-get install python3.8
+  - update-alternatives --install /usr/bin/python python /usr/bin/python3.8
   - pip install behave
   - ./build.sh
   - cd functional-tests/features
