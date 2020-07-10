@@ -1,2 +1,18 @@
-language: java
-jdk: openjdk14
+git:
+  quiet: true
+  submodules: false
+
+services: docker
+
+matrix:
+  include:
+    - language: java
+      jdk: openjdk14
+      script: mvn test -B
+
+    - language: python
+      python: "3.8"
+      script:
+        - ./build.sh
+        - cd functional-tests/features
+        - behave
