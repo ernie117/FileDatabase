@@ -1,0 +1,109 @@
+spring:
+  profiles: dev
+  banner:
+    location: banner.txt
+  data:
+    mongodb:
+      uri: mongodb://${DOCKER_MONGO_USERNAME}:${DOCKER_MONGO_PASSWORD}@films-mongo/film_collection?authSource=admin
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+
+server:
+  port: 8888
+
+films:
+  addFilmHttpURI: /v1/addFilmHttp
+  addFilmURI: /v1/addFilm
+  addMultipleFilmsURI: /v1/addMultipleFilms
+  findAllFilmsURI: /v1/all
+  findFilmByTitleURI: /v1/findFilmByTitle
+  findFilmsByActorURI: /v1/findFilmsByActor
+  findFilmsByCinematographerURI: /v1/findFilmsByCinematographer
+  findFilmsByComposerURI: /v1/findFilmsByComposer
+  findFilmsByDirectorURI: /v1/findFilmsByDirector
+  findFilmsByGenreURI: /v1/findAllByGenre
+  findFilmsByReleaseDateURI: /v1/findFilmsByReleaseDate
+  findFilmsByReleaseYearURI: /v1/findFilmsByReleaseYear
+  findFilmsByWriterURI: /v1/findFilmsByWriter
+  getFilmIdURI: /v1/getFilmId
+
+---
+
+spring:
+  profiles: prod
+  banner:
+    location: banner.txt
+  data:
+    mongodb:
+      uri: mongodb://${DOCKER_MONGO_USERNAME}:${DOCKER_MONGO_PASSWORD}@films-mongo/film_collection?authSource=admin
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  port: 8888
+  ssl:
+    key-alias: ${SSL_KEY_STORE_ALIAS}
+    key-store: classpath:keystore.p12
+    key-store-password: ${SSL_KEY_STORE_PASSWORD}
+    key-store-type: PKCS12
+
+films:
+  addFilmHttpURI: /v1/addFilmHttp
+  addFilmURI: /v1/addFilm
+  addMultipleFilmsURI: /v1/addMultipleFilms
+  findAllFilmsURI: /v1/all
+  findFilmByTitleURI: /v1/findFilmByTitle
+  findFilmsByActorURI: /v1/findFilmsByActor
+  findFilmsByCinematographerURI: /v1/findFilmsByCinematographer
+  findFilmsByComposerURI: /v1/findFilmsByComposer
+  findFilmsByDirectorURI: /v1/findFilmsByDirector
+  findFilmsByGenreURI: /v1/findAllByGenre
+  findFilmsByReleaseDateURI: /v1/findFilmsByReleaseDate
+  findFilmsByReleaseYearURI: /v1/findFilmsByReleaseYear
+  findFilmsByWriterURI: /v1/findFilmsByWriter
+  getFilmIdURI: /v1/getFilmId
+
+---
+
+spring:
+  profiles: test
+  data:
+    mongodb:
+      database: embeddedDB
+
+logging:
+  level:
+    root: OFF
+
+films:
+  addFilmHttpURI: /v1/addFilmHttp
+  addFilmURI: /v1/addFilm
+  addMultipleFilmsURI: /v1/addMultipleFilms
+  findAllFilmsURI: /v1/all
+  findFilmByTitleURI: /v1/findFilmByTitle
+  findFilmsByActorURI: /v1/findFilmsByActor
+  findFilmsByCinematographerURI: /v1/findFilmsByCinematographer
+  findFilmsByComposerURI: /v1/findFilmsByComposer
+  findFilmsByDirectorURI: /v1/findFilmsByDirector
+  findFilmsByGenreURI: /v1/findAllByGenre
+  findFilmsByReleaseDateURI: /v1/findFilmsByReleaseDate
+  findFilmsByReleaseYearURI: /v1/findFilmsByReleaseYear
+  findFilmsByWriterURI: /v1/findFilmsByWriter
+  getFilmIdURI: /v1/getFilmId
+
