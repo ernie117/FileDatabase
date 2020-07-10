@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch Films by Exact Date"})
 @Validated
 public class FindFilmsByReleaseDateController {
@@ -42,6 +41,7 @@ public class FindFilmsByReleaseDateController {
     }
 
     @GetMapping(path = "/v1/findFilmsByReleaseDate")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByReleaseDate(@ApiParam("Year to search, as string")
                                                                     @RequestParam
                                                                     @NotBlank

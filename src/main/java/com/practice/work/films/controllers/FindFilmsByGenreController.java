@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch Films by Genre"})
 @Validated
 public class FindFilmsByGenreController {
@@ -39,6 +38,7 @@ public class FindFilmsByGenreController {
     }
 
     @GetMapping(path = "/v1/findAllByGenre")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<FilmDTO>> fetchAllFilmsByGenre(@ApiParam("Genre to search as a string. Case-insensitive")
                                                               @RequestParam
                                                               @NotBlank String genre) {

@@ -6,9 +6,11 @@ import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
@@ -27,6 +29,7 @@ public class FilmIdController {
     }
 
     @GetMapping(value = "/v1/getFilmId")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<JsonNode> getFilmIdsByTitle(@ApiParam("Film title to search, as string")
                                                       @RequestParam String title) {
         return this.filmsService.getFilmIdsByTitle(title)

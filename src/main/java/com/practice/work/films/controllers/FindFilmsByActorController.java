@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 
 @RestController
-@ResponseStatus(HttpStatus.OK)
 @Api(tags = "Fetch Films by Actor")
 @Validated
 public class FindFilmsByActorController {
@@ -41,6 +40,7 @@ public class FindFilmsByActorController {
     }
 
     @GetMapping("/v1/findFilmsByActor")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<FilmDTO>> fetchFilmsByActor(@Valid
                                                            @ApiParam("String of actor to search; case-insensitive")
                                                            @Pattern(regexp = NAME_REGEX)

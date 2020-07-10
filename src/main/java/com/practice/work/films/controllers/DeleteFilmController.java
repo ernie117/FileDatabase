@@ -23,10 +23,11 @@ public class DeleteFilmController {
     }
 
     @DeleteMapping(path = "/v1/deleteFilmByTitle")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ConfirmedDeletionMessage> deleteFilmById(String id) {
         return this.filmsService.deleteFilmById(id)
                 .map(confirmedDeletionMessage -> ResponseEntity
-                        .ok()
+                        .accepted()
                         .body(confirmedDeletionMessage))
                 .orElse(ResponseEntity.unprocessableEntity().build());
     }

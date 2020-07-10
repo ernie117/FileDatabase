@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@ResponseStatus(HttpStatus.CREATED)
 @Api(tags = {"Add Multiple Films"})
 @Validated
 public class AddMultipleFilmsController {
@@ -43,6 +42,7 @@ public class AddMultipleFilmsController {
     }
 
     @PostMapping(value = "/v1/addMultipleFilms")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<List<FilmDTO>> insertManyFilmDocuments(@Valid
                                                                  @ApiParam("Array of filmDTO objects, structured as in the example")
                                                                  @RequestBody List<FilmDTO> filmDTOS) {

@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch All Films"})
 public class ReturnAllFilmsController {
 
@@ -36,6 +35,7 @@ public class ReturnAllFilmsController {
     }
 
     @GetMapping(value = "/v1/all")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<FilmDTO>> fetchAllFilmDocuments() {
         log.info("Fetch All Films endpoint called.");
         return filmsService.fetchAllFilms()

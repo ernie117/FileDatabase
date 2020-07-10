@@ -42,7 +42,7 @@ class DeleteFilmControllerTest {
 
         this.mockMvc.perform(delete("/v1/deleteFilmByTitle")
                 .param("id", TEST_ID))
-                .andExpect(status().isOk())
+                .andExpect(status().isAccepted())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.title").value(TEST_TITLE))
                 .andExpect(jsonPath("$.message").value(CONFIRM_MSG));

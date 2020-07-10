@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
-@ResponseStatus(HttpStatus.OK)
 @Api(tags = {"Fetch Films by Title"})
 public class FindFilmByTitleController {
 
@@ -38,6 +37,7 @@ public class FindFilmByTitleController {
     }
 
     @GetMapping(value = "/v1/findFilmByTitle", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<FilmDTO>> fetchFilmByTitle(@ApiParam("Film title to search, as string. Case-insensitive")
                                                           @RequestParam String title) {
         log.info("Find film by title endpoint called.");
