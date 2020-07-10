@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/ernie117/FilmDatabase.svg?branch=master)](https://travis-ci.com/ernie117/FilmDatabase)
+[![Build Status](https://travis-ci.com/ernie117/FilmDatabase.svg?branch=master)](https://travis-ci.com/ernie117/FilmDatabase) [![codecov](https://codecov.io/gh/ernie117/FilmDatabase/branch/master/graph/badge.svg)](https://codecov.io/gh/ernie117/FilmDatabase)
 
 Remember to start the Docker daemon first
 
