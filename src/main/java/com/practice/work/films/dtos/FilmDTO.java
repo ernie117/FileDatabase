@@ -1,10 +1,7 @@
 package com.practice.work.films.dtos;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,8 +13,8 @@ import java.util.List;
 
 import static com.practice.work.films.constants.FilmsConstants.NAME_REGEX;
 
-@Data
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FilmDTO {

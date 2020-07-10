@@ -1,5 +1,6 @@
 [
   {
+    "id": "123456789",
     "title": "test title one",
     "genre": [
       "test genre one",
@@ -20,6 +21,7 @@
     ]
   },
   {
+    "id": "987654321",
     "title": "test title two",
     "genre": [
       "test genre four",
@@ -37,6 +39,27 @@
     "actors": [
       "test actor three",
       "test actor four"
+    ]
+  },
+  {
+    "id": "12635463829",
+    "title": "test title three",
+    "genre": [
+      "test genre seven",
+      "test genre eight",
+      "test genre nine"
+    ],
+    "director": "test director three",
+    "cinematographer": "test cinematographer three",
+    "writers": [
+      "test writer five",
+      "test writer six"
+    ],
+    "composer": "test composer three",
+    "releaseDate": "2000-01-01",
+    "actors": [
+      "test actor five",
+      "test actor six"
     ]
   }
 ]

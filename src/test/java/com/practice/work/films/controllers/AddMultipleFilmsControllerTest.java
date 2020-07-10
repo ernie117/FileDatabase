@@ -74,8 +74,8 @@ class AddMultipleFilmsControllerTest {
     @Test
     void insertManyFilmDocuments_CorrectValues() throws Exception {
         doReturn(Optional.of(TEST_FILMS)).when(filmsService).insertMultipleFilmDocument(TEST_FILMS);
-        doReturn(TEST_FILMS.get(0), TEST_FILMS.get(1)).when(mockModelMapper).map(any(), eq(Film.class));
-        doReturn(TEST_FILM_DTOS.get(0), TEST_FILM_DTOS.get(1)).when(mockModelMapper).map(any(), eq(FilmDTO.class));
+        doReturn(TEST_FILMS.get(0), TEST_FILMS.get(1), TEST_FILMS.get(2)).when(mockModelMapper).map(any(), eq(Film.class));
+        doReturn(TEST_FILM_DTOS.get(0), TEST_FILM_DTOS.get(1), TEST_FILM_DTOS.get(2)).when(mockModelMapper).map(any(), eq(FilmDTO.class));
 
         this.mockMvc.perform(post("/v1/addMultipleFilms")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)

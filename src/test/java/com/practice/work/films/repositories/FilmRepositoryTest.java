@@ -56,10 +56,7 @@ class FilmRepositoryTest {
     @Test
     void testFindAll() {
         List<Film> films = filmRepository.findAll();
-        assertEquals(2, films.size(), "Should be two");
-        // Assert films are returned sorted
-        List<Film> sortedFilms = films.stream().sorted(Film.BY_TITLE).collect(Collectors.toList());
-        assertThat(sortedFilms, is(films));
+        assertEquals(3, films.size(), "Should be three");
     }
 
     @Test
@@ -69,7 +66,7 @@ class FilmRepositoryTest {
         films.ifPresent(filmsList -> {
             Film film1 = filmsList.get(0);
             assertEquals("test title one", film1.getTitle(), "Should be test title1");
-            assertNotEquals("false genre", film1.getGenre(), "Should be test genre1");
+            assertNotEquals("false genre", film1.getGenre().get(0), "Should be test genre1");
             Film film2 = filmsList.get(1);
             assertEquals("test title two", film2.getTitle(), "Should be test title2");
             assertNotEquals("false cinematographer", film1.getCinematographer(), "Should be test cinematographer1");

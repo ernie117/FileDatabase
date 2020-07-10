@@ -20,7 +20,7 @@ public class FilmsService {
     private final FilmRepository filmRepository;
 
     @Autowired
-    FilmsService(FilmRepository filmRepository) {
+    public FilmsService(FilmRepository filmRepository) {
         this.filmRepository = filmRepository;
     }
 
