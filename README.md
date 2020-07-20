@@ -1,14 +1,8 @@
-[![Build Status](https://travis-ci.com/ernie117/FilmDatabase.svg?branch=master)](https://travis-ci.com/ernie117/FilmDatabase) [![codecov](https://codecov.io/gh/ernie117/FilmDatabase/branch/master/graph/badge.svg)](https://codecov.io/gh/ernie117/FilmDatabase)
-
-Remember to start the Docker daemon first
-
-> systemctl start docker.service
-
-Run everything with:
-
-> docker-compose -f docker-compose.yml up (-d)
-
-Environment variables are defined in a locally stored `.env` file.
+<br>
+<p align="center">
+  <a href="https://travis-ci.com/ernie117/FilmDatabase"><img src="https://travis-ci.com/ernie117/FilmDatabase.svg?branch=master" alt="Travis CI Info"></a>
+  <a href="https://codecov.io/gh/ernie117/FilmDatabase"><img src="https://codecov.io/gh/ernie117/FilmDatabase/branch/master/graph/badge.svg" alt="Code Coverage Info"></a>
+</p>
 
 Shell command to dump the "films" collection.
 ```shell script
@@ -20,3 +14,11 @@ mongoexport --username <username> \
     --jsonArray --pretty \
     --out init-data.json
 ```
+
+### TODO
+- [ ] Unit tests for Service component
+- [ ] Flesh out functional tests
+- [ ] Setup CircleCI pipeline
+- [x] Setup TravisCI pipeline
+- [x] Provision EC2 instance for deployment
+- [x] Build and run with docker-compose
