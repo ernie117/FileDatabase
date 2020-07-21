@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  films-mongo:
+    container_name: films-mongo
+    init: true
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${MONGO_ECR}:latest
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - 27017:27017
+    networks:
+      - spring-mongo-films-network
+
+  spring-films:
+    container_name: spring-films
+    init: true
+    depends_on:
+      - films-mongo
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${APP_ECR}:latest
+    environment:
+      - DOCKER_MONGO_USERNAME=${DOCKER_MONGO_USERNAME}
+      - DOCKER_MONGO_PASSWORD=${DOCKER_MONGO_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=${SPRING_ACTIVE_PROFILE}
+      - JAVA_OPTS=${JAVA_OPTS}
+    expose:
+      - 8888
+    ports:
+      - 80:8888
+    networks:
+      - spring-mongo-films-network
+
+networks:
+  spring-mongo-films-network:
+    driver: bridge
