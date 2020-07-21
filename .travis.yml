@@ -2,13 +2,14 @@ git:
   quiet: true
   submodules: false
 
+language: java
+jdk: openjdk14
+
 services: docker
 
 jobs:
   include:
     - stage: unit tests
-      language: java
-      jdk: openjdk14
       script:
         - mvn clean test
       after_success:
