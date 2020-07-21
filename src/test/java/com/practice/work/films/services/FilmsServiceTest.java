@@ -126,9 +126,9 @@ class FilmsServiceTest {
 
         result.ifPresentOrElse(jsonNode -> assertAll(() -> {
             assertEquals(expectedFields, getJsonNodeFields(jsonNode));
-            assertEquals("123456789", jsonNode.get(0).get(TITLE_1).asText());
-            assertEquals("12635463829", jsonNode.get(1).get(TITLE_3).asText());
-            assertEquals("987654321", jsonNode.get(2).get(TITLE_2).asText());
+            assertEquals("aab25a9b-36cb-4b09-84b9-73a6eacb668e", jsonNode.get(0).get(TITLE_1).asText());
+            assertEquals("98a69335-6c06-42a3-942d-78ef4a93e2c5", jsonNode.get(1).get(TITLE_3).asText());
+            assertEquals("21941fda-2c3a-4d73-948e-695ef5bc6607", jsonNode.get(2).get(TITLE_2).asText());
         }), Assertions::fail);
     }
 

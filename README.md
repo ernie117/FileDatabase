@@ -27,6 +27,7 @@ mongoexport --username <username> \
 - [ ] Flesh out functional tests
 - [ ] Extend to include TV series collection?
 - [ ] Automate image deployment to ECR
+- [ ] Add display names and messages to unit tests
 - [x] Setup TravisCI pipeline
 - [x] Provision EC2 instance for deployment
 - [x] Build and run with docker-compose
