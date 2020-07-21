@@ -92,22 +92,6 @@ public class GlobalExceptionHandler {
         return violations;
     }
 
-    @ExceptionHandler(JsonParseException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public Set<Violation> handleJsonParseException(JsonParseException ex) {
-        log.error("Handling an instance of JsonParseException or its children", ex);
-        Set<Violation> violations = new HashSet<>();
-        violations.add(
-                Violation.builder()
-                        .field(ex.getClass().getSimpleName())
-                        .message(ex.getLocalizedMessage())
-                        .build()
-        );
-
-        return violations;
-    }
-
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody

@@ -104,6 +104,16 @@ class FilmRepositoryTest {
     }
 
     @Test
+    void findAllFilmsByReleaseYear() {
+        Optional<List<Film>> films = Optional.ofNullable(filmRepository.findAllFilmsByYear(LocalDate.parse("2000-01-01"), LocalDate.parse("2001-01-01")));
+        assertTrue(films.isPresent(), "We should return the film matching the release date in the JSON file");
+        films.ifPresent((filmsList -> {
+            assertEquals(1, filmsList.size());
+            assertEquals("2000-01-31", filmsList.get(0).getReleaseDate().toString(), "Should be 2000-01-31");
+        }));
+    }
+
+    @Test
     void findAllFilmsByActors() {
         Optional<List<Film>> films = Optional.ofNullable(filmRepository.findFilmsByActorsRegexIgnoreCase("test actor"));
         assertTrue(films.isPresent(), "We should return the films matching one of the actors in the Json file");

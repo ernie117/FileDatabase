@@ -3,7 +3,6 @@ package com.practice.work.films.entities;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -109,7 +108,7 @@ public class Film {
     public String toString() {
         return String.format(
                 "Film[id=%s, title=%s, genre=%s, director=%s, cinematographer=%s, writer=%s, composer=%s, yearReleased=%s, actors=%s]",
-                id, title, genre, cinematographer, writers, composer, director, releaseDate, String.join(", ", actors)
+                id, title, genre, director, cinematographer, writers, composer, releaseDate, String.join(", ", actors)
         );
     }
 }

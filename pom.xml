@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
+            <version>1.18.12</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -145,6 +145,14 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/FilmsApplication.*</exclude>
+                        <exclude>**/Film.*</exclude>
+                        <exclude>**/FilmDTO.*</exclude>
+                        <exclude>**/FilmsConstants.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

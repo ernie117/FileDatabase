@@ -96,7 +96,7 @@ class FindFilmByTitleControllerTest {
                 .andExpect(jsonPath("$[1]['genre'][0]").value("test genre four"))
                 .andExpect(jsonPath("$[1]['genre'][1]").value("test genre five"))
                 .andExpect(jsonPath("$[1]['genre'][2]").value("test genre six"))
-                .andExpect(jsonPath("$[1]['releaseDate']").value(LocalDate.of(2000, 1, 1).toString()))
+                .andExpect(jsonPath("$[1]['releaseDate']").value(LocalDate.of(2010, 1, 1).toString()))
                 .andExpect(jsonPath("$[1]['releaseDate']", isA(String.class)))
                 .andExpect(jsonPath("$[1]['actors']", isA(List.class)))
                 .andExpect(jsonPath("$[1]['actors'][0]").value("test actor three"))
