@@ -1,6 +1,6 @@
 package com.practice.work.films.controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.practice.work.films.configuration.ConfigProperties;
 import com.practice.work.films.service.FilmsService;
 import io.swagger.annotations.Api;
@@ -30,7 +30,7 @@ public class FilmIdController {
 
     @GetMapping(value = "/v1/getFilmId")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<JsonNode> getFilmIdsByTitle(@ApiParam("Film title to search, as string")
+    public ResponseEntity<ArrayNode> getFilmIdsByTitle(@ApiParam("Film title to search, as string")
                                                       @RequestParam String title) {
         return this.filmsService.getFilmIdsByTitle(title)
                 .map(jsonNode -> ResponseEntity
