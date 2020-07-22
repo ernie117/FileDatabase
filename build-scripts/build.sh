@@ -2,8 +2,8 @@
 
 set -e
 
-# The build-image step runs tests so skip in package step.
 if [ -n "$TRAVIS" ]; then
+  # In Travis CI tests will already have been run at this point, so skip them.
   mvn clean -DskipTests package spring-boot:repackage && mvn -DskipTests spring-boot:build-image
 else
   mvn clean -DskipTests package spring-boot:repackage && mvn spring-boot:build-image
