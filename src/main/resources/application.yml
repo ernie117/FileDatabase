@@ -49,6 +49,10 @@ spring:
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
+  security:
+    user:
+      name: ${USER_NAME:test}
+      password: ${USER_PASSWORD:test}
 
 management:
   endpoint:
