@@ -35,6 +35,8 @@ build/
 
 # Our keystore
 *.p12
+*.crt
+*.pem
 
 # Excluding mvnw stuff
 mvnw

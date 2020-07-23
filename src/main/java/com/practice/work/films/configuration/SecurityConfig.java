@@ -1,6 +1,5 @@
 package com.practice.work.films.configuration;
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,13 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        if (env.equals("prod")) {
-            auth.inMemoryAuthentication()
-                    .passwordEncoder(new Argon2PasswordEncoder())
-                    .withUser(user)
-                    .password(String.format("{argon2}%s", password))
-                    .roles("ADMIN");
-        }
+        auth.inMemoryAuthentication()
+                .passwordEncoder(new Argon2PasswordEncoder())
+                .withUser(user)
+                .password(String.format("{argon2}%s", password))
+                .roles("ADMIN", "USER");
     }
 
     @Override
@@ -43,6 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest()
                     .requiresSecure()
                     .and()
+                    .authorizeRequests()
+                    .anyRequest()
+                    .hasRole("ADMIN")
+                    .and()
+                    .httpBasic();
+        } else if (env.equals("dev")) {
+            httpSecurity
+                    .csrf().disable()
                     .authorizeRequests()
                     .anyRequest()
                     .hasRole("ADMIN")

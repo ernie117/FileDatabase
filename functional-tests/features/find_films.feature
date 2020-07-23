@@ -1,3 +1,4 @@
+@fixture.requests.basic.auth
 Feature: Finding films by various means
 
   Scenario Outline: Searching for a film by title
@@ -8,38 +9,19 @@ Feature: Finding films by various means
     And the film objects contain the expected fields
 
     Examples:
-      | title                              |
-      | the departed                       |
-      | django unchained                   |
-      | ghost in the shell                 |
-      | terminator 2                       |
-      | rise of the planet of the apes     |
-      | gran torino                        |
-      | unforgiven                         |
-      | source code                        |
-      | there will be blood                |
-      | x-men: first class                 |
-      | prisoners                          |
-      | arrival                            |
-      | superman                           |
-      | superman 2                         |
-      | superman 3                         |
-      | superman 4: the quest for peace    |
-      | superman returns                   |
-      | the bourne identity                |
-      | the bourne ultimatum               |
-      | the bourne supremacy               |
-      | looper                             |
-      | sunshine                           |
-      | the girl with the dragon tattoo    |
-      | ex machina                         |
-      | final fantasy vii: advent children |
-      | sicario                            |
-      | the fifth element                  |
-      | forgetting sarah marshall          |
-      | silver linings playbook            |
-      | scott pilgrim vs. the world        |
-      | whiplash                           |
+      | title                          |
+      | the departed                   |
+      | django unchained               |
+      | ghost in the shell             |
+      | terminator 2                   |
+      | rise of the planet of the apes |
+      | gran torino                    |
+      | unforgiven                     |
+      | source code                    |
+      | there will be blood            |
+      | x-men: first class             |
+      | prisoners                      |
+      | arrival                        |
 
   Scenario Outline: Searching for a film ID by title
     Given the application is running
@@ -49,22 +31,6 @@ Feature: Finding films by various means
 
     Examples:
       | title                              | id                       |
-      | the departed                       | 5ef50257adb9d821bcec4ef0 |
-      | django unchained                   | 5ef6561387e7056866953f0a |
-      | ghost in the shell                 | 5ef77f56386d2b709bd0b54b |
-      | terminator 2                       | 5ef77f56386d2b709bd0b54c |
-      | rise of the planet of the apes     | 5ef77f56386d2b709bd0b54d |
-      | gran torino                        | 5ef77f56386d2b709bd0b54e |
-      | unforgiven                         | 5ef77f56386d2b709bd0b54f |
-      | source code                        | 5ef77f56386d2b709bd0b550 |
-      | there will be blood                | 5ef77f56386d2b709bd0b551 |
-      | x-men: first class                 | 5ef77f56386d2b709bd0b552 |
-      | prisoners                          | 5ef77f56386d2b709bd0b553 |
-      | arrival                            | 5ef77f56386d2b709bd0b554 |
-      | superman 2                         | 5ef77f56386d2b709bd0b556 |
-      | superman 3                         | 5ef77f56386d2b709bd0b557 |
-      | superman 4: the quest for peace    | 5ef77f56386d2b709bd0b558 |
-      | superman returns                   | 5ef77f56386d2b709bd0b559 |
       | the bourne identity                | 5ef7818a386d2b709bd0b55a |
       | the bourne ultimatum               | 5ef7818a386d2b709bd0b55b |
       | the bourne supremacy               | 5ef7818a386d2b709bd0b55c |
