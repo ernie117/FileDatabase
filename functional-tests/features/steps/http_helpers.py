@@ -7,11 +7,11 @@ use_step_matcher("re")
 @given("the application is running")
 def step_impl(context):
     assert (
-            requests.get(
-                "http://localhost:8888/actuator/health",
-                auth=(context.user, context.password),
-            ).json()["status"]
-            == "UP"
+        requests.get(
+            "http://localhost:8888/actuator/health",
+            auth=(context.user, context.password),
+        ).json()["status"]
+        == "UP"
     )
 
 
@@ -31,5 +31,3 @@ def step_impl(context, title):
         auth=(context.user, context.password),
         params={"title": title},
     ).json()
-
-

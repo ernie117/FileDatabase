@@ -3,6 +3,8 @@ from OpenSSL import crypto
 import os
 
 
+# Not required for now but if I ever need to run tests against prod in HTTPS
+# with a self-signed cert
 @fixture(name="requests.ssl.certificate")
 def ssl_cert_setup(context):
     context.pem = "cert.pem"
@@ -18,7 +20,6 @@ def ssl_cert_setup(context):
     os.remove(context.pem)
 
 
-@fixture(name="requests.basic.auth")
 def auth_setup(context):
     context.user = os.getenv("USER_NAME")
     context.password = os.getenv("USER_PASSWORD_PLAIN")

@@ -1,4 +1,3 @@
-@fixture.requests.basic.auth
 Feature: Finding films by various means
 
   Scenario Outline: Searching for a film by title

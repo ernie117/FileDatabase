@@ -20,6 +20,7 @@ services:
     depends_on:
       - films-mongo
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${APP_ECR}:latest
+    restart: always
     environment:
       - DOCKER_MONGO_USERNAME=${DOCKER_MONGO_USERNAME}
       - DOCKER_MONGO_PASSWORD=${DOCKER_MONGO_PASSWORD}
