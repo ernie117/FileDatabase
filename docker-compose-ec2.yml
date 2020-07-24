@@ -20,10 +20,16 @@ services:
     depends_on:
       - films-mongo
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${APP_ECR}:latest
+    restart: always
     environment:
       - DOCKER_MONGO_USERNAME=${DOCKER_MONGO_USERNAME}
       - DOCKER_MONGO_PASSWORD=${DOCKER_MONGO_PASSWORD}
       - SPRING_PROFILES_ACTIVE=${SPRING_ACTIVE_PROFILE}
+      - SSL_KEY_STORE_PASSWORD=${SSL_KEY_STORE_PASSWORD}
+      - SSL_KEY_STORE_ALIAS=${SSL_KEY_STORE_ALIAS}
+      - USER_NAME=${USER_NAME}
+      - USER_PASSWORD=${USER_PASSWORD}
+      - USER_PASSWORD_PLAIN=${USER_PASSWORD_PLAIN}
       - JAVA_OPTS=${JAVA_OPTS}
     expose:
       - 8888
