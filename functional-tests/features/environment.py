@@ -27,6 +27,6 @@ def auth_setup(context):
     return context
 
 
-def before_all(context):
+# def before_all(context):
     # use_fixture(ssl_cert_setup, context)
-    use_fixture(auth_setup, context)
+    # use_fixture(auth_setup, context)

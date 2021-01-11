@@ -9,7 +9,7 @@ def step_impl(context):
     assert (
         requests.get(
             "http://localhost:8888/actuator/health",
-            auth=(context.user, context.password),
+            # auth=(context.user, context.password),
         ).json()["status"]
         == "UP"
     )
@@ -19,7 +19,7 @@ def step_impl(context):
 def step_impl(context, title):
     context.response = requests.get(
         "http://localhost:8888/v1/findFilmByTitle",
-        auth=(context.user, context.password),
+        # auth=(context.user, context.password),
         params={"title": title},
     ).json()
 
@@ -28,6 +28,6 @@ def step_impl(context, title):
 def step_impl(context, title):
     context.response = requests.get(
         "http://localhost:8888/v1/getFilmId",
-        auth=(context.user, context.password),
+        # auth=(context.user, context.password),
         params={"title": title},
     ).json()
