@@ -1,6 +1,5 @@
 package com.practice.work.films.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.practice.work.films.entities.ConfirmedDeletionMessage;

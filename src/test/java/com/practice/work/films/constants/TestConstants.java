@@ -88,12 +88,5 @@ public class TestConstants {
             .build();
 
     // missing a comma
-    public static final String BAD_JSON = """
-                                          [
-                                              {
-                                                  "field": "value"
-                                                  "field2": "value"
-                                              }
-                                          ]
-                                          """;
+    public static final String BAD_JSON = "{'field': 'value' 'field2': 'value'}";
 }
